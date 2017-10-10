@@ -421,9 +421,10 @@ GameObject:
   - component: {fileID: 291620277}
   - component: {fileID: 291620276}
   - component: {fileID: 291620280}
+  - component: {fileID: 291620281}
   m_Layer: 0
   m_Name: red_player
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -487,7 +488,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 291620275}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -13.62, y: 6.72, z: 0}
+  m_LocalPosition: {x: -13.62, y: 9.37, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -503,11 +504,23 @@ Rigidbody:
   m_Mass: 1
   m_Drag: 0
   m_AngularDrag: 0.05
-  m_UseGravity: 1
+  m_UseGravity: 0
   m_IsKinematic: 0
   m_Interpolate: 0
-  m_Constraints: 0
+  m_Constraints: 112
   m_CollisionDetection: 0
+--- !u!114 &291620281
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 291620275}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 449ec250463b6dc49a269a406ecc0c02, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  walkSpeed: 20
 --- !u!1 &372333757
 GameObject:
   m_ObjectHideFlags: 0
@@ -681,6 +694,7 @@ GameObject:
   m_Component:
   - component: {fileID: 427224061}
   - component: {fileID: 427224062}
+  - component: {fileID: 427224063}
   m_Layer: 0
   m_Name: rift_trigger (3)
   m_TagString: Untagged
@@ -713,6 +727,19 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1.0782614, y: 3.590396, z: 29.770409}
   m_Center: {x: -0.23941064, y: -0.12166834, z: 0.11148834}
+--- !u!114 &427224063
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 427224060}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b47b818d4c4df944d9ca66cd61100952, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  side: right
+  offset: 1
 --- !u!1 &565292114
 GameObject:
   m_ObjectHideFlags: 0
@@ -1033,6 +1060,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1043150016}
   - component: {fileID: 1043150017}
+  - component: {fileID: 1043150018}
   m_Layer: 0
   m_Name: rift_trigger (2)
   m_TagString: Untagged
@@ -1065,6 +1093,19 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1.0782614, y: 3.590396, z: 29.770409}
   m_Center: {x: -0.23941064, y: -0.12166834, z: 0.11148834}
+--- !u!114 &1043150018
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1043150015}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b47b818d4c4df944d9ca66cd61100952, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  side: left
+  offset: 1
 --- !u!1 &1165667168
 GameObject:
   m_ObjectHideFlags: 0
@@ -1471,6 +1512,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1769713088}
   - component: {fileID: 1769713087}
+  - component: {fileID: 1769713089}
   m_Layer: 0
   m_Name: rift_trigger
   m_TagString: Untagged
@@ -1503,6 +1545,19 @@ Transform:
   m_Father: {fileID: 1499428485}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1769713089
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1769713086}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b47b818d4c4df944d9ca66cd61100952, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  side: left
+  offset: 1
 --- !u!1 &1775742841
 GameObject:
   m_ObjectHideFlags: 0
@@ -1512,6 +1567,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1775742842}
   - component: {fileID: 1775742843}
+  - component: {fileID: 1775742844}
   m_Layer: 0
   m_Name: rift_trigger (1)
   m_TagString: Untagged
@@ -1544,6 +1600,19 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1.0782614, y: 3.590396, z: 29.770409}
   m_Center: {x: -0.23941064, y: -0.12166834, z: 0.11148834}
+--- !u!114 &1775742844
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1775742841}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b47b818d4c4df944d9ca66cd61100952, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  side: right
+  offset: 1
 --- !u!1 &1869349154
 GameObject:
   m_ObjectHideFlags: 0
