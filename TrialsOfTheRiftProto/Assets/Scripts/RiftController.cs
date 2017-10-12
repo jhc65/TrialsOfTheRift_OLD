@@ -4,9 +4,9 @@ using UnityEngine;
 
 public class RiftController : MonoBehaviour {
 
-    int power;
+    public int power;
     int timer;
-    const int maxTimer = 3;
+    const int maxTimer = 20;
     const int maxPower = 100;
     GameObject teleportedPlayer;
     public string side;

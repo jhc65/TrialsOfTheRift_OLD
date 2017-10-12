@@ -119,6 +119,7 @@ GameObject:
   - component: {fileID: 89251362}
   - component: {fileID: 89251361}
   - component: {fileID: 89251360}
+  - component: {fileID: 89251364}
   m_Layer: 0
   m_Name: red_room
   m_TagString: Untagged
@@ -192,6 +193,24 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &89251364
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 89251359}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 18e26d3ecbca60e42affeca471bbc58a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  color: red
+  redMats:
+  - {fileID: 2100000, guid: 5b63c0eced6149e4282e6953b9e283be, type: 2}
+  - {fileID: 2100000, guid: 67612750b5681a447b2d6ece826c3645, type: 2}
+  blueMats:
+  - {fileID: 2100000, guid: 2466f7d798a940c4db296ab60da7170b, type: 2}
+  - {fileID: 2100000, guid: 3da63e5ae62099a4f8cc8078e594566c, type: 2}
 --- !u!1 &96802377
 GameObject:
   m_ObjectHideFlags: 0
@@ -286,6 +305,7 @@ GameObject:
   - component: {fileID: 120661105}
   - component: {fileID: 120661104}
   - component: {fileID: 120661108}
+  - component: {fileID: 120661103}
   m_Layer: 0
   m_Name: blue_player
   m_TagString: Untagged
@@ -293,6 +313,20 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!114 &120661103
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 120661102}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 449ec250463b6dc49a269a406ecc0c02, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  walkSpeed: 20
+  shot: {fileID: 1220109840088454, guid: f2ce605b807c8ad428cd7d6c0ba6d10a, type: 2}
+  timeToFire: 30
 --- !u!23 &120661104
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -521,6 +555,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   walkSpeed: 20
+  shot: {fileID: 1220109840088454, guid: f2ce605b807c8ad428cd7d6c0ba6d10a, type: 2}
+  timeToFire: 30
 --- !u!1 &372333757
 GameObject:
   m_ObjectHideFlags: 0
@@ -738,8 +774,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b47b818d4c4df944d9ca66cd61100952, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  power: 0
   side: right
-  offset: 1
+  offset: 1.5
 --- !u!1 &565292114
 GameObject:
   m_ObjectHideFlags: 0
@@ -1104,8 +1141,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b47b818d4c4df944d9ca66cd61100952, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  power: 0
   side: left
-  offset: 1
+  offset: 1.5
 --- !u!1 &1165667168
 GameObject:
   m_ObjectHideFlags: 0
@@ -1188,13 +1226,56 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1165667168}
-  m_LocalRotation: {x: 0.6875539, y: -0, z: -0, w: 0.72613335}
-  m_LocalPosition: {x: 0, y: 27.5, z: -1.7}
+  m_LocalRotation: {x: 0.7071068, y: 0, z: 0, w: 0.7071068}
+  m_LocalPosition: {x: 0, y: 31.5, z: -0.3}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 86.874, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 90, y: 0, z: 0}
+--- !u!1 &1182831817
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 1182831819}
+  - component: {fileID: 1182831818}
+  m_Layer: 0
+  m_Name: GameObject
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1182831818
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1182831817}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ac9c74025ba0f2649b03cdbfa2d379f7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  enemy: {fileID: 1352462437603576, guid: 8bc2cc22516a509408ba77ebbd5b63be, type: 2}
+  debugplayer: {fileID: 120661102}
+  numLeftEnemies: 0
+--- !u!4 &1182831819
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1182831817}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -0.2288424, y: 1.285754, z: -0.7282044}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 9
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1275152767
 GameObject:
   m_ObjectHideFlags: 0
@@ -1556,8 +1637,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b47b818d4c4df944d9ca66cd61100952, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  power: 0
   side: left
-  offset: 1
+  offset: -1.5
 --- !u!1 &1775742841
 GameObject:
   m_ObjectHideFlags: 0
@@ -1611,8 +1693,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b47b818d4c4df944d9ca66cd61100952, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  power: 0
   side: right
-  offset: 1
+  offset: -1.5
 --- !u!1 &1869349154
 GameObject:
   m_ObjectHideFlags: 0
@@ -1706,6 +1789,7 @@ GameObject:
   - component: {fileID: 1929391563}
   - component: {fileID: 1929391562}
   - component: {fileID: 1929391561}
+  - component: {fileID: 1929391565}
   m_Layer: 0
   m_Name: blue_room
   m_TagString: Untagged
@@ -1779,3 +1863,21 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1929391565
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1929391560}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 18e26d3ecbca60e42affeca471bbc58a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  color: blue
+  redMats:
+  - {fileID: 2100000, guid: 5b63c0eced6149e4282e6953b9e283be, type: 2}
+  - {fileID: 2100000, guid: 67612750b5681a447b2d6ece826c3645, type: 2}
+  blueMats:
+  - {fileID: 2100000, guid: 2466f7d798a940c4db296ab60da7170b, type: 2}
+  - {fileID: 2100000, guid: 3da63e5ae62099a4f8cc8078e594566c, type: 2}
