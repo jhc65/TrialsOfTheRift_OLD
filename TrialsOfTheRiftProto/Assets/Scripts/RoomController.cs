@@ -5,7 +5,7 @@ using UnityEngine;
 public class RoomController : MonoBehaviour {
 
     [SerializeField]string color;
-    int index;
+    public int index;
     [SerializeField]Material[] redMats = new Material[2];
     [SerializeField]Material[] blueMats = new Material[2];
 
@@ -27,7 +27,7 @@ public class RoomController : MonoBehaviour {
         }
     }
 
-    void SwapColor() {
+    public void SwapColor() {
         if (color == "red") {
             gameObject.GetComponent<MeshRenderer>().material = blueMats[index % 2];
             color = "blue";
