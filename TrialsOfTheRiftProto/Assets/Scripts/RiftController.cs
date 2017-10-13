@@ -64,7 +64,7 @@ public class RiftController : MonoBehaviour {
                         timer = maxTimer;
                         Debug.Log("Object is the other player");
                         CancelInvoke("TimerTick");
-                         power = 0;
+                        power = 0;
 
                     } else { //case where player tries to hop back during timer. Block 'em.
                         validTeleport = false;
