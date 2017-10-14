@@ -79,8 +79,10 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Assets\Scripts\DarkMagician.cs" />
+    <Compile Include="Assets\Scripts\EnemyController.cs" />
     <Compile Include="Assets\Scripts\EnemyController_Stest.cs" />
     <Compile Include="Assets\Scripts\EnemySpawnController.cs" />
+    <Compile Include="Assets\Scripts\GameController.cs" />
     <Compile Include="Assets\Scripts\PlayerController.cs" />
     <Compile Include="Assets\Scripts\PlayerController_STest.cs" />
     <Compile Include="Assets\Scripts\RiftController.cs" />

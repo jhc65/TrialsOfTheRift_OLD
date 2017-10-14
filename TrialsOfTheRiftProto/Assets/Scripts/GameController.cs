@@ -19,61 +19,19 @@ public class GameController : MonoBehaviour {
     //public GameObject redEnemy;
 	//public GameObject blueEnemy;
 
-	public GameObject enemy;
-    public GameObject doorLeft;        // left door
-    public GameObject doorRight;        // right door
-
-	public int numberOfEnemies = 10;
-	private int currentEnemiesRed;
-	private int currentEnemiesBlue;
-
-    private void enemySpawn()
-    {
-        for (int i = 0; i < numberOfEnemies; i++)
-        {
-            float zPos = Random.Range(-12, 12);
-            float xPos = Random.Range(3, 22);
-            //Instantiate(redEnemy, new Vector3(xPos, 0.5f, zPos), new Quaternion(0, 0, 0, 0));
-            //Instantiate(blueEnemy, new Vector3(-1.0f * xPos, 0.5f, zPos), new Quaternion(0, 0, 0, 0));
-			Instantiate(enemy, new Vector3(xPos, 0.5f, zPos), new Quaternion(0, 0, 0, 0));
-            Instantiate(enemy, new Vector3(-1.0f * xPos, 0.5f, zPos), new Quaternion(0, 0, 0, 0));
-        }
-    }
-
 	// Update is called once per frame
 	void Update () {
+        if (DarkMagician.GetInstance().enemySpawner.numLeftEnemies <= 0) {
+            DarkMagician.GetInstance().leftRoom.OpenDoor();
+        }
 
-		//Check to see if there's no enemies left
-		//GameObject[] BlueEnemies = GameObject.FindGameObjectsWithTag("Blue Enemy");
-		//GameObject[] RedEnemies = GameObject.FindGameObjectsWithTag("Red Enemy");
-		GameObject[] enemies = GameObject.FindGameObjectsWithTag("Enemy");
-		//currentEnemiesRed = RedEnemies.Length;
-		//currentEnemiesBlue = BlueEnemies.Length;
-
-		currentEnemiesRed = 0;
-		currentEnemiesBlue = 0;
-
-		for (int i = 0; i < enemies.Length; i++) {
-			if (enemies[i].transform.position.x < 0) {
-				currentEnemiesRed++;
-			}
-			else if (enemies[i].transform.position.x > 0) {
-				currentEnemiesBlue++;
-			}
-		}
-		
-		if (currentEnemiesRed == 0) {
-			doorLeft.SetActive(false);
-		}
-		
-		if (currentEnemiesBlue == 0) {
-			doorRight.SetActive(false);
-		}
+        if (DarkMagician.GetInstance().enemySpawner.numRightEnemies <= 0) {
+            DarkMagician.GetInstance().rightRoom.OpenDoor();
+        }
 	}
 
     // Use this for initialization
     void Start () {
-		enemySpawn();
-		//pc = PlayerController.GetInstance();
+		DarkMagician.GetInstance().InitialEnemySpawn();
 	}
 }

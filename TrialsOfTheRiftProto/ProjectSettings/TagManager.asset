@@ -4,17 +4,12 @@
 TagManager:
   serializedVersion: 2
   tags:
-<<<<<<< HEAD
-  - enemy
-  - wind
-  - rift
-  - door
-  - Undefined
   - fire
+  - wind
+  - door
+  - rift
+  - enemy
   - not door
-=======
-  - Enemy
->>>>>>> master
   layers:
   - Default
   - TransparentFX
@@ -24,8 +19,8 @@ TagManager:
   - UI
   - 
   - 
-  - redshot
-  - blueshot
+  - 
+  - 
   - 
   - 
   - 

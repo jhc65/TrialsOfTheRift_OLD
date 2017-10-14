@@ -6,9 +6,9 @@ public class DarkMagician : MonoBehaviour {
 
     [SerializeField]GameObject player1;
     [SerializeField]GameObject player2;
-    [SerializeField]EnemySpawnController enemySpawner;
-    [SerializeField]RoomController leftRoom;
-    [SerializeField]RoomController rightRoom;
+    [SerializeField]public EnemySpawnController enemySpawner;
+    [SerializeField]public RoomController leftRoom;
+    [SerializeField]public RoomController rightRoom;
 
     // Create a single instance of this class to be referenced throught the project
     static DarkMagician instance;
@@ -29,7 +29,7 @@ public class DarkMagician : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-		//InitialEnemySpawn();
+		
 	}
 	
 	// Update is called once per frame
