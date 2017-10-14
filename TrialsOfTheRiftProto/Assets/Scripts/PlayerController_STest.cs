@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class PlayerController_STest : MonoBehaviour {
 
+    public string color;
     public int walkSpeed;
     Rigidbody rb;
     float inputX;
@@ -12,8 +13,10 @@ public class PlayerController_STest : MonoBehaviour {
     Vector3 lastAngle;
     Quaternion rotation;
 
-    [SerializeField]GameObject shot = null;
+    [SerializeField]GameObject wind = null;
+    [SerializeField]GameObject fire = null;
     [SerializeField]int timeToFire = 30;
+    [SerializeField]int timeToFireWind = 200;
 
 	// Use this for initialization
 	void Start () {
@@ -22,25 +25,8 @@ public class PlayerController_STest : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-
-        inputX = Input.GetAxisRaw("Horizontal");
-        inputZ = Input.GetAxisRaw("Vertical");
-        moveDir = new Vector3(inputX, 0, inputZ).normalized;
-        if (!moveDir.Equals(Vector3.zero)) {
-            lastAngle = moveDir;
-        }
-        // This vector addition here is so gravity works.
-        rb.velocity = (moveDir * walkSpeed) + new Vector3(0,-9.81f,0);
-
-        timeToFire--;
-        if(Input.GetKeyDown(KeyCode.Space) && timeToFire <= 0) {
-            GameObject bullet = Instantiate(shot);
-            bullet.transform.position = transform.position + (lastAngle * 0.5f);
-            bullet.GetComponent<Rigidbody>().velocity = lastAngle * 30;
-            timeToFire = 30;
-        }
-        
-		
+        Move(color);
+        FireCheck(color);
 	}
 
     public string GetSide() {
@@ -48,6 +34,76 @@ public class PlayerController_STest : MonoBehaviour {
             return "left";
         } else {
             return "right";
+        }
+    }
+
+    void Move(string color) {
+        if (color == "red") {
+            inputX = Input.GetAxisRaw("Horizontal");
+            inputZ = Input.GetAxisRaw("Vertical");
+        } else {
+            if (Input.GetKey(KeyCode.U)) {
+                inputZ = 1;
+            } else if (Input.GetKey(KeyCode.J)) {
+                inputZ = -1;
+            } else {
+                inputZ = 0;
+            }
+
+            if (Input.GetKey(KeyCode.H)) {
+                inputX = -1;
+            } else if (Input.GetKey(KeyCode.K)) {
+                inputX = 1;
+            } else {
+                inputX = 0;
+            }
+        }
+        
+        moveDir = new Vector3(inputX, 0, inputZ).normalized;
+        if (!moveDir.Equals(Vector3.zero)) {
+            lastAngle = moveDir;
+        }
+        // This vector addition here is so gravity works.
+        rb.velocity = (moveDir * walkSpeed) + new Vector3(0,-9.81f,0);
+    }
+
+    void FireCheck(string color) {
+        timeToFire--;
+        timeToFireWind--;
+        if (color == "red") {
+            GameObject bullet;
+            if(Input.GetKey(KeyCode.C) && timeToFire <= 0) {
+                bullet = Instantiate(fire);
+                bullet.transform.position = transform.position + (lastAngle * 1.35f);
+                bullet.GetComponent<Rigidbody>().velocity = lastAngle * 20;
+                timeToFire = 30;
+            } else if (Input.GetKey(KeyCode.V) && timeToFireWind <= 0) {
+                bullet = Instantiate(wind);
+                bullet.transform.position = transform.position + (lastAngle * 1.35f);
+                bullet.GetComponent<Rigidbody>().velocity = lastAngle * 40;
+                timeToFireWind = 200;
+            }
+            
+        } else {
+            GameObject bullet;
+            if(Input.GetKeyDown(KeyCode.Comma) && timeToFire <= 0) {
+                bullet = Instantiate(fire);
+                bullet.transform.position = transform.position + (lastAngle * 1.35f);
+                bullet.GetComponent<Rigidbody>().velocity = lastAngle * 20;
+                timeToFire = 30;
+            } else if (Input.GetKeyDown(KeyCode.Period) && timeToFireWind <= 0) {
+                bullet = Instantiate(wind);
+                bullet.transform.position = transform.position + (lastAngle * 1.35f);
+                bullet.GetComponent<Rigidbody>().velocity = lastAngle * 40;
+                timeToFireWind = 200;
+            }
+        }
+        
+    }
+
+    private void OnCollisionEnter(Collision collision) {
+        if (collision.gameObject.tag == "door") {
+            DarkMagician.GetInstance().RoomAdvance(this.gameObject);
         }
     }
 }

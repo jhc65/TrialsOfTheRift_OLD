@@ -23,7 +23,7 @@ public class RiftController : MonoBehaviour {
             power++;
         }
 
-        if (other.tag == "shot" || (power >= maxPower && other.tag == "Player")) {
+        if (other.tag == "fire" || other.tag == "wind" || (power >= maxPower && other.tag == "Player")) {
             Teleport(other.gameObject);
         } 
     }
@@ -32,7 +32,7 @@ public class RiftController : MonoBehaviour {
         float currentOffset = offset;
         //find out rift side that's being touched.
 
-        if (Mathf.Abs(teleport.transform.position.x) < 4) {
+        if (Mathf.Abs(teleport.transform.position.x) < 6) {
             currentOffset *= -1;
         }
 

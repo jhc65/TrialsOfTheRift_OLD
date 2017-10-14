@@ -212,6 +212,7 @@ MonoBehaviour:
   blueMats:
   - {fileID: 2100000, guid: 2466f7d798a940c4db296ab60da7170b, type: 2}
   - {fileID: 2100000, guid: 3da63e5ae62099a4f8cc8078e594566c, type: 2}
+  door: {fileID: 1869349154}
 --- !u!1 &96802377
 GameObject:
   m_ObjectHideFlags: 0
@@ -224,8 +225,8 @@ GameObject:
   - component: {fileID: 96802380}
   - component: {fileID: 96802379}
   m_Layer: 0
-  m_Name: door
-  m_TagString: Untagged
+  m_Name: blue_door
+  m_TagString: door
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -309,7 +310,7 @@ GameObject:
   - component: {fileID: 120661103}
   m_Layer: 0
   m_Name: blue_player
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -325,9 +326,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 449ec250463b6dc49a269a406ecc0c02, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  color: blue
   walkSpeed: 20
-  shot: {fileID: 1220109840088454, guid: f2ce605b807c8ad428cd7d6c0ba6d10a, type: 2}
+  wind: {fileID: 1220109840088454, guid: f2ce605b807c8ad428cd7d6c0ba6d10a, type: 2}
+  fire: {fileID: 1875152374090030, guid: 226389a15e2b3fe4b9981263570518c6, type: 2}
   timeToFire: 30
+  timeToFireWind: 200
 --- !u!23 &120661104
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -555,9 +559,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 449ec250463b6dc49a269a406ecc0c02, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  color: red
   walkSpeed: 20
-  shot: {fileID: 1220109840088454, guid: f2ce605b807c8ad428cd7d6c0ba6d10a, type: 2}
+  wind: {fileID: 1220109840088454, guid: f2ce605b807c8ad428cd7d6c0ba6d10a, type: 2}
+  fire: {fileID: 1875152374090030, guid: 226389a15e2b3fe4b9981263570518c6, type: 2}
   timeToFire: 30
+  timeToFireWind: 200
 --- !u!1 &372333757
 GameObject:
   m_ObjectHideFlags: 0
@@ -1494,7 +1501,7 @@ GameObject:
   - component: {fileID: 1499428486}
   m_Layer: 0
   m_Name: rifts
-  m_TagString: Untagged
+  m_TagString: rift
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1811,8 +1818,8 @@ GameObject:
   - component: {fileID: 1869349157}
   - component: {fileID: 1869349156}
   m_Layer: 0
-  m_Name: door (1)
-  m_TagString: Untagged
+  m_Name: red_door
+  m_TagString: door
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1985,3 +1992,4 @@ MonoBehaviour:
   blueMats:
   - {fileID: 2100000, guid: 2466f7d798a940c4db296ab60da7170b, type: 2}
   - {fileID: 2100000, guid: 3da63e5ae62099a4f8cc8078e594566c, type: 2}
+  door: {fileID: 96802377}

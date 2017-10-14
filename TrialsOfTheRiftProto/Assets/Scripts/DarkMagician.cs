@@ -44,8 +44,14 @@ public class DarkMagician : MonoBehaviour {
     public void EnemyKilled(string side) {
         if (side == "left") {
             enemySpawner.numLeftEnemies--;
+            if (enemySpawner.numLeftEnemies <= 0) {
+                leftRoom.OpenDoor();
+            }
         } else {
             enemySpawner.numRightEnemies--;
+            if (enemySpawner.numRightEnemies <= 0) {
+                rightRoom.OpenDoor();
+            }
         }
     }
 
@@ -88,11 +94,19 @@ public class DarkMagician : MonoBehaviour {
     }
 
     public void RoomAdvance(GameObject player) {
-        enemySpawner.Spawn(player);
-        if (player.GetComponent<PlayerController_STest>().GetSide() == "left") {
+        //Reset player's position and advance numbers.
+        PlayerController_STest pc = player.GetComponent<PlayerController_STest>();
+        if (pc.GetSide() == "left") {
+            player.transform.position = new Vector3(-12.62f,1f,-11.32f);
             leftRoom.index++;
+            leftRoom.CloseDoor();
         } else {
+            player.transform.position = new Vector3(12.62f,1f,-11.32f);
             rightRoom.index++;
+            rightRoom.CloseDoor();
         }
+        
+        //Then spawn enemies.
+        enemySpawner.Spawn(player);
     }
 }
