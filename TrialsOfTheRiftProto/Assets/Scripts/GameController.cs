@@ -19,16 +19,10 @@ public class GameController : MonoBehaviour {
     //public GameObject redEnemy;
 	//public GameObject blueEnemy;
 
-	// Update is called once per frame
-	void Update () {
-        if (DarkMagician.GetInstance().enemySpawner.numLeftEnemies <= 0) {
-            DarkMagician.GetInstance().leftRoom.OpenDoor();
-        }
+    // Update is called once per frame
+    void Update() {
 
-        if (DarkMagician.GetInstance().enemySpawner.numRightEnemies <= 0) {
-            DarkMagician.GetInstance().rightRoom.OpenDoor();
-        }
-	}
+    }
 
     // Use this for initialization
     void Start () {

@@ -41,7 +41,6 @@ public class RiftController : MonoBehaviour {
         }
         //For checking if players are trying to hop back while under the Rift timer.
         bool validTeleport = true;
-        bool sideSwitch = false;
 
         //This is for when the players are being pulled back by the rift timer.
         int nullOffset = 1;
@@ -60,7 +59,7 @@ public class RiftController : MonoBehaviour {
                     Debug.Log("Timer is not over");
                     if (!teleportedPlayer.Equals(teleport)) {
                         //SideSwitch goes here.
-                        sideSwitch = true;
+                        DarkMagician.GetInstance().SideSwitch();
                         teleportedPlayer = null;
                         timer = maxTimer;
                         Debug.Log("Object is the other player");
@@ -89,10 +88,6 @@ public class RiftController : MonoBehaviour {
                                                     teleport.transform.position.z);
             Debug.Log("Fired off.");
             
-        }
-
-        if (sideSwitch) {
-            DarkMagician.GetInstance().SideSwitch();
         }
  
     }
