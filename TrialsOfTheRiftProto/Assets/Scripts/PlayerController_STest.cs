@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class PlayerController_STest : MonoBehaviour {
 
+	public string horKey, verKey, fireKey, windKey;
     public string color;
     public int walkSpeed;
     Rigidbody rb;
@@ -38,26 +39,26 @@ public class PlayerController_STest : MonoBehaviour {
     }
 
     void Move(string color) {
-        if (color == "red") {
-            inputX = Input.GetAxisRaw("Horizontal");
-            inputZ = Input.GetAxisRaw("Vertical");
-        } else {
-            if (Input.GetKey(KeyCode.U)) {
-                inputZ = 1;
-            } else if (Input.GetKey(KeyCode.J)) {
-                inputZ = -1;
-            } else {
-                inputZ = 0;
-            }
+ //       if (color == "red") {
+            inputX = Input.GetAxis(horKey);
+            inputZ = Input.GetAxis(verKey);
+        //} else {
+        //    if (Input.GetKey(KeyCode.U)) {
+        //        inputZ = 1;
+        //    } else if (Input.GetKey(KeyCode.J)) {
+        //        inputZ = -1;
+        //    } else {
+        //        inputZ = 0;
+        //    }
 
-            if (Input.GetKey(KeyCode.H)) {
-                inputX = -1;
-            } else if (Input.GetKey(KeyCode.K)) {
-                inputX = 1;
-            } else {
-                inputX = 0;
-            }
-        }
+        //    if (Input.GetKey(KeyCode.H)) {
+        //        inputX = -1;
+        //    } else if (Input.GetKey(KeyCode.K)) {
+        //        inputX = 1;
+        //    } else {
+        //        inputX = 0;
+        //    }
+        //}
         
         moveDir = new Vector3(inputX, 0, inputZ).normalized;
         if (!moveDir.Equals(Vector3.zero)) {
@@ -70,34 +71,34 @@ public class PlayerController_STest : MonoBehaviour {
     void FireCheck(string color) {
         timeToFire--;
         timeToFireWind--;
-        if (color == "red") {
+ //       if (color == "red") {
             GameObject bullet;
-            if(Input.GetKey(KeyCode.C) && timeToFire <= 0) {
+            if(Input.GetButton(fireKey) && timeToFire <= 0) {
                 bullet = Instantiate(fire);
                 bullet.transform.position = transform.position + (lastAngle * 1.35f);
                 bullet.GetComponent<Rigidbody>().velocity = lastAngle * 20;
                 timeToFire = 30;
-            } else if (Input.GetKey(KeyCode.V) && timeToFireWind <= 0) {
+            } else if (Input.GetButton(windKey) && timeToFireWind <= 0) {
                 bullet = Instantiate(wind);
                 bullet.transform.position = transform.position + (lastAngle * 1.35f);
                 bullet.GetComponent<Rigidbody>().velocity = lastAngle * 40;
                 timeToFireWind = 200;
             }
             
-        } else {
-            GameObject bullet;
-            if(Input.GetKeyDown(KeyCode.Comma) && timeToFire <= 0) {
-                bullet = Instantiate(fire);
-                bullet.transform.position = transform.position + (lastAngle * 1.35f);
-                bullet.GetComponent<Rigidbody>().velocity = lastAngle * 20;
-                timeToFire = 30;
-            } else if (Input.GetKeyDown(KeyCode.Period) && timeToFireWind <= 0) {
-                bullet = Instantiate(wind);
-                bullet.transform.position = transform.position + (lastAngle * 1.35f);
-                bullet.GetComponent<Rigidbody>().velocity = lastAngle * 40;
-                timeToFireWind = 200;
-            }
-        }
+        //} else {
+        //    GameObject bullet;
+        //    if(Input.GetKeyDown(KeyCode.Comma) && timeToFire <= 0) {
+        //        bullet = Instantiate(fire);
+        //        bullet.transform.position = transform.position + (lastAngle * 1.35f);
+        //        bullet.GetComponent<Rigidbody>().velocity = lastAngle * 20;
+        //        timeToFire = 30;
+        //    } else if (Input.GetKeyDown(KeyCode.Period) && timeToFireWind <= 0) {
+        //        bullet = Instantiate(wind);
+        //        bullet.transform.position = transform.position + (lastAngle * 1.35f);
+        //        bullet.GetComponent<Rigidbody>().velocity = lastAngle * 40;
+        //        timeToFireWind = 200;
+        //    }
+        //}
         
     }
 
