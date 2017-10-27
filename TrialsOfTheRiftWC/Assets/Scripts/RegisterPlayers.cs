@@ -11,46 +11,6 @@ public class RegisterPlayers : MonoBehaviour
 	private bool connected = false;
 	private bool p1Ready = false, p2Ready = false, p3Ready = false, p4Ready = false;
 
-	void Update ()
-	{
-		if (Input.GetJoystickNames().Length == 1)
-		{
-			if (!connected)
-			{
-				MapControllers();
-			}
-			else
-			{
-				if (InputManager.GetButtonDown(InputManager.Axes.P1_Submit))
-				{
-					p1Ready = true;
-					p1Message.text = "READY";
-				}
-				//if (InputManager.GetButtonDown(InputManager.Axes.P2_Submit))
-				//{
-				//	p2Ready = true;
-				//	p2Message.text = "READY";
-				//}
-				//if (InputManager.GetButtonDown(InputManager.Axes.P3_Submit))
-				//{
-				//	p3Ready = true;
-				//	p3Message.text = "READY";
-				//}
-				//if (InputManager.GetButtonDown(InputManager.Axes.P4_Submit))
-				//{
-				//	p4Ready = true;
-				//	p4Message.text = "READY";
-				//}
-				if(p1Ready) //&& p2Ready && p3Ready && p4Ready)
-				{
-					//p4Message.text = "boo";
-					SceneManager.LoadScene("controller_test");
-				}
-
-			}
-		}
-	}
-
 	void MapControllers()
 	{
 		connected = true;
@@ -108,5 +68,45 @@ public class RegisterPlayers : MonoBehaviour
 		//	InputManager.controlMap[InputManager.Axes.P4_Cancel] = "P4 Cancel PS4";
 		//	Debug.Log("P4 remapped");
 		//}
+	}
+
+	void Update()
+	{
+		if (Input.GetJoystickNames().Length == 1)
+		{
+			if (!connected)
+			{
+				MapControllers();
+			}
+			else
+			{
+				if (InputManager.GetButtonDown(InputManager.Axes.P1_Submit))
+				{
+					p1Ready = true;
+					p1Message.text = "READY";
+				}
+				//if (InputManager.GetButtonDown(InputManager.Axes.P2_Submit))
+				//{
+				//	p2Ready = true;
+				//	p2Message.text = "READY";
+				//}
+				//if (InputManager.GetButtonDown(InputManager.Axes.P3_Submit))
+				//{
+				//	p3Ready = true;
+				//	p3Message.text = "READY";
+				//}
+				//if (InputManager.GetButtonDown(InputManager.Axes.P4_Submit))
+				//{
+				//	p4Ready = true;
+				//	p4Message.text = "READY";
+				//}
+				if (p1Ready) //&& p2Ready && p3Ready && p4Ready)
+				{
+					//p4Message.text = "boo";
+					SceneManager.LoadScene("controller_test");
+				}
+
+			}
+		}
 	}
 }

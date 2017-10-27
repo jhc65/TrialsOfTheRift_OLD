@@ -2,10 +2,9 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public static class InputManager
-{
-	public enum Axes
-	{
+public static class InputManager{
+
+	public enum Axes{
 		P1_Horizontal, P1_Vertical,
 		//P1_BasicAttack,
 		P1_WindSpell,
@@ -94,13 +93,15 @@ public static class InputManager
 		{Axes.P4_Cancel,"P4 Cancel XBOX"}
 	};
 
-	public static float GetAxis(Axes a)
-	{
+	public static float GetAxis(Axes a){
 		return Input.GetAxis(controlMap[a]);
 	}
 
-	public static bool GetButtonDown(Axes a)
-	{
+	public static bool GetButtonDown(Axes a){
 		return Input.GetButtonDown(controlMap[a]);
+	}
+
+	public static bool GetButton(Axes a){
+		return Input.GetButton(controlMap[a]);
 	}
 }
