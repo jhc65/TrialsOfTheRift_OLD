@@ -16,6 +16,8 @@ public class PlayerController : MonoBehaviour{
 	public GameObject go_windShot;			// wind spell object
 	public GameObject go_iceShot;			// ice spell object
 	public float f_spellSpeed;				// spell movement speed
+    public float f_windSpeed;               // wind spell movement speed
+    public float f_iceSpeed;                // ice spell movement speed
 	public float f_windRecharge;			// delay between wind spells
 	public float f_iceRecharge;             // delay between ice spells
 

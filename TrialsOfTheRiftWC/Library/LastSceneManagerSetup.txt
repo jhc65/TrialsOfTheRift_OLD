@@ -1,4 +1,4 @@
 sceneSetups:
-- path: Assets/Scenes/PlayerControllerTestScene.unity
+- path: Assets/Scenes/register_players.unity
   isLoaded: 1
   isActive: 1
