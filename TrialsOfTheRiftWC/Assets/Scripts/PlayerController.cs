@@ -60,8 +60,10 @@ public class PlayerController : MonoBehaviour{
 	}
 
 	public void Drop(){
-		go_flagObj.transform.SetParent(null);
-		go_flagObj = null;
+		if(go_flagObj){
+			go_flagObj.transform.SetParent(null);
+			go_flagObj = null;
+		}
 	}
 
 	public Constants.Color GetColor(){
