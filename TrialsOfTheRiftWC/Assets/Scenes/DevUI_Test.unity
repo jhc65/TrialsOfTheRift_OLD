@@ -221,7 +221,7 @@ GameObject:
   - component: {fileID: 62389284}
   - component: {fileID: 62389283}
   m_Layer: 5
-  m_Name: Value
+  m_Name: WindSpeedValue
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -362,7 +362,7 @@ GameObject:
   - component: {fileID: 142106009}
   - component: {fileID: 142106010}
   m_Layer: 5
-  m_Name: Slider
+  m_Name: IceCooldownSlider
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -516,7 +516,7 @@ GameObject:
   - component: {fileID: 196216714}
   - component: {fileID: 196216713}
   m_Layer: 5
-  m_Name: Value
+  m_Name: WindCooldownValue
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -928,6 +928,8 @@ GameObject:
   - component: {fileID: 392957835}
   - component: {fileID: 392957834}
   - component: {fileID: 392957833}
+  - component: {fileID: 392957839}
+  - component: {fileID: 392957838}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -1005,6 +1007,47 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &392957838
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 392957832}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ad8a593c049a790459622da6887b99c9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  text_redScoreText: {fileID: 0}
+  text_blueScoreText: {fileID: 0}
+  go_connectMessage: {fileID: 0}
+  text_p1Message: {fileID: 0}
+  text_p2Message: {fileID: 0}
+  text_p3Message: {fileID: 0}
+  text_p4Message: {fileID: 0}
+--- !u!114 &392957839
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 392957832}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 05ea3469dec111946bb5f4d806497833, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  GC: {fileID: 392957838}
+  l_playerControllers: []
+  slider_playerMoveSpeed: {fileID: 1901327707}
+  slider_windSpeed: {fileID: 969290950}
+  slider_iceSpeed: {fileID: 1691318103}
+  slider_windCooldown: {fileID: 490094650}
+  slider_iceCooldown: {fileID: 142106010}
+  text_playerMoveSpeed: {fileID: 1352444250}
+  text_windSpeed: {fileID: 62389283}
+  text_iceSpeed: {fileID: 732172886}
+  text_windCooldown: {fileID: 196216713}
+  text_iceCooldown: {fileID: 2035754982}
 --- !u!1 &464882573
 GameObject:
   m_ObjectHideFlags: 0
@@ -1049,7 +1092,7 @@ GameObject:
   - component: {fileID: 490094649}
   - component: {fileID: 490094650}
   m_Layer: 5
-  m_Name: Slider
+  m_Name: WindCooldownSlider
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1489,7 +1532,7 @@ GameObject:
   - component: {fileID: 732172887}
   - component: {fileID: 732172886}
   m_Layer: 5
-  m_Name: Value
+  m_Name: IceSpeedValue
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1882,7 +1925,7 @@ GameObject:
   - component: {fileID: 969290949}
   - component: {fileID: 969290950}
   m_Layer: 5
-  m_Name: Slider
+  m_Name: WindSpeedSlider
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2376,7 +2419,7 @@ GameObject:
   - component: {fileID: 1352444251}
   - component: {fileID: 1352444250}
   m_Layer: 5
-  m_Name: Value
+  m_Name: PlayerSpeedValue
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2722,7 +2765,7 @@ GameObject:
   - component: {fileID: 1691318102}
   - component: {fileID: 1691318103}
   m_Layer: 5
-  m_Name: Slider
+  m_Name: IceSpeedSlider
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2841,7 +2884,7 @@ GameObject:
   - component: {fileID: 1901327706}
   - component: {fileID: 1901327707}
   m_Layer: 5
-  m_Name: Slider
+  m_Name: PlayerSpeedSlider
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2997,7 +3040,7 @@ GameObject:
   - component: {fileID: 2035754983}
   - component: {fileID: 2035754982}
   m_Layer: 5
-  m_Name: Value
+  m_Name: IceCooldownValue
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
