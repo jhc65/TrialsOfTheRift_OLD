@@ -34,7 +34,11 @@ public class PlayerController : MonoBehaviour{
 			transform.rotation = Quaternion.LookRotation(v3_moveDir);
 		}
 
-		GetComponent<Rigidbody>().velocity = (v3_moveDir * i_moveSpeed);
+        if (b_canMove) { // Lock player in place proper.
+            GetComponent<Rigidbody>().velocity = (v3_moveDir * i_moveSpeed);
+        } else {
+            GetComponent<Rigidbody>().velocity = Vector3.zero;
+        }
 
 		// this vector addition here is so gravity works.
 		//rb.velocity = (moveDir * walkSpeed) + new Vector3(0, -9.81f, 0);
@@ -91,7 +95,7 @@ public class PlayerController : MonoBehaviour{
 	}
 
 	private void FixedUpdate(){
-		Move();
+        Move();
 
 		if (InputManager.GetButton(ax_interact)){
 			go_interactCollider.SetActive(true);
@@ -102,11 +106,13 @@ public class PlayerController : MonoBehaviour{
 		if (InputManager.GetButton(ax_wind) && Time.time > f_nextWind){   // checks for fire button and if time delay has passed
 			f_nextWind = Time.time + f_windRecharge;
 			GameObject go_spell = Instantiate(go_windShot, t_spellSpawn.position, t_spellSpawn.rotation);
+            go_spell.GetComponent<ShotController>().e_Color = e_Color;
 			go_spell.GetComponent<Rigidbody>().velocity = transform.forward * f_spellSpeed;
 		}
 		if (InputManager.GetButton(ax_ice) && Time.time > f_nextIce){   // checks for fire button and if time delay has passed
 			f_nextIce = Time.time + f_iceRecharge;
 			GameObject go_spell = Instantiate(go_iceShot, t_spellSpawn.position, t_spellSpawn.rotation);
+            go_spell.GetComponent<ShotController>().e_Color = e_Color;
 			go_spell.GetComponent<Rigidbody>().velocity = transform.forward * f_spellSpeed;
 		}
 	}

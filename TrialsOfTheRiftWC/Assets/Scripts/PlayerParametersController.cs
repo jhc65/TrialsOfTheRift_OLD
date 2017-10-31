@@ -25,20 +25,14 @@ public class PlayerParametersController : MonoBehaviour
     public Text text_iceCooldown;
 
     private void Start() {
-        //GC = GameController.primaryGameController;
-        //PTC = PlayerTowerController.primaryPlayerTowerController;
-        //PSC = PlayerStatsController.primaryPlayerStats;
-        //PMC = PlayerModelController.primaryPlayerModelController;
-        //Furnace = Furnace.primaryFurnace;
-
-        //Timer.value = GC.levelContructor.GetLevel().LevelTime;
+        
     }
 
     // Update is called once per frame
     private void Update() {
-        if (gameObject.activeSelf == true) {
+        /*if (gameObject.activeSelf == true) {
             Time.timeScale = 0;
-        }
+        }*/
 
         // Player Speed
         ChangePlayerSpeed(slider_playerMoveSpeed.value);
@@ -73,6 +67,7 @@ public class PlayerParametersController : MonoBehaviour
     // Private Helper Methods
     private void ChangePlayerSpeed(float i_playerSpeedIn) {
         foreach (PlayerController playerController in l_playerControllers) {
+            Debug.Log(i_playerSpeedIn);
             playerController.i_moveSpeed = (int)i_playerSpeedIn;
         }
     }

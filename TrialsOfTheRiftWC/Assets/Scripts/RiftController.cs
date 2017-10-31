@@ -19,13 +19,11 @@ public class RiftController : MonoBehaviour {
 	}
 
     private void OnTriggerStay(Collider other) {
-         Debug.Log("Yes.");
         if(other.tag == "Player" && !teleportedPlayer) {
             power++;
         }
 
-        if (other.tag == "Shot" || (power >= maxPower && other.tag == "Player")) {
-           
+        if (other.tag == "Shot" || (power >= maxPower && other.tag == "Player" && !teleportedPlayer)) {
             Teleport(other.gameObject);
         } 
     }
@@ -59,22 +57,18 @@ public class RiftController : MonoBehaviour {
              } else {
                 if (timer > 0) { 
                     //case where other player is teleported before rift timer runs out.
-                    Debug.Log("Timer is not over");
                     if (!teleportedPlayer.Equals(teleport)) {
                         //SideSwitch goes here.
                         sideSwitch = true;
                         teleportedPlayer = null;
                         timer = maxTimer;
-                        Debug.Log("Object is the other player");
                         CancelInvoke("TimerTick");
                         power = 0;
 
                     } else { //case where player tries to hop back during timer. Block 'em.
                         validTeleport = false;
-                        Debug.Log("Object is the same player, thus blocked.");
                     }
                 } else {
-                    Debug.Log("Timer is over");
                     teleportedPlayer = null;
                     nullOffset = 0;
                     power = 0;
@@ -82,14 +76,11 @@ public class RiftController : MonoBehaviour {
 
              }
         }
-            
-        Debug.Log("valid:" + validTeleport);
         //flip the x-axis of the player object.
         if (validTeleport) {
             teleport.transform.position = new Vector3((-1 * teleport.transform.position.x) + (currentOffset * nullOffset),
                                                     teleport.transform.position.y,
                                                     teleport.transform.position.z);
-            Debug.Log("Fired off.");
             
         }
         /*if (sideSwitch) {
@@ -100,7 +91,6 @@ public class RiftController : MonoBehaviour {
     }
 
     void TimerTick() {
-        Debug.Log("Tick tick");
         timer--;
         if (timer <= 0) {
             if (teleportedPlayer) {

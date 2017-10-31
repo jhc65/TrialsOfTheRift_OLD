@@ -1020,11 +1020,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   text_redScoreText: {fileID: 0}
   text_blueScoreText: {fileID: 0}
-  go_connectMessage: {fileID: 0}
-  text_p1Message: {fileID: 0}
-  text_p2Message: {fileID: 0}
-  text_p3Message: {fileID: 0}
-  text_p4Message: {fileID: 0}
 --- !u!114 &392957839
 MonoBehaviour:
   m_ObjectHideFlags: 0

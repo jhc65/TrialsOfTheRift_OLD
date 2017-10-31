@@ -14,7 +14,7 @@ public class FlagController : MonoBehaviour {
 			}
 		}
 		if(other.tag == "Player"){	// owning player "collects" flag, return it to base
-			if(other.GetComponentInParent<PlayerController>().GetColor() == e_Color){
+			if(other.GetComponentInParent<PlayerController>().GetColor() == e_Color && !transform.root.GetComponent<PlayerController>()){
 				transform.position = v3_home;
 			}
 		}
@@ -22,7 +22,7 @@ public class FlagController : MonoBehaviour {
 			if (other.GetComponent<GoalController>().GetColor() != e_Color){
 				if(transform.root.tag == "Player")	// this should not be necessary...OnTriggerEnter called twice on opponent's goal the second time a player scores (and only the second time). but Drop() works correctly so root is no longer player and throws error (would also increase score twice)
 				{
-					//GameController.GetInstance().Score(other.GetComponentInParent<GoalController>().GetColor());
+					GameController.GetInstance().Score(other.GetComponentInParent<GoalController>().GetColor());
 					transform.root.GetComponent<PlayerController>().Drop();
 					transform.position = v3_home;
 				}

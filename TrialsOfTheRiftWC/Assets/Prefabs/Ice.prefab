@@ -111,8 +111,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   e_Color: 0
   f_damage: 0
-  f_liveTime: 2
-  f_tickRate: 0.1
+  f_liveTime: 10
 --- !u!135 &135242596530449918
 SphereCollider:
   m_ObjectHideFlags: 1
