@@ -46,6 +46,7 @@ public class PlayerController : MonoBehaviour{
 
 	public void Freeze(){
 		b_canMove = false;
+		Drop();
 		Invoke("Unfreeze", 2f);
 	}
 
