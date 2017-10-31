@@ -79,20 +79,6 @@ public class PlayerController : MonoBehaviour{
 		b_canMove = true;
 		f_nextWind = 0;
 		f_nextIce = 0;
-
-		// TODO: Delete this once it's in GameController or wherever
-		// controller mapping defaults to XBox, so only change if PS4 controller connected
-		if (Input.GetJoystickNames()[0] == "Wireless Controller"){ // PS4 connection message
-			InputManager.controlMap[InputManager.Axes.P1_Horizontal] = "P1 Horizontal PS4";
-			InputManager.controlMap[InputManager.Axes.P1_Vertical] = "P1 Vertical PS4";
-			InputManager.controlMap[InputManager.Axes.P1_WindSpell] = "P1 Wind Spell PS4";
-			InputManager.controlMap[InputManager.Axes.P1_IceSpell] = "P1 Ice Spell PS4";
-			InputManager.controlMap[InputManager.Axes.P1_Interact] = "P1 Interact PS4";
-			InputManager.controlMap[InputManager.Axes.P1_Menu] = "P1 Menu PS4";
-			InputManager.controlMap[InputManager.Axes.P1_Submit] = "P1 Submit PS4";
-			InputManager.controlMap[InputManager.Axes.P1_Cancel] = "P1 Cancel PS4";
-			Debug.Log("P1 remapped");
-		}
 	}
 
 	private void FixedUpdate(){
