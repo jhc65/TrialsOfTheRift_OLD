@@ -51,6 +51,7 @@ GameObject:
   - component: {fileID: 4420336661076468}
   - component: {fileID: 54432794872774784}
   - component: {fileID: 114425632406730226}
+  - component: {fileID: 136846421294737172}
   m_Layer: 0
   m_Name: P3
   m_TagString: Player
@@ -125,7 +126,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1863125033859916}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 4.02, y: 0, z: 4.92}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4885519142493484}
@@ -244,7 +245,7 @@ MonoBehaviour:
   ax_ice: 19
   ax_interact: 20
   ax_menu: 21
-  ax_submit: 21
+  ax_submit: 22
   ax_cancel: 23
   e_Color: 1
   i_moveSpeed: 20
@@ -257,6 +258,8 @@ MonoBehaviour:
     type: 2}
   go_iceShot: {fileID: 1901559696048798, guid: d7e231fe8aac3af4abfee256f79b3e11, type: 2}
   f_spellSpeed: 30
+  f_windSpeed: 0
+  f_iceSpeed: 0
   f_windRecharge: 1
   f_iceRecharge: 1
 --- !u!136 &136440582007310018
@@ -272,3 +275,16 @@ CapsuleCollider:
   m_Height: 2
   m_Direction: 1
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!136 &136846421294737172
+CapsuleCollider:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1863125033859916}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  m_Radius: 0.5
+  m_Height: 2.0987682
+  m_Direction: 1
+  m_Center: {x: 0, y: 0.93693066, z: 0}

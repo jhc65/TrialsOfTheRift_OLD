@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Goal
   - InteractCollider
+  - Shot
   layers:
   - Default
   - TransparentFX

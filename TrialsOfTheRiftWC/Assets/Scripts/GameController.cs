@@ -13,7 +13,7 @@ public class GameController : MonoBehaviour {
     public Text text_blueScoreText;
 
     // For Playstation controller support - delete once there is an official RegisterPlayers script active
-    public GameObject go_connectMessage;
+    /*public GameObject go_connectMessage;
     public Text text_p1Message;
     public Text text_p2Message;
     public Text text_p3Message;
@@ -22,7 +22,7 @@ public class GameController : MonoBehaviour {
     private bool b_p1Ready = false;
     private bool b_p2Ready = false;
     private bool b_p3Ready = false;
-    private bool b_p4Ready = false;
+    private bool b_p4Ready = false;*/
 
     // Use this for initialization
     void Start () {
@@ -44,8 +44,8 @@ public class GameController : MonoBehaviour {
     // I wasn't sure if all four of those should be uncommented or not, so I left them commented out in the copy/paste 
     private void MapControllers()
     {
-        b_connected = true;
-        go_connectMessage.SetActive(false);
+        //b_connected = true;
+        //go_connectMessage.SetActive(false);
 
         // controller mapping defaults to XBox, so only change if PS4 controller connected
         if (Input.GetJoystickNames()[0] == "Wireless Controller") // PS4 connection message
@@ -102,6 +102,6 @@ public class GameController : MonoBehaviour {
     }
 
     public void SetConnectMessage(GameObject go_connectMessageIn) {
-        go_connectMessage = go_connectMessageIn;
+        //go_connectMessage = go_connectMessageIn;
     }
 }

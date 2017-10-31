@@ -103,7 +103,7 @@ public class RegisterPlayers : MonoBehaviour
 				if (p1Ready) //&& p2Ready && p3Ready && p4Ready)
 				{
 					//p4Message.text = "boo";
-					SceneManager.LoadScene("controller_test");
+					//SceneManager.LoadScene("controller_test");
 				}
 
 			}

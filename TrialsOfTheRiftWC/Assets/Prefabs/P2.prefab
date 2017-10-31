@@ -36,6 +36,7 @@ GameObject:
   - component: {fileID: 4398198023010460}
   - component: {fileID: 54249411579508368}
   - component: {fileID: 114467604127061754}
+  - component: {fileID: 136552460828222824}
   m_Layer: 0
   m_Name: P2
   m_TagString: Player
@@ -138,7 +139,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1297406090650178}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: -7.2, y: 0, z: 5.61}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4118513510951364}
@@ -257,6 +258,8 @@ MonoBehaviour:
     type: 2}
   go_iceShot: {fileID: 1901559696048798, guid: d7e231fe8aac3af4abfee256f79b3e11, type: 2}
   f_spellSpeed: 30
+  f_windSpeed: 0
+  f_iceSpeed: 0
   f_windRecharge: 1
   f_iceRecharge: 1
 --- !u!136 &136218850829713548
@@ -272,3 +275,16 @@ CapsuleCollider:
   m_Height: 2
   m_Direction: 1
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!136 &136552460828222824
+CapsuleCollider:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1297406090650178}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  m_Radius: 0.5
+  m_Height: 2.0987682
+  m_Direction: 1
+  m_Center: {x: 0, y: 0.93693066, z: 0}
