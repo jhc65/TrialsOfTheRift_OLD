@@ -67,7 +67,7 @@ public class PlayerParametersController : MonoBehaviour
     // Private Helper Methods
     private void ChangePlayerSpeed(float i_playerSpeedIn) {
         foreach (PlayerController playerController in l_playerControllers) {
-            Debug.Log(i_playerSpeedIn);
+            //Debug.Log(i_playerSpeedIn);
             playerController.i_moveSpeed = (int)i_playerSpeedIn;
         }
     }

@@ -23,7 +23,7 @@ public abstract class ShotController : MonoBehaviour {
         if(coll.gameObject.tag == "Player") {
 			ApplyEffect(coll.gameObject);
 			Destroy(gameObject);
-		} else if(coll.gameObject.tag != "Rift") { // If we hit something not a player (walls), just destroy the shot without an effect.
+		} else if(coll.gameObject.tag != "Rift" || coll.tag != "Portal") { // If we hit something not a player, rift, or portal (walls), just destroy the shot without an effect.
 			Destroy(gameObject);
 		}
 	}
