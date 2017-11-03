@@ -27,6 +27,7 @@ public class BluePortal : MonoBehaviour {
 
     private void ShotDidCollide(GameObject shot)
     {
-        shot.transform.position = v_playerSpawnPosition;
+        Debug.Log("Look, a thing in blue.");
+        shot.transform.position = v_shotSpawnPosition;
     }
 }

@@ -19,11 +19,11 @@ public class RiftController : MonoBehaviour {
 	}
 
     private void OnTriggerStay(Collider other) {
-        if(other.tag == "Player" && !teleportedPlayer) {
+        /*if(other.tag == "Player" && !teleportedPlayer) {
             power++;
-        }
+        }*/
 
-        if (other.tag == "Shot" || (power >= maxPower && other.tag == "Player" && !teleportedPlayer)) {
+        if (other.tag == "Shot") {
             Teleport(other.gameObject);
         } 
     }

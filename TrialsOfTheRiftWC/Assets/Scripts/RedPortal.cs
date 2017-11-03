@@ -14,7 +14,7 @@ public class RedPortal : MonoBehaviour {
     }
 
     private void OnTriggerEnter(Collider other) {
-        if (other.tag == "Shot") {
+        if (other.gameObject.tag == "Shot") {
             ShotDidCollide(other.gameObject);
         }
     }
@@ -24,6 +24,7 @@ public class RedPortal : MonoBehaviour {
     }
 
     private void ShotDidCollide(GameObject shot) {
-        shot.transform.position = v_playerSpawnPosition;
+        Debug.Log("Look, a thing in red.");
+        shot.transform.position = v_shotSpawnPosition;
     }
 }

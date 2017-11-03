@@ -83,7 +83,7 @@ public class GameController : MonoBehaviour {
             Debug.Log("P1 remapped");
         }
 
-        if (Input.GetJoystickNames()[1] == "Wireless Controller")
+        /*if (Input.GetJoystickNames()[1] == "Wireless Controller")
         {
         	InputManager.controlMap[InputManager.Axes.P2_Horizontal] = "P2 Horizontal PS4";
         	InputManager.controlMap[InputManager.Axes.P2_Vertical] = "P2 Vertical PS4";
@@ -120,7 +120,7 @@ public class GameController : MonoBehaviour {
         	InputManager.controlMap[InputManager.Axes.P4_Submit] = "P4 Submit PS4";
         	InputManager.controlMap[InputManager.Axes.P4_Cancel] = "P4 Cancel PS4";
         	Debug.Log("P4 remapped");
-        }
+        }*/
     }
 
     public void SetConnectMessage(GameObject go_connectMessageIn) {
