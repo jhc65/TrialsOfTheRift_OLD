@@ -8,6 +8,7 @@ TagManager:
   - InteractCollider
   - Shot
   - Rift
+  - Portal
   layers:
   - Default
   - TransparentFX
