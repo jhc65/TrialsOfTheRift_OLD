@@ -7,6 +7,7 @@ public class PlayerController : MonoBehaviour{
 	public InputManager.Axes ax_horizontal, ax_vertical, 
 		ax_wind, ax_ice, ax_interact, ax_menu, ax_submit, ax_cancel;    // controls mapped in the InputManager for this player
 	public Constants.Color e_Color;			// identifies player's team
+	public Constants.Side e_Side;			// identifies which side of the rift player is on
 	public int i_moveSpeed;					// basic movement speed
 	public Transform t_flagPos;				// location on character model of flag
 	public GameObject go_flagObj;			// flag game object; if not null, player is carrying flag
@@ -79,6 +80,10 @@ public class PlayerController : MonoBehaviour{
 		b_canMove = true;
 		f_nextWind = 0;
 		f_nextIce = 0;
+		if (transform.position.x > Constants.RiftTransform.position.x)
+			e_Side = Constants.Side.RIGHT;
+		else
+			e_Side = Constants.Side.LEFT;
 	}
 
 	private void FixedUpdate(){
@@ -102,5 +107,10 @@ public class PlayerController : MonoBehaviour{
             go_spell.GetComponent<ShotController>().e_Color = e_Color;
 			go_spell.GetComponent<Rigidbody>().velocity = transform.forward * f_spellSpeed;
 		}
+		
+		if (transform.position.x > Constants.RiftTransform.position.x)
+			e_Side = Constants.Side.RIGHT;
+		else
+			e_Side = Constants.Side.LEFT;
 	}
 }

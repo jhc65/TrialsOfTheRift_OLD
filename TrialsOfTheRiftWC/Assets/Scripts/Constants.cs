@@ -23,4 +23,9 @@ public static class Constants {
 
     // Team Constants
 	public enum Color { RED, BLUE }; 
+	public enum Side { LEFT, RIGHT };
+	public static GameObject[] Players = GameObject.FindGameObjectsWithTag("Player");
+	
+	// World Constants
+	public static Transform RiftTransform = GameObject.FindGameObjectsWithTag("Rift")[0].transform;
 }
