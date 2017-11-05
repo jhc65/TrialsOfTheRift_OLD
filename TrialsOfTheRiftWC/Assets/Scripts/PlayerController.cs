@@ -66,6 +66,7 @@ public class PlayerController : MonoBehaviour{
 
 	public void Drop(){
 		if(go_flagObj){
+			go_flagObj.transform.localPosition = new Vector3(0, -1.5f, 0);	// this is relative to t_flagPos
 			go_flagObj.transform.SetParent(null);
 			go_flagObj = null;
 		}
@@ -82,25 +83,37 @@ public class PlayerController : MonoBehaviour{
 	}
 
 	private void FixedUpdate(){
-        Move();
+		if (b_canMove){
+			Move();
 
-		if (InputManager.GetButton(ax_interact)){
-			go_interactCollider.SetActive(true);
-			Invoke("TurnOffInteractCollider", .5f);
+			// spells
+			if (!go_flagObj){
+				if (InputManager.GetButton(ax_wind) && Time.time > f_nextWind){   // checks for fire button and if time delay has passed
+					f_nextWind = Time.time + f_windRecharge;
+					GameObject go_spell = Instantiate(go_windShot, t_spellSpawn.position, t_spellSpawn.rotation);
+					go_spell.GetComponent<ShotController>().e_Color = e_Color;
+					Debug.Log(transform.forward.normalized);
+					go_spell.GetComponent<Rigidbody>().velocity = transform.forward * f_spellSpeed;
+				}
+				if (InputManager.GetButton(ax_ice) && Time.time > f_nextIce){   // checks for fire button and if time delay has passed
+					f_nextIce = Time.time + f_iceRecharge;
+					GameObject go_spell = Instantiate(go_iceShot, t_spellSpawn.position, t_spellSpawn.rotation);
+					go_spell.GetComponent<ShotController>().e_Color = e_Color;
+					go_spell.GetComponent<Rigidbody>().velocity = transform.forward * f_spellSpeed;
+				}
+			}
 		}
+	}
 
-		// spells
-		if (InputManager.GetButton(ax_wind) && Time.time > f_nextWind){   // checks for fire button and if time delay has passed
-			f_nextWind = Time.time + f_windRecharge;
-			GameObject go_spell = Instantiate(go_windShot, t_spellSpawn.position, t_spellSpawn.rotation);
-            go_spell.GetComponent<ShotController>().e_Color = e_Color;
-			go_spell.GetComponent<Rigidbody>().velocity = transform.forward * f_spellSpeed;
-		}
-		if (InputManager.GetButton(ax_ice) && Time.time > f_nextIce){   // checks for fire button and if time delay has passed
-			f_nextIce = Time.time + f_iceRecharge;
-			GameObject go_spell = Instantiate(go_iceShot, t_spellSpawn.position, t_spellSpawn.rotation);
-            go_spell.GetComponent<ShotController>().e_Color = e_Color;
-			go_spell.GetComponent<Rigidbody>().velocity = transform.forward * f_spellSpeed;
+	private void Update(){
+		if (InputManager.GetButtonDown(ax_interact)){
+			if (go_flagObj){
+				Drop();
+			}
+			else{
+				go_interactCollider.SetActive(true);
+				Invoke("TurnOffInteractCollider", .5f);
+			}
 		}
 	}
 }

@@ -8,15 +8,8 @@ public class FlagController : MonoBehaviour {
 	public Vector3 v3_home;			// location of flag in players' base
 
 	private void OnTriggerEnter(Collider other){
-		if (other.tag == "InteractCollider"){	// opposing player trying to pick up flag
-			if(other.GetComponentInParent<PlayerController>().GetColor() != e_Color){
-				other.GetComponentInParent<PlayerController>().Pickup(gameObject);
-			}
-		}
-		if(other.tag == "Player"){	// owning player "collects" flag, return it to base
-			if(other.GetComponentInParent<PlayerController>().GetColor() == e_Color && !transform.root.GetComponent<PlayerController>()){
-				transform.position = v3_home;
-			}
+		if (other.tag == "InteractCollider"){   // opposing player trying to pick up flag
+			other.GetComponentInParent<PlayerController>().Pickup(gameObject);
 		}
 		if (other.tag == "Goal"){   // opposing player scoring with flag
 			if (other.GetComponent<GoalController>().GetColor() != e_Color){

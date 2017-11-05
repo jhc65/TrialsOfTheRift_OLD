@@ -23,12 +23,19 @@ public class RiftController : MonoBehaviour {
             power++;
         }*/
 
-        if (other.tag == "Shot") {
-            Teleport(other.gameObject);
-        } 
+
     }
 
-    void Teleport(GameObject teleport) {
+	private void OnTriggerEnter(Collider other)
+	{
+		if (other.tag == "Shot")
+		{
+			Debug.Log("sh");
+			Teleport(other.gameObject);
+		}
+	}
+
+	void Teleport(GameObject teleport) {
         float currentOffset = offset;
         //find out rift side that's being touched.
 
@@ -47,35 +54,36 @@ public class RiftController : MonoBehaviour {
         int nullOffset = 1;
         
 
-        if (teleport.tag == "Player") {
-             if (!teleportedPlayer) {
-                //start rift pullback timer.
-                TimerTick();
+        //if (teleport.tag == "Player") {
+        //     if (!teleportedPlayer) {
+        //        //start rift pullback timer.
+        //        TimerTick();
 
-                //Set teleported player to drag them back.
-                teleportedPlayer = teleport;
-             } else {
-                if (timer > 0) { 
-                    //case where other player is teleported before rift timer runs out.
-                    if (!teleportedPlayer.Equals(teleport)) {
-                        //SideSwitch goes here.
-                        sideSwitch = true;
-                        teleportedPlayer = null;
-                        timer = maxTimer;
-                        CancelInvoke("TimerTick");
-                        power = 0;
+        //        //Set teleported player to drag them back.
+        //        teleportedPlayer = teleport;
+        //     } else {
+        //        if (timer > 0) { 
+        //            //case where other player is teleported before rift timer runs out.
+        //            if (!teleportedPlayer.Equals(teleport)) {
+        //                //SideSwitch goes here.
+        //                sideSwitch = true;
+        //                teleportedPlayer = null;
+        //                timer = maxTimer;
+        //                CancelInvoke("TimerTick");
+        //                power = 0;
 
-                    } else { //case where player tries to hop back during timer. Block 'em.
-                        validTeleport = false;
-                    }
-                } else {
-                    teleportedPlayer = null;
-                    nullOffset = 0;
-                    power = 0;
-                }
+        //            } else { //case where player tries to hop back during timer. Block 'em.
+        //                validTeleport = false;
+        //            }
+        //        } else {
+        //            teleportedPlayer = null;
+        //            nullOffset = 0;
+        //            power = 0;
+        //        }
 
-             }
-        }
+        //     }
+        //}
+
         //flip the x-axis of the player object.
         if (validTeleport) {
             teleport.transform.position = new Vector3((-1 * teleport.transform.position.x) + (currentOffset * nullOffset),

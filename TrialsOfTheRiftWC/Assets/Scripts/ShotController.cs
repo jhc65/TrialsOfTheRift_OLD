@@ -19,17 +19,34 @@ public abstract class ShotController : MonoBehaviour {
 	}
 
 	// If a player walks into a shot, apply that shot's effect and then destroy the shot.
-	protected void OnTriggerEnter(Collider coll) {
-        Debug.Log("Impact:" + coll.gameObject.tag);
-        if(coll.gameObject.tag == "Player") {
+	protected void OnCollisionEnter(Collision coll)
+	{
+		Debug.Log("Impact:" + coll.gameObject.tag);
+		if (coll.gameObject.tag == "Player")
+		{
 			ApplyEffect(coll.gameObject);
 			Destroy(gameObject);
-		} else if(coll.gameObject.tag != "Rift" && coll.gameObject.tag != "Portal") { // If we hit something not a player, rift, or portal (walls), just destroy the shot without an effect.
+		}
+		else if (coll.gameObject.tag != "Rift" && coll.gameObject.tag != "Portal")
+		{ // If we hit something not a player, rift, or portal (walls), just destroy the shot without an effect.
 			Destroy(gameObject);
 		}
-
 	}
-	
+
+	//protected void OnTriggerEnter(Collider coll)
+	//{
+	//	Debug.Log("Impact:" + coll.gameObject.tag);
+	//	if (coll.gameObject.tag == "Player")
+	//	{
+	//		ApplyEffect(coll.gameObject);
+	//		Destroy(gameObject);
+	//	}
+	//	else if (coll.gameObject.tag != "Rift" && coll.gameObject.tag != "Portal")
+	//	{ // If we hit something not a player, rift, or portal (walls), just destroy the shot without an effect.
+	//		Destroy(gameObject);
+	//	}
+	//}
+
 	protected abstract void ApplyEffect(GameObject go_target);
 	
 	IEnumerator DestroyInSeconds(float seconds){
