@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class IceController : ShotController {
+public class IceController : SpellController {
 
 	// SendMessage() calls all functions named the parameter that exist in MonoBehavior 
 	// scripts on the GameObject. This way, we don't have worry about differentiating 

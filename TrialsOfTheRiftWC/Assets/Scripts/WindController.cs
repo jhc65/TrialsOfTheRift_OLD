@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class WindController : ShotController {
+public class WindController : SpellController {
 	
 	public float f_windForce;
 

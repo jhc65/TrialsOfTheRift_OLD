@@ -3,19 +3,19 @@ using System.Collections.Generic;
 using UnityEngine;
 [RequireComponent(typeof(Rigidbody))]
 [RequireComponent(typeof(SphereCollider))]
-public abstract class ShotController : MonoBehaviour {
+public abstract class SpellController : MonoBehaviour {
 	
-	public Constants.Color e_Color;	//Currently does nothing. I'd like to use this to differentiate friendly fire.
+	public Constants.Color e_color;	//Currently does nothing. I'd like to use this to differentiate friendly fire.
 	public float f_damage;		// Damage of the bullet. Currently 0 for the demo. It also isn't used by anything for now since players don't have health.
 	public float f_liveTime = 2f;
 	
-	protected Rigidbody r_rigidbody;
+	protected Rigidbody rb_rigidbody;
 	
 	protected void Start() {
 		// I'd like to set e_Color from PlayerController here.
-		r_rigidbody = GetComponent<Rigidbody>();
+		rb_rigidbody = GetComponent<Rigidbody>();
 		StartCoroutine(DestroyInSeconds(f_liveTime));
-        Debug.Log(e_Color);
+        Debug.Log(e_color);
 	}
 
 	// If a player walks into a shot, apply that shot's effect and then destroy the shot.

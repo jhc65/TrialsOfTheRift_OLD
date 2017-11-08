@@ -6,9 +6,9 @@ TagManager:
   tags:
   - Goal
   - InteractCollider
-  - Shot
   - Rift
   - Portal
+  - Spell
   layers:
   - Default
   - TransparentFX

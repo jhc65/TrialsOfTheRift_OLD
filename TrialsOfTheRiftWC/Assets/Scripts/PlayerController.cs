@@ -91,14 +91,14 @@ public class PlayerController : MonoBehaviour{
 				if (InputManager.GetButton(ax_wind) && Time.time > f_nextWind){   // checks for fire button and if time delay has passed
 					f_nextWind = Time.time + f_windRecharge;
 					GameObject go_spell = Instantiate(go_windShot, t_spellSpawn.position, t_spellSpawn.rotation);
-					go_spell.GetComponent<ShotController>().e_Color = e_Color;
+					go_spell.GetComponent<SpellController>().e_color = e_Color;
 					Debug.Log(transform.forward.normalized);
 					go_spell.GetComponent<Rigidbody>().velocity = transform.forward * f_spellSpeed;
 				}
 				if (InputManager.GetButton(ax_ice) && Time.time > f_nextIce){   // checks for fire button and if time delay has passed
 					f_nextIce = Time.time + f_iceRecharge;
 					GameObject go_spell = Instantiate(go_iceShot, t_spellSpawn.position, t_spellSpawn.rotation);
-					go_spell.GetComponent<ShotController>().e_Color = e_Color;
+					go_spell.GetComponent<SpellController>().e_color = e_Color;
 					go_spell.GetComponent<Rigidbody>().velocity = transform.forward * f_spellSpeed;
 				}
 			}
