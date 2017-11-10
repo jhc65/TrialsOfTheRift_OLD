@@ -110,7 +110,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   e_Color: 1
-  f_damage: 0
+  f_damage: 50
   f_liveTime: 2
   f_windForce: 6000
 --- !u!135 &135882178223678438

@@ -9,6 +9,7 @@ TagManager:
   - Shot
   - Rift
   - Portal
+  - Enemy
   layers:
   - Default
   - TransparentFX

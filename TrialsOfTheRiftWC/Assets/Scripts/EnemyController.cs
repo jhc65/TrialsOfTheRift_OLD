@@ -6,7 +6,12 @@ using System.Collections;
 public abstract class EnemyController : MonoBehaviour {
 
     protected enum State {CHASE, ATTACK, DIE};
+	[SerializeField]
 	protected Constants.Side e_Side;
+	[SerializeField]
+	protected float f_health;
+	[SerializeField]
+	protected float f_damage;
 	protected State e_State;
 	protected Rigidbody r_rigidbody;
 	protected UnityEngine.AI.NavMeshAgent nma_agent;
@@ -77,7 +82,16 @@ public abstract class EnemyController : MonoBehaviour {
 
     protected void UpdateDie() {
 		ChildUpdateDie();
+		Destroy(gameObject);
     }
 	
 	protected abstract void ChildUpdateDie();
+	
+	protected void TakeDamage(float damage){
+		print("Enemy ow");
+		f_health -= damage;
+		if(f_health <= 0f){
+			EnterStateDie();
+		}
+	}
 }

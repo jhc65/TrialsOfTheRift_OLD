@@ -113,4 +113,8 @@ public class PlayerController : MonoBehaviour{
 		else
 			e_Side = Constants.Side.LEFT;
 	}
+	
+	public void TakeDamage(float damage){
+		print("ow");
+	}
 }

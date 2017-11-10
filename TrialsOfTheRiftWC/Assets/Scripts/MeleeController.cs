@@ -2,13 +2,17 @@ using UnityEngine;
 using System.Collections;
 
 public class MeleeController : EnemyController {
+	
+	private GameObject go_closestTarget;
+	[SerializeField]
+	private float f_attackDistance;
 
 	protected override void ChildEnterStateChase() {
 		
     }
 
     protected override void ChildUpdateChase() {
-		GameObject go_closestTarget = null;
+		go_closestTarget = null;
 		float f_minDistance = 9999f;
 		float f_currentDistance;
 		for(int i = 0; i < Constants.Players.Length; i++){	
@@ -19,14 +23,20 @@ public class MeleeController : EnemyController {
 			}
 		}
 		
+		
 		if(go_closestTarget){
 			nma_agent.SetDestination(go_closestTarget.transform.position);
+			if(Vector3.Distance(transform.position,go_closestTarget.transform.position) < f_attackDistance)
+				EnterStateAttack();
+		}
+		else{
+			nma_agent.Stop();
 		}
 			
     }
 
     protected override void ChildEnterStateAttack() {
-        
+        GetComponent<Animator>().Play("placeholder_enemy_attack");
     }
 
     protected override void ChildUpdateAttack() {
@@ -34,7 +44,7 @@ public class MeleeController : EnemyController {
     }
 
     protected override void ChildDoAttack() {
-		
+		go_closestTarget.GetComponent<PlayerController>().TakeDamage(f_damage);
     }
 
     protected override void ChildEnterStateDie() {
