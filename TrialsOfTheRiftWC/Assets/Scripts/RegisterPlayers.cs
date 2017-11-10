@@ -11,68 +11,57 @@ public class RegisterPlayers : MonoBehaviour
 	private bool connected = false;
 	private bool p1Ready = false, p2Ready = false, p3Ready = false, p4Ready = false;
 
+
+	//TODO: something with player color, then have the Main Scene's GameController read the set colors (and character models?)
+		// from here to instantiate player prefabs correctly.
+
+
 	void MapControllers()
 	{
 		connected = true;
 		connectMessage.SetActive(false);
 
-		// controller mapping defaults to XBox, so only change if PS4 controller connected
-		if (Input.GetJoystickNames()[0] == "Wireless Controller") // PS4 connection message
-		{
-			InputManager.controlMap[InputManager.Axes.P1_Horizontal] = "P1 Horizontal PS4";
-			InputManager.controlMap[InputManager.Axes.P1_Vertical] = "P1 Vertical PS4";
-			InputManager.controlMap[InputManager.Axes.P1_WindSpell] = "P1 Wind Spell PS4";
-			InputManager.controlMap[InputManager.Axes.P1_IceSpell] = "P1 Ice Spell PS4";
-			InputManager.controlMap[InputManager.Axes.P1_Interact] = "P1 Interact PS4";
-			InputManager.controlMap[InputManager.Axes.P1_Menu] = "P1 Menu PS4";
-			InputManager.controlMap[InputManager.Axes.P1_Submit] = "P1 Submit PS4";
-			InputManager.controlMap[InputManager.Axes.P1_Cancel] = "P1 Cancel PS4";
-			Debug.Log("P1 remapped");
+		// controller mapping defaults to XBOX, so only change if PS4 controller connected
+		if (Input.GetJoystickNames()[0] == "Wireless Controller") { // PS4 connection message
+			InputManager.P1_Map = InputManager.P1_PS4;
+			Debug.Log("P1 PS4");
+		}
+		else {
+			InputManager.P1_Map = InputManager.P1_XBOX;
+			Debug.Log("P1 XBOX");
 		}
 
-		//if (Input.GetJoystickNames()[1] == "Wireless Controller")
-		//{
-		//	InputManager.controlMap[InputManager.Axes.P2_Horizontal] = "P2 Horizontal PS4";
-		//	InputManager.controlMap[InputManager.Axes.P2_Vertical] = "P2 Vertical PS4";
-		//	InputManager.controlMap[InputManager.Axes.P2_WindSpell] = "P2 Wind Spell PS4";
-		//	InputManager.controlMap[InputManager.Axes.P2_IceSpell] = "P2 Ice Spell PS4";
-		//	InputManager.controlMap[InputManager.Axes.P2_Interact] = "P2 Interact PS4";
-		//	InputManager.controlMap[InputManager.Axes.P2_Menu] = "P2 Menu PS4";
-		//	InputManager.controlMap[InputManager.Axes.P2_Submit] = "P2 Submit PS4";
-		//	InputManager.controlMap[InputManager.Axes.P2_Cancel] = "P2 Cancel PS4";
-		//	Debug.Log("P2 remapped");
-		//}
+		if (Input.GetJoystickNames()[1] == "Wireless Controller"){
+			InputManager.P2_Map = InputManager.P2_PS4;
+			Debug.Log("P2 PS4");
+		}
+		else {
+			InputManager.P2_Map = InputManager.P2_XBOX;
+			Debug.Log("P2 XBOX");
+		}
 
-		//if (Input.GetJoystickNames()[2] == "Wireless Controller")
-		//{
-		//	InputManager.controlMap[InputManager.Axes.P3_Horizontal] = "P3 Horizontal PS4";
-		//	InputManager.controlMap[InputManager.Axes.P3_Vertical] = "P3 Vertical PS4";
-		//	InputManager.controlMap[InputManager.Axes.P3_WindSpell] = "P3 Wind Spell PS4";
-		//	InputManager.controlMap[InputManager.Axes.P3_IceSpell] = "P3 Ice Spell PS4";
-		//	InputManager.controlMap[InputManager.Axes.P3_Interact] = "P3 Interact PS4";
-		//	InputManager.controlMap[InputManager.Axes.P3_Menu] = "P3 Menu PS4";
-		//	InputManager.controlMap[InputManager.Axes.P3_Submit] = "P3 Submit PS4";
-		//	InputManager.controlMap[InputManager.Axes.P3_Cancel] = "P3 Cancel PS4";
-		//	Debug.Log("P3 remapped");
-		//}
+		if (Input.GetJoystickNames()[2] == "Wireless Controller"){
+			InputManager.P3_Map = InputManager.P3_PS4;
+			Debug.Log("P3 PS4");
+		}
+		else {
+			InputManager.P3_Map = InputManager.P3_XBOX;
+			Debug.Log("P3 XBOX");
+		}
 
-		//if (Input.GetJoystickNames()[3] == "Wireless Controller")
-		//{
-		//	InputManager.controlMap[InputManager.Axes.P4_Horizontal] = "P4 Horizontal PS4";
-		//	InputManager.controlMap[InputManager.Axes.P4_Vertical] = "P4 Vertical PS4";
-		//	InputManager.controlMap[InputManager.Axes.P4_WindSpell] = "P4 Wind Spell PS4";
-		//	InputManager.controlMap[InputManager.Axes.P4_IceSpell] = "P4 Ice Spell PS4";
-		//	InputManager.controlMap[InputManager.Axes.P4_Interact] = "P4 Interact PS4";
-		//	InputManager.controlMap[InputManager.Axes.P4_Menu] = "P4 Menu PS4";
-		//	InputManager.controlMap[InputManager.Axes.P4_Submit] = "P4 Submit PS4";
-		//	InputManager.controlMap[InputManager.Axes.P4_Cancel] = "P4 Cancel PS4";
-		//	Debug.Log("P4 remapped");
-		//}
+		if (Input.GetJoystickNames()[3] == "Wireless Controller"){
+			InputManager.P4_Map = InputManager.P4_PS4;
+			Debug.Log("P4 PS4");
+		}
+		else {
+			InputManager.P4_Map = InputManager.P4_XBOX;
+			Debug.Log("P4 XBOX");
+		}
 	}
 
 	void Update()
 	{
-		if (Input.GetJoystickNames().Length == 1)
+		if (Input.GetJoystickNames().Length == 1)		// when 4 controllers are detected, commence mapping
 		{
 			if (!connected)
 			{
@@ -80,22 +69,22 @@ public class RegisterPlayers : MonoBehaviour
 			}
 			else
 			{
-				if (InputManager.GetButtonDown(InputManager.Axes.P1_Submit))
+				if (InputManager.GetButtonDown(InputManager.Axes.Submit, 1))
 				{
 					p1Ready = true;
 					p1Message.text = "READY";
 				}
-				//if (InputManager.GetButtonDown(InputManager.Axes.P2_Submit))
+				//if (InputManager.GetButtonDown(InputManager.Axes.Submit, 2))
 				//{
 				//	p2Ready = true;
 				//	p2Message.text = "READY";
 				//}
-				//if (InputManager.GetButtonDown(InputManager.Axes.P3_Submit))
+				//if (InputManager.GetButtonDown(InputManager.Axes.Submit, 3))
 				//{
 				//	p3Ready = true;
 				//	p3Message.text = "READY";
 				//}
-				//if (InputManager.GetButtonDown(InputManager.Axes.P4_Submit))
+				//if (InputManager.GetButtonDown(InputManager.Axes.Submit, 4))
 				//{
 				//	p4Ready = true;
 				//	p4Message.text = "READY";
