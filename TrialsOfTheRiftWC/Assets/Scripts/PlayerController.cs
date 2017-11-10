@@ -25,8 +25,8 @@ public class PlayerController : MonoBehaviour{
 
 
 	private void Move(){
-		float f_inputX = InputManager.GetAxis(InputManager.Axes.Horizontal, i_playerNumber);
-		float f_inputZ = InputManager.GetAxis(InputManager.Axes.Vertical, i_playerNumber);
+		float f_inputX = InputManager.GetAxis(InputManager.Axes.HORIZONTAL, i_playerNumber);
+		float f_inputZ = InputManager.GetAxis(InputManager.Axes.VERTICAL, i_playerNumber);
 
 		Vector3 v3_moveDir = new Vector3(f_inputX, 0, f_inputZ).normalized;
 		if (v3_moveDir.magnitude > 0){
@@ -87,14 +87,14 @@ public class PlayerController : MonoBehaviour{
 
 			// spells
 			if (!go_flagObj){
-				if (InputManager.GetButton(InputManager.Axes.WindSpell, i_playerNumber) && Time.time > f_nextWind){   // checks for fire button and if time delay has passed
+				if (InputManager.GetButton(InputManager.Axes.WINDSPELL, i_playerNumber) && Time.time > f_nextWind){   // checks for fire button and if time delay has passed
 					f_nextWind = Time.time + f_windRecharge;
 					GameObject go_spell = Instantiate(go_windShot, t_spellSpawn.position, t_spellSpawn.rotation);
 					go_spell.GetComponent<SpellController>().e_color = e_Color;
 					Debug.Log(transform.forward.normalized);
 					go_spell.GetComponent<Rigidbody>().velocity = transform.forward * f_spellSpeed;
 				}
-				if (InputManager.GetButton(InputManager.Axes.IceSpell, i_playerNumber) && Time.time > f_nextIce){   // checks for fire button and if time delay has passed
+				if (InputManager.GetButton(InputManager.Axes.ICESPELL, i_playerNumber) && Time.time > f_nextIce){   // checks for fire button and if time delay has passed
 					f_nextIce = Time.time + f_iceRecharge;
 					GameObject go_spell = Instantiate(go_iceShot, t_spellSpawn.position, t_spellSpawn.rotation);
 					go_spell.GetComponent<SpellController>().e_color = e_Color;
@@ -105,7 +105,7 @@ public class PlayerController : MonoBehaviour{
 	}
 
 	private void Update(){
-		if (InputManager.GetButtonDown(InputManager.Axes.Interact, i_playerNumber)){
+		if (InputManager.GetButtonDown(InputManager.Axes.INTERACT, i_playerNumber)){
 			if (go_flagObj){
 				Drop();
 			}

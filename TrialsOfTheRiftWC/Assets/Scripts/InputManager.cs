@@ -5,125 +5,125 @@ using UnityEngine;
 public static class InputManager{
 
 	public enum Axes{
-		Horizontal, Vertical,
+		HORIZONTAL, VERTICAL,
 		//BasicAttack,
-		WindSpell, IceSpell,
+		WINDSPELL, ICESPELL,
 		//ElectricSpell,
 		//Ultimate,
-		Interact,
-		Menu, Submit, Cancel
+		INTERACT,
+		MENU, SUBMIT, CANCEL
 	}
 
 	public static Dictionary<Axes, string> P1_XBOX = new Dictionary<Axes, string> {
-		{Axes.Horizontal,"P1 Horizontal XBOX"},
-		{Axes.Vertical,"P1 Vertical XBOX"},
+		{Axes.HORIZONTAL,"P1 Horizontal XBOX"},
+		{Axes.VERTICAL,"P1 Vertical XBOX"},
 		//{Axes.BasicAttack,"P1 Basic Attack XBOX"},
-		{Axes.WindSpell,"P1 Wind Spell XBOX"},
-		{Axes.IceSpell,"P1 Ice Spell XBOX"},
+		{Axes.WINDSPELL,"P1 Wind Spell XBOX"},
+		{Axes.ICESPELL,"P1 Ice Spell XBOX"},
 		//{Axes.ElectricSpell,"P1 Electric Spell XBOX"},
 		//{Axes.Ultimate,"P1 Ultimate XBOX"},
-		{Axes.Interact,"P1 Interact XBOX"},
-		{Axes.Menu,"P1 Menu XBOX"},
-		{Axes.Submit,"P1 Submit XBOX"},
-		{Axes.Cancel,"P1 Cancel XBOX"}
+		{Axes.INTERACT,"P1 Interact XBOX"},
+		{Axes.MENU,"P1 Menu XBOX"},
+		{Axes.SUBMIT,"P1 Submit XBOX"},
+		{Axes.CANCEL,"P1 Cancel XBOX"}
 	};
 
 	public static Dictionary<Axes, string> P2_XBOX = new Dictionary<Axes, string> {
-		{Axes.Horizontal,"P2 Horizontal XBOX"},
-		{Axes.Vertical,"P2 Vertical XBOX"},
+		{Axes.HORIZONTAL,"P2 Horizontal XBOX"},
+		{Axes.VERTICAL,"P2 Vertical XBOX"},
 		//{Axes.BasicAttack,"P2 Basic Attack XBOX"},
-		{Axes.WindSpell,"P2 Wind Spell XBOX"},
-		{Axes.IceSpell,"P2 Ice Spell XBOX"},
+		{Axes.WINDSPELL,"P2 Wind Spell XBOX"},
+		{Axes.ICESPELL,"P2 Ice Spell XBOX"},
 		//{Axes.ElectricSpell,"P2 Electric Spell XBOX"},
 		//{Axes.Ultimate,"P2 Ultimate XBOX"},
-		{Axes.Interact,"P2 Interact XBOX"},
-		{Axes.Menu,"P2 Menu XBOX"},
-		{Axes.Submit,"P2 Submit XBOX"},
-		{Axes.Cancel,"P2 Cancel XBOX"}
+		{Axes.INTERACT,"P2 Interact XBOX"},
+		{Axes.MENU,"P2 Menu XBOX"},
+		{Axes.SUBMIT,"P2 Submit XBOX"},
+		{Axes.CANCEL,"P2 Cancel XBOX"}
 	};
 
 	public static Dictionary<Axes, string> P3_XBOX = new Dictionary<Axes, string> {
-		{Axes.Horizontal,"P3 Horizontal XBOX"},
-		{Axes.Vertical,"P3 Vertical XBOX"},
+		{Axes.HORIZONTAL,"P3 Horizontal XBOX"},
+		{Axes.VERTICAL,"P3 Vertical XBOX"},
 		//{Axes.BasicAttack,"P3 Basic Attack XBOX"},
-		{Axes.WindSpell,"P3 Wind Spell XBOX"},
-		{Axes.IceSpell,"P3 Ice Spell XBOX"},
+		{Axes.WINDSPELL,"P3 Wind Spell XBOX"},
+		{Axes.ICESPELL,"P3 Ice Spell XBOX"},
 		//{Axes.ElectricSpell,"P3 Electric Spell XBOX"},
 		//{Axes.Ultimate,"P3 Ultimate XBOX"},
-		{Axes.Interact,"P3 Interact XBOX"},
-		{Axes.Menu,"P3 Menu XBOX"},
-		{Axes.Submit,"P3 Submit XBOX"},
-		{Axes.Cancel,"P3 Cancel XBOX"}
+		{Axes.INTERACT,"P3 Interact XBOX"},
+		{Axes.MENU,"P3 Menu XBOX"},
+		{Axes.SUBMIT,"P3 Submit XBOX"},
+		{Axes.CANCEL,"P3 Cancel XBOX"}
 	};
 
 	public static Dictionary<Axes, string> P4_XBOX = new Dictionary<Axes, string> {
-		{Axes.Horizontal,"P4 Horizontal XBOX"},
-		{Axes.Vertical,"P4 Vertical XBOX"},
+		{Axes.HORIZONTAL,"P4 Horizontal XBOX"},
+		{Axes.VERTICAL,"P4 Vertical XBOX"},
 		//{Axes.BasicAttack,"P4 Basic Attack XBOX"},
-		{Axes.WindSpell,"P4 Wind Spell XBOX"},
-		{Axes.IceSpell,"P4 Ice Spell XBOX"},
+		{Axes.WINDSPELL,"P4 Wind Spell XBOX"},
+		{Axes.ICESPELL,"P4 Ice Spell XBOX"},
 		//{Axes.ElectricSpell,"P4 Electric Spell XBOX"},
 		//{Axes.Ultimate,"P4 Ultimate XBOX"},
-		{Axes.Interact,"P4 Interact XBOX"},
-		{Axes.Menu,"P4 Menu XBOX"},
-		{Axes.Submit,"P4 Submit XBOX"},
-		{Axes.Cancel,"P4 Cancel XBOX"}
+		{Axes.INTERACT,"P4 Interact XBOX"},
+		{Axes.MENU,"P4 Menu XBOX"},
+		{Axes.SUBMIT,"P4 Submit XBOX"},
+		{Axes.CANCEL,"P4 Cancel XBOX"}
 	};
 
 	public static Dictionary<Axes, string> P1_PS4 = new Dictionary<Axes, string> {
-		{Axes.Horizontal,"P1 Horizontal PS4"},
-		{Axes.Vertical,"P1 Vertical PS4"},
+		{Axes.HORIZONTAL,"P1 Horizontal PS4"},
+		{Axes.VERTICAL,"P1 Vertical PS4"},
 		//{Axes.BasicAttack,"P1 Basic Attack PS4"},
-		{Axes.WindSpell,"P1 Wind Spell PS4"},
-		{Axes.IceSpell,"P1 Ice Spell PS4"},
+		{Axes.WINDSPELL,"P1 Wind Spell PS4"},
+		{Axes.ICESPELL,"P1 Ice Spell PS4"},
 		//{Axes.ElectricSpell,"P1 Electric Spell PS4"},
 		//{Axes.Ultimate,"P1 Ultimate PS4"},
-		{Axes.Interact,"P1 Interact PS4"},
-		{Axes.Menu,"P1 Menu PS4"},
-		{Axes.Submit,"P1 Submit PS4"},
-		{Axes.Cancel,"P1 Cancel PS4"}
+		{Axes.INTERACT,"P1 Interact PS4"},
+		{Axes.MENU,"P1 Menu PS4"},
+		{Axes.SUBMIT,"P1 Submit PS4"},
+		{Axes.CANCEL,"P1 Cancel PS4"}
 	};
 
 	public static Dictionary<Axes, string> P2_PS4 = new Dictionary<Axes, string> {
-		{Axes.Horizontal,"P2 Horizontal PS4"},
-		{Axes.Vertical,"P2 Vertical PS4"},
+		{Axes.HORIZONTAL,"P2 Horizontal PS4"},
+		{Axes.VERTICAL,"P2 Vertical PS4"},
 		//{Axes.BasicAttack,"P2 Basic Attack PS4"},
-		{Axes.WindSpell,"P2 Wind Spell PS4"},
-		{Axes.IceSpell,"P2 Ice Spell PS4"},
+		{Axes.WINDSPELL,"P2 Wind Spell PS4"},
+		{Axes.ICESPELL,"P2 Ice Spell PS4"},
 		//{Axes.ElectricSpell,"P2 Electric Spell PS4"},
 		//{Axes.Ultimate,"P2 Ultimate PS4"},
-		{Axes.Interact,"P2 Interact PS4"},
-		{Axes.Menu,"P2 Menu PS4"},
-		{Axes.Submit,"P2 Submit PS4"},
-		{Axes.Cancel,"P2 Cancel PS4"}
+		{Axes.INTERACT,"P2 Interact PS4"},
+		{Axes.MENU,"P2 Menu PS4"},
+		{Axes.SUBMIT,"P2 Submit PS4"},
+		{Axes.CANCEL,"P2 Cancel PS4"}
 	};
 
 	public static Dictionary<Axes, string> P3_PS4 = new Dictionary<Axes, string> {
-		{Axes.Horizontal,"P3 Horizontal PS4"},
-		{Axes.Vertical,"P3 Vertical PS4"},
+		{Axes.HORIZONTAL,"P3 Horizontal PS4"},
+		{Axes.VERTICAL,"P3 Vertical PS4"},
 		//{Axes.BasicAttack,"P3 Basic Attack PS4"},
-		{Axes.WindSpell,"P3 Wind Spell PS4"},
-		{Axes.IceSpell,"P3 Ice Spell PS4"},
+		{Axes.WINDSPELL,"P3 Wind Spell PS4"},
+		{Axes.ICESPELL,"P3 Ice Spell PS4"},
 		//{Axes.ElectricSpell,"P3 Electric Spell PS4"},
 		//{Axes.Ultimate,"P3 Ultimate PS4"},
-		{Axes.Interact,"P3 Interact PS4"},
-		{Axes.Menu,"P3 Menu PS4"},
-		{Axes.Submit,"P3 Submit PS4"},
-		{Axes.Cancel,"P3 Cancel PS4"}
+		{Axes.INTERACT,"P3 Interact PS4"},
+		{Axes.MENU,"P3 Menu PS4"},
+		{Axes.SUBMIT,"P3 Submit PS4"},
+		{Axes.CANCEL,"P3 Cancel PS4"}
 	};
 
 	public static Dictionary<Axes, string> P4_PS4 = new Dictionary<Axes, string> {
-		{Axes.Horizontal,"P4 Horizontal PS4"},
-		{Axes.Vertical,"P4 Vertical PS4"},
+		{Axes.HORIZONTAL,"P4 Horizontal PS4"},
+		{Axes.VERTICAL,"P4 Vertical PS4"},
 		//{Axes.BasicAttack,"P4 Basic Attack PS4"},
-		{Axes.WindSpell,"P4 Wind Spell PS4"},
-		{Axes.IceSpell,"P4 Ice Spell PS4"},
+		{Axes.WINDSPELL,"P4 Wind Spell PS4"},
+		{Axes.ICESPELL,"P4 Ice Spell PS4"},
 		//{Axes.ElectricSpell,"P4 Electric Spell PS4"},
 		//{Axes.Ultimate,"P4 Ultimate PS4"},
-		{Axes.Interact,"P4 Interact PS4"},
-		{Axes.Menu,"P4 Menu PS4"},
-		{Axes.Submit,"P4 Submit PS4"},
-		{Axes.Cancel,"P4 Cancel PS4"}
+		{Axes.INTERACT,"P4 Interact PS4"},
+		{Axes.MENU,"P4 Menu PS4"},
+		{Axes.SUBMIT,"P4 Submit PS4"},
+		{Axes.CANCEL,"P4 Cancel PS4"}
 	};
 
 
