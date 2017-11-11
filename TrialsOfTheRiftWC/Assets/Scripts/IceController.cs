@@ -11,4 +11,19 @@ public class IceController : SpellController {
 	protected override void ApplyEffect(GameObject go_target){
 		go_target.SendMessage("Freeze"); 
 	}
+
+    protected override void AffectCrystal(GameObject go_crystal)
+    {
+        Constants.Color crystalColor = go_crystal.GetComponent<CrystalController>().e_color;
+        if (crystalColor != this.e_color)
+        {
+            go_crystal.GetComponent<CrystalController>().SpellDamage();
+        }
+        else if (crystalColor == this.e_color)
+        {
+            go_crystal.GetComponent<CrystalController>().SpellHeal();
+        }
+    }
+
 }
+

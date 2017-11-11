@@ -27,6 +27,11 @@ public abstract class SpellController : MonoBehaviour {
 			ApplyEffect(coll.gameObject);
 			Destroy(gameObject);
 		}
+        else if(coll.gameObject.tag == "Crystal")
+        {
+            AffectCrystal(coll.gameObject);
+            Destroy(gameObject);
+        }
 		else if (coll.gameObject.tag != "Rift" && coll.gameObject.tag != "Portal")
 		{ // If we hit something not a player, rift, or portal (walls), just destroy the shot without an effect.
 			Destroy(gameObject);
@@ -34,7 +39,8 @@ public abstract class SpellController : MonoBehaviour {
 	}
 
 	protected abstract void ApplyEffect(GameObject go_target);
-	
+    protected abstract void AffectCrystal(GameObject go_crystal);
+
 	IEnumerator DestroyInSeconds(float seconds){
 		yield return new WaitForSeconds(seconds);
 		Destroy(gameObject);

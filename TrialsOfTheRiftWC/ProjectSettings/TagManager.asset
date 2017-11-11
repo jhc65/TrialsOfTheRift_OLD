@@ -9,6 +9,7 @@ TagManager:
   - Rift
   - Portal
   - Spell
+  - Crystal
   layers:
   - Default
   - TransparentFX

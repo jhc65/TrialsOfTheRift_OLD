@@ -23,6 +23,8 @@ public class CrystalDestructionObjective : Objective {
 
 	private void Update()
 	{
-		//if activeCrystal.health <= 0, Complete()
+        if (go_activeCrystal.GetComponent<CrystalController>().f_health <= 0.0f) {
+            Complete();
+        }
 	}
 }

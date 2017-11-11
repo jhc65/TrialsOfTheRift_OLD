@@ -13,4 +13,16 @@ public class WindController : SpellController {
 		go_target.GetComponent<PlayerController>().Drop();
         Destroy(gameObject);
 	}
+
+    protected override void AffectCrystal(GameObject go_crystal)
+    {
+        Constants.Color crystalColor = go_crystal.GetComponent<CrystalController>().e_color;
+        if (crystalColor != this.e_color) {
+            go_crystal.GetComponent<CrystalController>().SpellDamage();
+        }
+        else if (crystalColor == this.e_color)
+        {
+            go_crystal.GetComponent<CrystalController>().SpellHeal();
+        }
+    }
 }
