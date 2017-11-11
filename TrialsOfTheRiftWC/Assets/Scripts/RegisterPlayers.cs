@@ -73,7 +73,17 @@ public class RegisterPlayers : MonoBehaviour
 	}
 
 	void Update() {
+		if (Input.GetJoystickNames().Length == 1){
+			txt_p1Message.text = "CONNECTED";
+		}
+		if (Input.GetJoystickNames().Length == 2){
+			txt_p2Message.text = "CONNECTED";
+		}
+		if (Input.GetJoystickNames().Length == 3){
+			txt_p3Message.text = "CONNECTED";
+		}
 		if (Input.GetJoystickNames().Length == 4) {     // when 4 controllers are detected, commence mapping
+			txt_p4Message.text = "CONNECTED";
 			if (!b_connected) {
 				MapControllers();
 			}
