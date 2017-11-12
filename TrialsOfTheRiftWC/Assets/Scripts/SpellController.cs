@@ -8,6 +8,7 @@ public abstract class SpellController : MonoBehaviour {
 	public Constants.Color e_color;	//Currently does nothing. I'd like to use this to differentiate friendly fire.
 	public float f_damage;		// Damage of the bullet. Currently 0 for the demo. It also isn't used by anything for now since players don't have health.
 	public float f_liveTime = 2f;
+	public string[] s_spellTargetTags; // these are the tags of the objects spells should do damage/effect against.
 	
 	protected Rigidbody rb_rigidbody;
 	
@@ -22,13 +23,15 @@ public abstract class SpellController : MonoBehaviour {
 	protected void OnCollisionEnter(Collision coll)
 	{
 		Debug.Log("Impact:" + coll.gameObject.tag);
-		if (coll.gameObject.tag == "Player")
-		{
-			ApplyEffect(coll.gameObject);
-			Destroy(gameObject);
+		foreach(string tag in s_spellTargetTags){
+			if (coll.gameObject.tag == tag){
+				coll.gameObject.SendMessage("TakeDamage",f_damage);
+				ApplyEffect(coll.gameObject);
+				Destroy(gameObject);
+				return;
+			}
 		}
-		else if (coll.gameObject.tag != "Rift" && coll.gameObject.tag != "Portal")
-		{ // If we hit something not a player, rift, or portal (walls), just destroy the shot without an effect.
+		if (coll.gameObject.tag != "Rift" && coll.gameObject.tag != "Portal"){ // If we hit something not a player, rift, or portal (walls), just destroy the shot without an effect.
 			Destroy(gameObject);
 		}
 	}

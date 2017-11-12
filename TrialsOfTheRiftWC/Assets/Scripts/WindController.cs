@@ -10,7 +10,8 @@ public class WindController : SpellController {
 		Debug.Log(transform.forward.normalized);
 		Vector3 v3_direction = transform.forward.normalized;
 		go_target.GetComponent<Rigidbody>().AddForce(v3_direction * f_windForce);
-		go_target.GetComponent<PlayerController>().Drop();
+		if(go_target.GetComponent<PlayerController>())
+			go_target.GetComponent<PlayerController>().Drop();
         Destroy(gameObject);
 	}
 }

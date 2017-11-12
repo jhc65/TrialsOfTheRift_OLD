@@ -110,8 +110,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   e_color: 0
-  f_damage: 0
+  f_damage: 50
   f_liveTime: 2
+  s_spellTargetTags:
+  - Player
+  - Enemy
   f_windForce: 6000
 --- !u!135 &135882178223678438
 SphereCollider:

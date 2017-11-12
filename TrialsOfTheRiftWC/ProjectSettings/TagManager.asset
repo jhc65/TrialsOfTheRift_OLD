@@ -9,6 +9,7 @@ TagManager:
   - Rift
   - Portal
   - Spell
+  - Enemy
   layers:
   - Default
   - TransparentFX

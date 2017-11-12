@@ -6,6 +6,7 @@ public class PlayerController : MonoBehaviour{
 
 	public int i_playerNumber;				// designates player's number for controller mappings
 	public Constants.Color e_Color;			// identifies player's team
+	public Constants.Side e_Side;			// identifies which side of the rift player is on
 	public int i_moveSpeed;					// basic movement speed
 	public Transform t_flagPos;				// location on character model of flag
 	public GameObject go_flagObj;			// flag game object; if not null, player is carrying flag
@@ -79,6 +80,10 @@ public class PlayerController : MonoBehaviour{
 		b_canMove = true;
 		f_nextWind = 0;
 		f_nextIce = 0;
+		if (transform.position.x > 0)
+			e_Side = Constants.Side.RIGHT;
+		else
+			e_Side = Constants.Side.LEFT;
 	}
 
 	private void FixedUpdate(){
@@ -114,5 +119,14 @@ public class PlayerController : MonoBehaviour{
 				Invoke("TurnOffInteractCollider", .5f);
 			}
 		}
+		
+		if (transform.position.x > 0)
+			e_Side = Constants.Side.RIGHT;
+		else
+			e_Side = Constants.Side.LEFT;
+	}
+	
+	public void TakeDamage(float damage){
+		print("ow");
 	}
 }
