@@ -30,11 +30,16 @@ public abstract class SpellController : MonoBehaviour {
 				Destroy(gameObject);
 				return;
 			}
-		}
-		if (coll.gameObject.tag != "Rift" && coll.gameObject.tag != "Portal"){ // If we hit something not a player, rift, or portal (walls), just destroy the shot without an effect.
+        else if (coll.gameObject.tag.ToLower() == "rift") {
+            BuffSpell();
+        }
+		else if (coll.gameObject.tag != "Portal")
+		{ // If we hit something not a player, rift, or portal (walls), just destroy the shot without an effect.
 			Destroy(gameObject);
 		}
 	}
+
+    protected abstract void BuffSpell();
 
 	protected abstract void ApplyEffect(GameObject go_target);
 	

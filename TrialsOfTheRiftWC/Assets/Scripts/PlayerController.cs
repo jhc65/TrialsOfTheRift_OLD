@@ -22,9 +22,12 @@ public class PlayerController : MonoBehaviour{
     public float f_iceSpeed;                // ice spell movement speed
 	public float f_windRecharge;			// delay between wind spells
 	public float f_iceRecharge;             // delay between ice spells
+    public GameObject c_playerCapsule;     // Player main body
+    public GameObject c_playerWisp;        // Player wisp body
 
-	private float f_nextWind;				// time next wind spell can be cast
+    private float f_nextWind;				// time next wind spell can be cast
 	private float f_nextIce;				// time next ice spell can be cast
+    private float f_playerHealth;           // Players current health value
 
 
 	private void Move(){
@@ -74,12 +77,37 @@ public class PlayerController : MonoBehaviour{
 		}
 	}
 
+    public void DoDamage(float damageIn){
+        f_playerHealth -= damageIn;
+    }
+
 	public Constants.Color GetColor(){
 		return e_Color;
 	}
 
+    private void PlayerDeath() {
+        f_nextWind = Time.time + (Constants.PlayerStats.C_RespawnTimer + 3.0f);
+        f_nextIce = Time.time + (Constants.PlayerStats.C_RespawnTimer + 3.0f);
+        c_playerCapsule.SetActive(false);
+        Drop();
+        c_playerWisp.SetActive(true);
+        i_moveSpeed = Constants.PlayerStats.C_WispMovementSpeed;
+        Invoke("PlayerRespawn", Constants.PlayerStats.C_RespawnTimer);
+    }
+
+    private void PlayerRespawn() {
+        c_playerCapsule.SetActive(true);
+        c_playerWisp.SetActive(false);
+        f_playerHealth = Constants.PlayerStats.C_MaxHealth;
+        i_moveSpeed = Constants.PlayerStats.C_MovementSpeed;
+        f_nextWind = Time.time;
+        f_nextIce = Time.time;
+    }
+
 	private void Start(){
+        f_playerHealth = Constants.PlayerStats.C_MaxHealth;
 		b_canMove = true;
+        i_moveSpeed = Constants.PlayerStats.C_MovementSpeed;
 		f_nextWind = 0;
 		f_nextIce = 0;
 		if (transform.position.x > 0)
@@ -114,6 +142,9 @@ public class PlayerController : MonoBehaviour{
 	}
 
 	private void Update(){
+        if (f_playerHealth <= 0.0f) {
+            PlayerDeath();
+        }
 		if (InputManager.GetButtonDown(InputManager.Axes.INTERACT, i_playerNumber)){
 			if (go_flagObj){
 				Drop();
