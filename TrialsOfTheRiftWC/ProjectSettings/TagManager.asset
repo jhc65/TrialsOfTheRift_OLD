@@ -10,6 +10,7 @@ TagManager:
   - Portal
   - Spell
   - Enemy
+  - MagicMissile
   layers:
   - Default
   - TransparentFX
