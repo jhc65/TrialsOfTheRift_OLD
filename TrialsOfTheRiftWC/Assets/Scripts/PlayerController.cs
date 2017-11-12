@@ -172,4 +172,8 @@ public class PlayerController : MonoBehaviour{
     public float GetNextIce() {
         return f_nextIce;
     }
+
+    public float GetCurrentHealth() {
+        return f_playerHealth;
+    }
 }
