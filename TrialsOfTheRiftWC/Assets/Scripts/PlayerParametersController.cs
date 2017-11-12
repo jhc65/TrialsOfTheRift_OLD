@@ -17,15 +17,33 @@ public class PlayerParametersController : MonoBehaviour
     public Slider slider_windCooldown;
     public Slider slider_iceCooldown;
 
-    // UI Text (Set in editor)
-    public Text text_playerMoveSpeed;
-    public Text text_windSpeed;
-    public Text text_iceSpeed;
-    public Text text_windCooldown;
-    public Text text_iceCooldown;
+    // UI txt (Set in editor)
+    public Text txt_playerMoveSpeed;
+    public Text txt_windSpeed;
+    public Text txt_iceSpeed;
+    public Text txt_windCooldown;
+    public Text txt_iceCooldown;
 
     private void Start() {
-        
+        // Player Speed
+        txt_playerMoveSpeed.text = Constants.PlayerStats.C_MovementSpeed.ToString();
+        slider_playerMoveSpeed.value = Constants.PlayerStats.C_MovementSpeed;
+
+        // Wind Spell Speed
+        txt_windSpeed.text = Constants.SpellStats.C_WindSpeed.ToString();
+        slider_windSpeed.value = Constants.SpellStats.C_WindSpeed;
+
+        // Ice Spell Speed
+        txt_iceSpeed.text = Constants.SpellStats.C_IceSpeed.ToString();
+        slider_iceSpeed.value = Constants.SpellStats.C_IceSpeed;
+
+        // Wind Spell Cooldown
+        txt_windCooldown.text = Constants.PlayerStats.C_WindCooldown.ToString();
+        slider_windCooldown.value = Constants.PlayerStats.C_WindCooldown;
+
+        // Ice Spell Cooldown
+        txt_iceCooldown.text = Constants.PlayerStats.C_IceCooldown.ToString();
+        slider_iceCooldown.value = Constants.PlayerStats.C_IceCooldown;
     }
 
     // Update is called once per frame
@@ -36,23 +54,23 @@ public class PlayerParametersController : MonoBehaviour
 
         // Player Speed
         ChangePlayerSpeed(slider_playerMoveSpeed.value);
-        text_playerMoveSpeed.text = slider_playerMoveSpeed.value.ToString();
+        txt_playerMoveSpeed.text = slider_playerMoveSpeed.value.ToString();
 
         // Wind Spell Speed
         ChangeWindSpeed(slider_windSpeed.value);
-        text_windSpeed.text = slider_windSpeed.value.ToString();
+        txt_windSpeed.text = slider_windSpeed.value.ToString();
 
         // Ice Spell Speed
         ChangeIceSpeed(slider_iceSpeed.value);
-        text_iceSpeed.text = slider_iceSpeed.value.ToString();
+        txt_iceSpeed.text = slider_iceSpeed.value.ToString();
 
         // Wind Spell Cooldown
         ChangeWindCooldown(slider_windCooldown.value);
-        text_windCooldown.text = slider_windCooldown.value.ToString();
+        txt_windCooldown.text = slider_windCooldown.value.ToString();
 
         // Ice Spell Cooldown
         ChangeIceCooldown(slider_iceCooldown.value);
-        text_iceCooldown.text = slider_iceCooldown.value.ToString();
+        txt_iceCooldown.text = slider_iceCooldown.value.ToString();
     }
 
     // Public Helper Methods
