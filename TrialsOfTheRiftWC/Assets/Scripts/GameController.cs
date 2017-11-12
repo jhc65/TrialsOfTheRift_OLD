@@ -60,4 +60,10 @@ public class GameController : MonoBehaviour {
         go_canvas.SetActive(false);
         Time.timeScale = 1f;
     }
+
+    private void Update() {
+        if (Input.GetKeyDown(KeyCode.Escape)) {
+            Application.Quit();
+        }
+    }
 }
