@@ -19,17 +19,17 @@ public abstract class SpellController : MonoBehaviour {
 		Destroy(gameObject, f_liveTime);
 	}
 
-	protected void OnCollisionEnter(Collision coll){
+	void OnCollisionEnter(Collision collision) {
 		//Debug.Log("Impact:" + coll.gameObject.tag);
-		foreach (string tag in s_spellTargetTags){
-			if (coll.gameObject.tag == tag){
-				ApplyEffect(coll.gameObject);
+		foreach (string tag in s_spellTargetTags) {
+			if (collision.gameObject.tag == tag) {
+				ApplyEffect(collision.gameObject);
 				Destroy(gameObject);
 				return;
 			}
 		}
-       
-        if (coll.gameObject.tag != "Portal") { // If we hit something not a player, rift, or portal (walls), just destroy the shot without an effect.
+
+		if (collision.gameObject.tag != "Portal") { // If we hit something not a player, rift, or portal (walls), just destroy the shot without an effect.
 			Destroy(gameObject);
         }
 	}

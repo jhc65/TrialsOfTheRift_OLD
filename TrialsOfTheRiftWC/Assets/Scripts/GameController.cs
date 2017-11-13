@@ -45,6 +45,15 @@ public class GameController : MonoBehaviour {
         Time.timeScale = 1f;
     }
 
+	public void Params() {
+		go_canvas.SetActive(true);
+		Time.timeScale = 0f;
+	}
+
+	public void Exit() {
+		Application.Quit();
+	}
+
 	void Awake() {
         if (instance == null) {
             instance = this;

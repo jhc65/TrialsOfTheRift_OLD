@@ -7,9 +7,9 @@ public abstract class EnemyController : MonoBehaviour {
 
     protected enum State {CHASE, ATTACK, FROZEN, DIE};
 	[SerializeField]
-	protected Constants.Side e_Side;
+	public Constants.Side e_Side;
 	[SerializeField]
-	protected float f_health;
+	protected int i_health;
 	[SerializeField]
 	protected float f_damage;
 	protected State e_State;
@@ -24,6 +24,10 @@ public abstract class EnemyController : MonoBehaviour {
 	
 	// Update is called once per frame
 	protected void Update () {
+		if(i_health <= 0f){
+			Debug.Log("death");
+			EnterStateDie();
+		}
 		switch (e_State) {
 		case State.CHASE:
 			UpdateChase ();
@@ -84,11 +88,12 @@ public abstract class EnemyController : MonoBehaviour {
 	protected abstract void ChildUpdateDie();
 	
 	public void TakeDamage(float damage){
-		print("Enemy ow");
-		f_health -= damage;
-		if(f_health <= 0f){
-			EnterStateDie();
-		}
+		i_health -= (int)damage;
+		//Debug.Log(i_health);
+		//if(i_health <= 0f){
+		//	Debug.Log("death");
+		//	EnterStateDie();
+		//}
 	}
 	
 	protected void EnterStateFrozen() {

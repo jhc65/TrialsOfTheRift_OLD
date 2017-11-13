@@ -152,7 +152,7 @@ public class PlayerController : MonoBehaviour{
             f_nextIce += Time.deltaTime;
 
 			// spells
-			if (!go_flagObj) {
+			if (!go_flagObj && !c_playerWisp.activeSelf) {
 				if (InputManager.GetButton(InputManager.Axes.MAGICMISSILE, i_playerNumber) && f_nextMagicMissile > f_magicMissileRecharge) {   // checks for fire button and if time delay has passed
 					f_nextMagicMissile = 0;
 					GameObject go_spell = Instantiate(go_magicMissileShot, t_spellSpawn.position, t_spellSpawn.rotation);

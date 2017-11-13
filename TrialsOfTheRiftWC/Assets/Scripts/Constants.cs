@@ -21,8 +21,8 @@ public static class Constants {
         public static float C_IceDamage = 75.0f;                // Officially, this is -75 HP
         public static float C_WindDamage = 50.0f;               // Officially, this is -50 HP
 		public static float C_MagicMissileCooldown = 0.5f;
-		public static float C_IceCooldown = 3.0f;
-		public static float C_WindCooldown = 5.0f;
+		public static float C_IceCooldown = 5.0f;
+		public static float C_WindCooldown = 3.0f;
 
 		// Spell Buffs when crossing Rift
 		public static float C_IceSpeedMultiplier = 1.5f;

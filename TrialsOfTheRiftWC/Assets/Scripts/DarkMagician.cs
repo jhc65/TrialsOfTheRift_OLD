@@ -5,6 +5,24 @@ using UnityEngine;
 public class DarkMagician : MonoBehaviour {
 
 	public GameObject[] go_objectivesList;
+	public GameObject go_enemy;
+	public float f_enemySpawnTime = 10f;
+
+	private Vector3[] v3_rightEnemySpawnPositions = new Vector3[] {
+		new Vector3(18f, 0.5f, 0f),
+		new Vector3(18f, 0.5f, -16.5f),
+		new Vector3(18f, 0.5f, 14f),
+		new Vector3(5f, 0.5f, 14f),
+		new Vector3(5f, 0.5f, -16.5f)
+	};
+
+	private Vector3[] v3_leftEnemySpawnPositions = new Vector3[] {
+		new Vector3(-18f, 0.5f, 0f),
+		new Vector3(-18f, 0.5f, -16.5f),
+		new Vector3(-18f, 0.5f, 14f),
+		new Vector3(-5f, 0.5f, 14f),
+		new Vector3(-5f, 0.5f, -16.5f)
+	};
 
 	//private GameObject go_redObjective, blueObjective;
 	private Objective objv_redObjective, objv_blueObjective;
@@ -28,11 +46,29 @@ public class DarkMagician : MonoBehaviour {
 		return go_newObjective.GetComponent<Objective>();
 	}
 
+	public void SpawnEnemies() {
+		int randLeft = Random.Range(0, v3_leftEnemySpawnPositions.Length);
+		int randRight = Random.Range(0, v3_rightEnemySpawnPositions.Length);
+		GameObject g1 = Instantiate(go_enemy, v3_leftEnemySpawnPositions[randLeft], new Quaternion(0, 0, 0, 0));
+		g1.GetComponent<EnemyController>().e_Side = Constants.Side.LEFT;
+		GameObject g2 = Instantiate(go_enemy, v3_rightEnemySpawnPositions[randRight], new Quaternion(0, 0, 0, 0));
+		g2.GetComponent<EnemyController>().e_Side = Constants.Side.RIGHT;
+	}
+
 	void Start() {
 		objv_redObjective = Instantiate(go_objectivesList[0]).GetComponent<Objective>();
 		objv_blueObjective = Instantiate(go_objectivesList[0]).GetComponent<Objective>();
 		objv_redObjective.Set(Constants.Color.RED, 1);
 		objv_blueObjective.Set(Constants.Color.BLUE, 1);
+
+		// enemies, TODO: this not here
+		//for(int i=0; i< v3_leftEnemySpawnPositions.Length; i++) {
+		//	GameObject g1 = Instantiate(go_enemy, v3_leftEnemySpawnPositions[i], new Quaternion(0, 0, 0, 0));
+		//	g1.GetComponent<EnemyController>().e_Side = Constants.Side.LEFT;
+		//	GameObject g2 = Instantiate(go_enemy, v3_rightEnemySpawnPositions[i], new Quaternion(0, 0, 0, 0));
+		//	g2.GetComponent<EnemyController>().e_Side = Constants.Side.RIGHT;
+		//}
+		InvokeRepeating("SpawnEnemies", 3.0f, f_enemySpawnTime);
 	}
 
 	void Update() {
