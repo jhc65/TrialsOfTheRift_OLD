@@ -24,4 +24,17 @@ public class MagicMissileController : SpellController {
         // Magic Missile doesn't cross the rift. Destroy it
         Destroy(gameObject);
     }
+
+    protected override void AffectCrystal(GameObject go_crystal)
+    {
+        Constants.Color crystalColor = go_crystal.GetComponent<CrystalController>().e_color;
+        if (crystalColor != this.e_color)
+        {
+            go_crystal.GetComponent<CrystalController>().BasicDamage();
+        }
+        else if (crystalColor == this.e_color)
+        {
+            go_crystal.GetComponent<CrystalController>().BasicHeal();
+        }
+    }
 }

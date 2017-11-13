@@ -31,7 +31,7 @@ public abstract class SpellController : MonoBehaviour {
 				return;
 			}
 		}
-		else if(coll.gameObject.tag == "Crystal")
+		if(coll.gameObject.tag == "Crystal")
         {
             AffectCrystal(coll.gameObject);
             Destroy(gameObject);

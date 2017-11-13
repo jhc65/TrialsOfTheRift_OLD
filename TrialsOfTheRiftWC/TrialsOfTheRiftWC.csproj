@@ -78,19 +78,24 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Assets\Scripts\CameraFacingBillboard.cs" />
     <Compile Include="Assets\Scripts\CaptureTheFlagObjective.cs" />
     <Compile Include="Assets\Scripts\Constants.cs" />
     <Compile Include="Assets\Scripts\CrystalController.cs" />
     <Compile Include="Assets\Scripts\CrystalDestructionObjective.cs" />
     <Compile Include="Assets\Scripts\DarkMagician.cs" />
+    <Compile Include="Assets\Scripts\EnemyController.cs" />
     <Compile Include="Assets\Scripts\FlagController.cs" />
     <Compile Include="Assets\Scripts\GameController.cs" />
     <Compile Include="Assets\Scripts\GoalController.cs" />
     <Compile Include="Assets\Scripts\IceController.cs" />
     <Compile Include="Assets\Scripts\InputManager.cs" />
+    <Compile Include="Assets\Scripts\MagicMissileController.cs" />
+    <Compile Include="Assets\Scripts\MeleeController.cs" />
     <Compile Include="Assets\Scripts\Objective.cs" />
     <Compile Include="Assets\Scripts\PlayerController.cs" />
     <Compile Include="Assets\Scripts\PlayerControlsTest.cs" />
+    <Compile Include="Assets\Scripts\PlayerHUDController.cs" />
     <Compile Include="Assets\Scripts\PlayerParametersController.cs" />
     <Compile Include="Assets\Scripts\PortalController.cs" />
     <Compile Include="Assets\Scripts\RegisterPlayers.cs" />
