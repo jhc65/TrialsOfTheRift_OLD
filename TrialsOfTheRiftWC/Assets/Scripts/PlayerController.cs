@@ -4,8 +4,7 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour{
 
-	public InputManager.Axes ax_horizontal, ax_vertical, 
-		ax_wind, ax_ice, ax_interact, ax_menu, ax_submit, ax_cancel;    // controls mapped in the InputManager for this player
+	public int i_playerNumber;				// designates player's number for controller mappings
 	public Constants.Color e_Color;			// identifies player's team
 	public int i_moveSpeed;					// basic movement speed
 	public Transform t_flagPos;				// location on character model of flag
@@ -26,8 +25,8 @@ public class PlayerController : MonoBehaviour{
 
 
 	private void Move(){
-		float f_inputX = InputManager.GetAxis(ax_horizontal);
-		float f_inputZ = InputManager.GetAxis(ax_vertical);
+		float f_inputX = InputManager.GetAxis(InputManager.Axes.HORIZONTAL, i_playerNumber);
+		float f_inputZ = InputManager.GetAxis(InputManager.Axes.VERTICAL, i_playerNumber);
 
 		Vector3 v3_moveDir = new Vector3(f_inputX, 0, f_inputZ).normalized;
 		if (v3_moveDir.magnitude > 0){
@@ -88,14 +87,14 @@ public class PlayerController : MonoBehaviour{
 
 			// spells
 			if (!go_flagObj){
-				if (InputManager.GetButton(ax_wind) && Time.time > f_nextWind){   // checks for fire button and if time delay has passed
+				if (InputManager.GetButton(InputManager.Axes.WINDSPELL, i_playerNumber) && Time.time > f_nextWind){   // checks for fire button and if time delay has passed
 					f_nextWind = Time.time + f_windRecharge;
 					GameObject go_spell = Instantiate(go_windShot, t_spellSpawn.position, t_spellSpawn.rotation);
 					go_spell.GetComponent<SpellController>().e_color = e_Color;
 					Debug.Log(transform.forward.normalized);
 					go_spell.GetComponent<Rigidbody>().velocity = transform.forward * f_spellSpeed;
 				}
-				if (InputManager.GetButton(ax_ice) && Time.time > f_nextIce){   // checks for fire button and if time delay has passed
+				if (InputManager.GetButton(InputManager.Axes.ICESPELL, i_playerNumber) && Time.time > f_nextIce){   // checks for fire button and if time delay has passed
 					f_nextIce = Time.time + f_iceRecharge;
 					GameObject go_spell = Instantiate(go_iceShot, t_spellSpawn.position, t_spellSpawn.rotation);
 					go_spell.GetComponent<SpellController>().e_color = e_Color;
@@ -106,7 +105,7 @@ public class PlayerController : MonoBehaviour{
 	}
 
 	private void Update(){
-		if (InputManager.GetButtonDown(ax_interact)){
+		if (InputManager.GetButtonDown(InputManager.Axes.INTERACT, i_playerNumber)){
 			if (go_flagObj){
 				Drop();
 			}

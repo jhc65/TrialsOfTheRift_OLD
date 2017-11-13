@@ -285,7 +285,7 @@ Rigidbody:
   m_IsKinematic: 0
   m_Interpolate: 0
   m_Constraints: 116
-  m_CollisionDetection: 1
+  m_CollisionDetection: 2
 --- !u!65 &65988524243252944
 BoxCollider:
   m_ObjectHideFlags: 1
@@ -309,14 +309,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a45402daf115c384f855e549d9169242, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ax_horizontal: 16
-  ax_vertical: 17
-  ax_wind: 18
-  ax_ice: 19
-  ax_interact: 20
-  ax_menu: 21
-  ax_submit: 22
-  ax_cancel: 23
+  i_playerNumber: 3
   e_Color: 1
   i_moveSpeed: 20
   t_flagPos: {fileID: 4220289862906574}
@@ -351,7 +344,7 @@ CapsuleCollider:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1863125033859916}
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 13400000, guid: 4ec9ac988a405494e995a038abb28ef3, type: 2}
   m_IsTrigger: 0
   m_Enabled: 1
   m_Radius: 0.5

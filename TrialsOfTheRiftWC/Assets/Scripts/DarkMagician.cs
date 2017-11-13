@@ -7,25 +7,7 @@ public class DarkMagician : MonoBehaviour {
 	public GameObject[] go_objectivesList;
 
 	//private GameObject go_redObjective, blueObjective;
-	private Objective O_redObjective, O_blueObjective;
-
-	private void Start(){
-		O_redObjective = Instantiate(go_objectivesList[0]).GetComponent<Objective>();
-		O_blueObjective = Instantiate(go_objectivesList[0]).GetComponent<Objective>();
-		O_redObjective.Set(Constants.Color.RED, 1);
-		O_blueObjective.Set(Constants.Color.BLUE, 1);
-	}
-
-	private void Update(){
-
-		// check for completion of objectives
-		if (O_redObjective.b_complete){
-			O_redObjective = GetNextObjective(O_redObjective);
-		}
-		else if(O_blueObjective.b_complete){
-			O_blueObjective = GetNextObjective(O_blueObjective);
-		}
-	}
+	private Objective objv_redObjective, objv_blueObjective;
 
 	private Objective GetNextObjective(Objective o)
 	{
@@ -45,5 +27,22 @@ public class DarkMagician : MonoBehaviour {
 		go_newObjective.GetComponent<Objective>().Set(o.e_color, newObjectiveNumber);
 		Destroy(o.gameObject);
 		return go_newObjective.GetComponent<Objective>();
+	}
+
+	void Start(){
+		objv_redObjective = Instantiate(go_objectivesList[0]).GetComponent<Objective>();
+		objv_blueObjective = Instantiate(go_objectivesList[0]).GetComponent<Objective>();
+		objv_redObjective.Set(Constants.Color.RED, 1);
+		objv_blueObjective.Set(Constants.Color.BLUE, 1);
+	}
+
+	void Update(){
+		// check for completion of objectives
+		if (objv_redObjective.b_complete){
+			objv_redObjective = GetNextObjective(objv_redObjective);
+		}
+		if(objv_blueObjective.b_complete){
+			objv_blueObjective = GetNextObjective(objv_blueObjective);
+		}
 	}
 }

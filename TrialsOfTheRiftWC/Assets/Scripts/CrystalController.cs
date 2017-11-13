@@ -23,6 +23,7 @@ public class CrystalController : MonoBehaviour {
     public void SpellDamage()
     {
         f_health = f_health - f_spellDamage;
+        Debug.Log(f_health);
     }
 
     //Damages the crystal based on the basic attack specific percentage of max crystal health

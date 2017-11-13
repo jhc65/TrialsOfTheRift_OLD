@@ -9,10 +9,10 @@ public class CrystalDestructionObjective : Objective {
 
 	override public void Instantiate(){
 		if(e_color == Constants.Color.RED){
-			go_activeCrystal = Instantiate(go_redCrystal, Constants.C_RedObjectiveSpawn, new Quaternion(0, 0, 0, 0));
+			go_activeCrystal = Instantiate(go_blueCrystal, Constants.C_BlueCrystalSpawn, new Quaternion(0, 0, 0, 0));
 		}
 		else{
-			go_activeCrystal = Instantiate(go_blueCrystal, Constants.C_RedObjectiveSpawn, new Quaternion(0, 0, 0, 0));
+			go_activeCrystal = Instantiate(go_redCrystal, Constants.C_RedCrystalSpawn, new Quaternion(0, 0, 0, 0));
 		}
 	}
 

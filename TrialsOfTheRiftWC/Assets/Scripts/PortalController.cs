@@ -16,7 +16,7 @@ public class PortalController : MonoBehaviour {
 	}
 
 	private void OnTriggerEnter(Collider other){
-		if (other.tag == "Player" || other.tag == "Shot"){
+		if (other.tag == "Player" || other.tag == "Spell"){
 			other.gameObject.transform.position = new Vector3(-1*other.gameObject.transform.position.x + (int)e_side * f_portalOffset,
 				other.gameObject.transform.position.y, -1*other.gameObject.transform.position.z);
 		}
