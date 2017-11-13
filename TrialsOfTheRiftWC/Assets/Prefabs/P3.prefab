@@ -382,6 +382,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   i_playerNumber: 3
   e_Color: 1
+  e_Side: 0
   i_moveSpeed: 20
   t_flagPos: {fileID: 4220289862906574}
   go_flagObj: {fileID: 0}
@@ -396,6 +397,8 @@ MonoBehaviour:
   f_iceSpeed: 0
   f_windRecharge: 1
   f_iceRecharge: 1
+  c_playerCapsule: {fileID: 1914335639544730}
+  c_playerWisp: {fileID: 1436723887074660}
 --- !u!136 &136122079228794688
 CapsuleCollider:
   m_ObjectHideFlags: 1

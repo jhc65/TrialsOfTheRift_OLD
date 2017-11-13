@@ -23,19 +23,19 @@ public abstract class SpellController : MonoBehaviour {
 	protected void OnCollisionEnter(Collision coll)
 	{
 		Debug.Log("Impact:" + coll.gameObject.tag);
-        foreach (string tag in s_spellTargetTags) {
-            if (coll.gameObject.tag == tag) {
-                coll.gameObject.SendMessage("TakeDamage", f_damage);
-                ApplyEffect(coll.gameObject);
+		foreach (string tag in s_spellTargetTags) {
+			if (coll.gameObject.tag == tag) {
+				coll.gameObject.SendMessage("TakeDamage", f_damage);
+				ApplyEffect(coll.gameObject);
+				Destroy(gameObject);
+				return;
+			}
+		}
+        if (coll.gameObject.tag.ToLower() == "rift") {
+            BuffSpell();
+        }
+        else if (coll.gameObject.tag != "Portal") { // If we hit something not a player, rift, or portal (walls), just destroy the shot without an effect.
                 Destroy(gameObject);
-                return;
-            }
-            else if (coll.gameObject.tag.ToLower() == "rift") {
-                BuffSpell();
-            }
-            else if (coll.gameObject.tag != "Portal") { // If we hit something not a player, rift, or portal (walls), just destroy the shot without an effect.
-                Destroy(gameObject);
-            }
         }
 	}
 
