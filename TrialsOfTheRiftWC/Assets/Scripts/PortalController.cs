@@ -6,7 +6,7 @@ public class PortalController : MonoBehaviour {
 	public float f_portalOffset = 1.5f;
 	private Constants.Side e_side;
 
-	private void Start(){
+	void Start(){
 		if(transform.position.x < 0){
 			e_side = Constants.Side.LEFT;
 		}
@@ -15,10 +15,10 @@ public class PortalController : MonoBehaviour {
 		}
 	}
 
-	private void OnTriggerEnter(Collider other){
-		if (other.tag == "Player" || other.tag == "Spell"){
-			other.gameObject.transform.position = new Vector3(-1*other.gameObject.transform.position.x + (int)e_side * f_portalOffset,
-				other.gameObject.transform.position.y, -1*other.gameObject.transform.position.z);
+	void OnTriggerEnter(Collider other) {
+		if (other.tag == "Player" || other.tag == "Spell") {
+			other.gameObject.transform.position = new Vector3(-1*other.transform.position.x + (int)e_side * f_portalOffset,
+				other.transform.position.y, -1*other.transform.position.z);
 		}
 	}
 }

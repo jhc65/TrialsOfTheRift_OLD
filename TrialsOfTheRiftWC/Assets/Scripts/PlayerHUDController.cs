@@ -9,14 +9,7 @@ public class PlayerHUDController : MonoBehaviour {
     [SerializeField] Image img_healthbar;
     [SerializeField] Image img_windbar;
     [SerializeField] Image img_icebar;
-
-
-	// Use this for initialization
-	void Start () {
-
-	}
 	
-	// Update is called once per frame
 	void Update () {
 		img_windbar.fillAmount = playc_trackedPlayer.GetNextWind() / playc_trackedPlayer.f_windRecharge;
         img_icebar.fillAmount = playc_trackedPlayer.GetNextIce() / playc_trackedPlayer.f_iceRecharge;

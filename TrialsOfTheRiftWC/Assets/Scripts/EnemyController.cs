@@ -83,7 +83,7 @@ public abstract class EnemyController : MonoBehaviour {
     }
 	protected abstract void ChildUpdateDie();
 	
-	protected void TakeDamage(float damage){
+	public void TakeDamage(float damage){
 		print("Enemy ow");
 		f_health -= damage;
 		if(f_health <= 0f){

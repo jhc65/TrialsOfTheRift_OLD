@@ -5,52 +5,38 @@ using UnityEngine;
 [RequireComponent(typeof(SphereCollider))]
 public abstract class SpellController : MonoBehaviour {
 	
-	public Constants.Color e_color;	//Currently does nothing. I'd like to use this to differentiate friendly fire.
-	public float f_damage;		// Damage of the bullet. Currently 0 for the demo. It also isn't used by anything for now since players don't have health.
-	public float f_liveTime = 2f;
-	public string[] s_spellTargetTags; // these are the tags of the objects spells should do damage/effect against.
-	
-	protected Rigidbody rb_rigidbody;
-	
-	protected void Start() {
-		// I'd like to set e_Color from PlayerController here.
-		rb_rigidbody = GetComponent<Rigidbody>();
-		StartCoroutine(DestroyInSeconds(f_liveTime));
-        Debug.Log(e_color);
+	public Constants.Color e_color;
+	public float f_damage;			// damage done to enemies
+	public float f_liveTime;
+	public string[] s_spellTargetTags; // these are the tags of the objects spells should do damage/effect against
+
+	protected abstract void BuffSpell();
+	protected abstract void ApplyEffect(GameObject go_target);
+
+
+	void Start() {
+		f_liveTime = Constants.SpellStats.C_SpellLiveTime;
+		Destroy(gameObject, f_liveTime);
 	}
 
-	// If a player walks into a shot, apply that shot's effect and then destroy the shot.
-	protected void OnCollisionEnter(Collision coll)
-	{
-		Debug.Log("Impact:" + coll.gameObject.tag);
-		foreach (string tag in s_spellTargetTags) {
-			if (coll.gameObject.tag == tag) {
-				coll.gameObject.SendMessage("TakeDamage", f_damage);
+	protected void OnCollisionEnter(Collision coll){
+		//Debug.Log("Impact:" + coll.gameObject.tag);
+		foreach (string tag in s_spellTargetTags){
+			if (coll.gameObject.tag == tag){
 				ApplyEffect(coll.gameObject);
 				Destroy(gameObject);
 				return;
 			}
 		}
-		if(coll.gameObject.tag == "Crystal")
-        {
-            AffectCrystal(coll.gameObject);
-            Destroy(gameObject);
-        }
-        else if (coll.gameObject.tag.ToLower() == "rift") {
-            BuffSpell();
-        }
-        else if (coll.gameObject.tag != "Portal") { // If we hit something not a player, rift, or portal (walls), just destroy the shot without an effect.
-                Destroy(gameObject);
+       
+        if (coll.gameObject.tag != "Portal") { // If we hit something not a player, rift, or portal (walls), just destroy the shot without an effect.
+			Destroy(gameObject);
         }
 	}
 
-    protected abstract void BuffSpell();
-
-	protected abstract void ApplyEffect(GameObject go_target);
-    protected abstract void AffectCrystal(GameObject go_crystal);
-
-	IEnumerator DestroyInSeconds(float seconds){
-		yield return new WaitForSeconds(seconds);
-		Destroy(gameObject);
+	void OnTriggerEnter(Collider other) {	// rift reacts to spells by trigger rather than collision
+		if (other.tag == "Rift"){
+			BuffSpell();
+		}
 	}
 }

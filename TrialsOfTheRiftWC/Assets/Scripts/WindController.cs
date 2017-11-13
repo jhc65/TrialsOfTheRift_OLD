@@ -3,33 +3,34 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class WindController : SpellController {
-    private float f_windDamage = Constants.SpellStats.C_WindDamage;
+
 	public float f_windForce;
+	private float f_windDamage = Constants.SpellStats.C_WindDamage;
 
-	protected override void ApplyEffect(GameObject go_target){
-		Debug.Log(transform.forward.normalized);
-		Vector3 v3_direction = transform.forward.normalized;
-		go_target.GetComponent<Rigidbody>().AddForce(v3_direction * f_windForce);
-        go_target.GetComponent<PlayerController>().DoDamage(f_windDamage);
+	protected override void ApplyEffect(GameObject go_target) {
+        if (go_target.tag == "Player") {
+			Vector3 v3_direction = transform.forward.normalized;
+			go_target.GetComponent<Rigidbody>().AddForce(v3_direction * f_windForce);
 			go_target.GetComponent<PlayerController>().Drop();
-        Destroy(gameObject);
-	}
-
-    protected override void BuffSpell()
-    {
-        f_windDamage = f_windDamage * Constants.SpellStats.C_WindDamageMultiplier;
-        transform.localScale += new Vector3(0.5f, 0.5f, 0.5f);
+		}
+		else if (go_target.tag == "Enemy") {
+			Vector3 v3_direction = transform.forward.normalized;
+			go_target.GetComponent<Rigidbody>().AddForce(v3_direction * f_windForce);
+			go_target.GetComponent<EnemyController>().TakeDamage(f_windDamage);
+		}
+		else if (go_target.tag == "Crystal"){
+			Constants.Color crystalColor = go_target.GetComponent<CrystalController>().e_color;
+			if (crystalColor != e_color){
+				go_target.GetComponent<CrystalController>().ChangeHealth(-0.1f);
+			}
+			else if (crystalColor == e_color) {
+				go_target.GetComponent<CrystalController>().ChangeHealth(0.05f);
+			}
+		}
     }
 
-	protected override void AffectCrystal(GameObject go_crystal)
-    {
-        Constants.Color crystalColor = go_crystal.GetComponent<CrystalController>().e_color;
-        if (crystalColor != this.e_color) {
-            go_crystal.GetComponent<CrystalController>().SpellDamage();
-        }
-        else if (crystalColor == this.e_color)
-        {
-            go_crystal.GetComponent<CrystalController>().SpellHeal();
-        }
+    protected override void BuffSpell(){
+        f_windDamage = f_windDamage * Constants.SpellStats.C_WindDamageMultiplier;
+        transform.localScale += new Vector3(0.5f, 0.5f, 0.5f);
     }
 }

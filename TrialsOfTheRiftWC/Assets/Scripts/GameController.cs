@@ -4,47 +4,35 @@ using UnityEngine.UI;
 using UnityEngine;
 
 public class GameController : MonoBehaviour {
-    // Private Vars
-    private int i_redScore;
-    private int i_blueScore;
 
     // Public vars
-    public Text text_redScoreText;
-    public Text text_blueScoreText;
+    public Text txt_redScoreText, txt_blueScoreText;
+    public Text txt_redScoreText2, txt_blueScoreText2;
     public GameObject go_canvas;
 
     //Singleton
     static GameController instance;
 
-    // Use this for initialization
-    protected void Awake()
-    {
-        if (instance == null)
-        {
-            instance = this;
-        }
-
-        if (instance != null && instance != this)
-        {
-            Debug.Log("Destroying non-primary GC.");
-            Destroy(this);
-        }
-
-        Time.timeScale = 0;
+	public static GameController GetInstance() {
+        return instance;
     }
 
-    void Start () {
-	}
-	
-    // Update the Score
-    public void Score(Constants.Color colorIn) {
+    // update the score
+    public void Score(Constants.Color colorIn, int score) {
         if (colorIn == Constants.Color.RED) {
-            i_redScore++;
-            text_redScoreText.text = i_redScore.ToString();
+            txt_redScoreText.text = score.ToString();
         }
         else if (colorIn == Constants.Color.BLUE) {
-            i_blueScore++;
-            text_blueScoreText.text = i_blueScore.ToString();
+            txt_blueScoreText.text = score.ToString();
+        }
+    }
+
+	public void CrystalHealth(Constants.Color colorIn, int health) {
+        if (colorIn == Constants.Color.RED) {
+            txt_redScoreText2.text = health.ToString();
+        }
+        else if (colorIn == Constants.Color.BLUE) {
+            txt_blueScoreText2.text = health.ToString();
         }
     }
 
@@ -52,16 +40,25 @@ public class GameController : MonoBehaviour {
         //go_connectMessage = go_connectMessageIn;
     }
 
-    public static GameController GetInstance() {
-        return instance;
-    }
-
     public void InitGame() {
         go_canvas.SetActive(false);
         Time.timeScale = 1f;
     }
 
-    private void Update() {
+	void Awake() {
+        if (instance == null) {
+            instance = this;
+        }
+
+        if (instance != null && instance != this) {
+            Debug.Log("Destroying non-primary GC.");
+            Destroy(this);
+        }
+
+        Time.timeScale = 0;
+    }
+
+	void Update() {
         if (Input.GetKeyDown(KeyCode.Escape)) {
             Application.Quit();
         }

@@ -3,15 +3,13 @@ using UnityEngine.UI;
 using System.Collections;
 using System.Collections.Generic;
 
-public class PlayerParametersController : MonoBehaviour
-{
+public class PlayerParametersController : MonoBehaviour {
     // Public Vars
     // Controllers (probably set in editor this time? No instances to pull from in this Playable)
     public GameController GC;
     public List<PlayerController> l_playerControllers = new List<PlayerController>();
     // UI Sliders (Set in editor)
     public Slider slider_playerMoveSpeed;
-    //public Slider slider_spellSpeed;
     public Slider slider_windSpeed;
     public Slider slider_iceSpeed;
     public Slider slider_windCooldown;
@@ -38,12 +36,12 @@ public class PlayerParametersController : MonoBehaviour
         slider_iceSpeed.value = Constants.SpellStats.C_IceSpeed;
 
         // Wind Spell Cooldown
-        txt_windCooldown.text = Constants.PlayerStats.C_WindCooldown.ToString();
-        slider_windCooldown.value = Constants.PlayerStats.C_WindCooldown;
+        txt_windCooldown.text = Constants.SpellStats.C_WindCooldown.ToString();
+        slider_windCooldown.value = Constants.SpellStats.C_WindCooldown;
 
         // Ice Spell Cooldown
-        txt_iceCooldown.text = Constants.PlayerStats.C_IceCooldown.ToString();
-        slider_iceCooldown.value = Constants.PlayerStats.C_IceCooldown;
+        txt_iceCooldown.text = Constants.SpellStats.C_IceCooldown.ToString();
+        slider_iceCooldown.value = Constants.SpellStats.C_IceCooldown;
     }
 
     // Update is called once per frame
@@ -85,7 +83,6 @@ public class PlayerParametersController : MonoBehaviour
     // Private Helper Methods
     private void ChangePlayerSpeed(float i_playerSpeedIn) {
         foreach (PlayerController playerController in l_playerControllers) {
-            //Debug.Log(i_playerSpeedIn);
             playerController.i_moveSpeed = (int)i_playerSpeedIn;
         }
     }

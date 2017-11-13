@@ -4,44 +4,40 @@ using UnityEngine;
 
 public class CaptureTheFlagObjective : Objective {
 
-	public int i_maxScore;						// score needed to complete objective
+	public int i_maxScore = 5;					// score needed to complete objective
 	public GameObject go_redFlag, go_blueFlag;	// referenced flag objects
 	public GameObject go_redGoal, go_blueGoal;	// referenced goal objects
 
 	private GameObject go_currentFlag, go_currentGoal;  // active objects specific to this objective instance
-	private int i_score;
+	private int i_score = 0;	// current progress towards i_maxScore
 
-	override public void Instantiate(){
+	override public void Instantiate() {
 		// instantiate prefabs based on color
-		if(e_color == Constants.Color.RED){
+		if(e_color == Constants.Color.RED) {
 			go_currentFlag = Instantiate(go_blueFlag, Constants.C_RedObjectiveSpawn, new Quaternion(0,0,0,0));
 			go_currentGoal = Instantiate(go_redGoal, Constants.C_RedObjectiveGoal, new Quaternion(0, 0, 0, 0));
 		}
-		else{
+		else {
 			go_currentFlag = Instantiate(go_redFlag, Constants.C_BlueObjectiveSpawn, new Quaternion(0, 0, 0, 0));
 			go_currentGoal = Instantiate(go_blueGoal, Constants.C_BlueObjectiveGoal, new Quaternion(0, 0, 0, 0));
 		}
 	}
 
-	override public void Complete(){
-		// destroy prefabs based on color
-		base.Complete();
+	override public void Complete() {
+		// destroy prefabs
+		b_complete = true;
+		GameController.GetInstance().Score(e_color, 0);
 		Destroy(go_currentFlag);
 		Destroy(go_currentGoal);
 	}
 
-	private void Start(){
-		i_score = 0;
-		i_maxScore = 2;
-	}
-
-	private void Update(){
-		if (go_currentFlag.GetComponent<FlagController>().b_scored){
+	void Update() {
+		if (go_currentFlag.GetComponent<FlagController>().b_scored) {
 			go_currentFlag.GetComponent<FlagController>().b_scored = false;
 			i_score += 1;
-			GameController.GetInstance().Score(e_color);
+			GameController.GetInstance().Score(e_color, i_score);
 		}
-		if(i_score == i_maxScore){
+		if(i_score == i_maxScore) {
 			Complete();
 		}
 	}

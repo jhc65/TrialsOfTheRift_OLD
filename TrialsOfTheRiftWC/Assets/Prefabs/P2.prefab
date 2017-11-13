@@ -206,7 +206,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1264761770470540}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 1, z: 1.35}
+  m_LocalPosition: {x: 0, y: 1, z: 1}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 4398198023010460}
@@ -389,14 +389,17 @@ MonoBehaviour:
   go_interactCollider: {fileID: 1671308952292254}
   t_spellSpawn: {fileID: 4904047914499588}
   b_canMove: 0
+  go_magicMissileShot: {fileID: 1169542914423560, guid: 00247cb350ec7a848b7c7ce622e7cb56,
+    type: 2}
   go_windShot: {fileID: 1884951099791360, guid: e14bef9b01064274f8f8dea8bca54e4c,
     type: 2}
   go_iceShot: {fileID: 1901559696048798, guid: d7e231fe8aac3af4abfee256f79b3e11, type: 2}
-  f_spellSpeed: 30
+  f_magicMissileSpeed: 0
   f_windSpeed: 0
   f_iceSpeed: 0
-  f_windRecharge: 1
-  f_iceRecharge: 1
+  f_magicMissileRecharge: 0
+  f_windRecharge: 0
+  f_iceRecharge: 0
   c_playerCapsule: {fileID: 1982873420145316}
   c_playerWisp: {fileID: 1860432943327096}
 --- !u!136 &136218850829713548

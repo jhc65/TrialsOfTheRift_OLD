@@ -105,7 +105,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2b94c1d0ad50fe841b574036f3b1b203, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  e_color: 0
-  f_health: 500
-  f_spellDamagePercent: 0.05
-  f_basicDamagePercent: 0.01
+  e_color: 1
+  i_maxHealth: 500
+  i_health: 500

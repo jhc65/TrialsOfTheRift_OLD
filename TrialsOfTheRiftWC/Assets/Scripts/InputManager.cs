@@ -6,7 +6,7 @@ public static class InputManager{
 
 	public enum Axes{
 		HORIZONTAL, VERTICAL,
-		//BasicAttack,
+		MAGICMISSILE,
 		WINDSPELL, ICESPELL,
 		//ElectricSpell,
 		//Ultimate,
@@ -17,7 +17,7 @@ public static class InputManager{
 	public static Dictionary<Axes, string> P1_XBOX = new Dictionary<Axes, string> {
 		{Axes.HORIZONTAL,"P1 Horizontal XBOX"},
 		{Axes.VERTICAL,"P1 Vertical XBOX"},
-		//{Axes.BasicAttack,"P1 Basic Attack XBOX"},
+		{Axes.MAGICMISSILE,"P1 Magic Missile XBOX"},
 		{Axes.WINDSPELL,"P1 Wind Spell XBOX"},
 		{Axes.ICESPELL,"P1 Ice Spell XBOX"},
 		//{Axes.ElectricSpell,"P1 Electric Spell XBOX"},
@@ -31,7 +31,7 @@ public static class InputManager{
 	public static Dictionary<Axes, string> P2_XBOX = new Dictionary<Axes, string> {
 		{Axes.HORIZONTAL,"P2 Horizontal XBOX"},
 		{Axes.VERTICAL,"P2 Vertical XBOX"},
-		//{Axes.BasicAttack,"P2 Basic Attack XBOX"},
+		{Axes.MAGICMISSILE,"P2 Magic Missile XBOX"},
 		{Axes.WINDSPELL,"P2 Wind Spell XBOX"},
 		{Axes.ICESPELL,"P2 Ice Spell XBOX"},
 		//{Axes.ElectricSpell,"P2 Electric Spell XBOX"},
@@ -45,7 +45,7 @@ public static class InputManager{
 	public static Dictionary<Axes, string> P3_XBOX = new Dictionary<Axes, string> {
 		{Axes.HORIZONTAL,"P3 Horizontal XBOX"},
 		{Axes.VERTICAL,"P3 Vertical XBOX"},
-		//{Axes.BasicAttack,"P3 Basic Attack XBOX"},
+		{Axes.MAGICMISSILE,"P3 Magic Missile XBOX"},
 		{Axes.WINDSPELL,"P3 Wind Spell XBOX"},
 		{Axes.ICESPELL,"P3 Ice Spell XBOX"},
 		//{Axes.ElectricSpell,"P3 Electric Spell XBOX"},
@@ -59,7 +59,7 @@ public static class InputManager{
 	public static Dictionary<Axes, string> P4_XBOX = new Dictionary<Axes, string> {
 		{Axes.HORIZONTAL,"P4 Horizontal XBOX"},
 		{Axes.VERTICAL,"P4 Vertical XBOX"},
-		//{Axes.BasicAttack,"P4 Basic Attack XBOX"},
+		{Axes.MAGICMISSILE,"P4 Magic Missile XBOX"},
 		{Axes.WINDSPELL,"P4 Wind Spell XBOX"},
 		{Axes.ICESPELL,"P4 Ice Spell XBOX"},
 		//{Axes.ElectricSpell,"P4 Electric Spell XBOX"},
@@ -73,7 +73,7 @@ public static class InputManager{
 	public static Dictionary<Axes, string> P1_PS4 = new Dictionary<Axes, string> {
 		{Axes.HORIZONTAL,"P1 Horizontal PS4"},
 		{Axes.VERTICAL,"P1 Vertical PS4"},
-		//{Axes.BasicAttack,"P1 Basic Attack PS4"},
+		{Axes.MAGICMISSILE,"P1 Magic Missile PS4"},
 		{Axes.WINDSPELL,"P1 Wind Spell PS4"},
 		{Axes.ICESPELL,"P1 Ice Spell PS4"},
 		//{Axes.ElectricSpell,"P1 Electric Spell PS4"},
@@ -87,7 +87,7 @@ public static class InputManager{
 	public static Dictionary<Axes, string> P2_PS4 = new Dictionary<Axes, string> {
 		{Axes.HORIZONTAL,"P2 Horizontal PS4"},
 		{Axes.VERTICAL,"P2 Vertical PS4"},
-		//{Axes.BasicAttack,"P2 Basic Attack PS4"},
+		{Axes.MAGICMISSILE,"P2 Magic Missile PS4"},
 		{Axes.WINDSPELL,"P2 Wind Spell PS4"},
 		{Axes.ICESPELL,"P2 Ice Spell PS4"},
 		//{Axes.ElectricSpell,"P2 Electric Spell PS4"},
@@ -101,7 +101,7 @@ public static class InputManager{
 	public static Dictionary<Axes, string> P3_PS4 = new Dictionary<Axes, string> {
 		{Axes.HORIZONTAL,"P3 Horizontal PS4"},
 		{Axes.VERTICAL,"P3 Vertical PS4"},
-		//{Axes.BasicAttack,"P3 Basic Attack PS4"},
+		{Axes.MAGICMISSILE,"P3 Magic Missile PS4"},
 		{Axes.WINDSPELL,"P3 Wind Spell PS4"},
 		{Axes.ICESPELL,"P3 Ice Spell PS4"},
 		//{Axes.ElectricSpell,"P3 Electric Spell PS4"},
@@ -115,7 +115,7 @@ public static class InputManager{
 	public static Dictionary<Axes, string> P4_PS4 = new Dictionary<Axes, string> {
 		{Axes.HORIZONTAL,"P4 Horizontal PS4"},
 		{Axes.VERTICAL,"P4 Vertical PS4"},
-		//{Axes.BasicAttack,"P4 Basic Attack PS4"},
+		{Axes.MAGICMISSILE,"P4 Magic Missile PS4"},
 		{Axes.WINDSPELL,"P4 Wind Spell PS4"},
 		{Axes.ICESPELL,"P4 Ice Spell PS4"},
 		//{Axes.ElectricSpell,"P4 Electric Spell PS4"},
@@ -133,7 +133,7 @@ public static class InputManager{
 	public static Dictionary<Axes, string> P4_Map = P4_XBOX;
 
 
-	public static float GetAxis(Axes a, int player){
+	public static float GetAxis(Axes a, int player) {
 		switch(player){
 			case 1:
 				return Input.GetAxis(P1_Map[a]);
@@ -148,7 +148,7 @@ public static class InputManager{
 		}
 	}
 
-	public static bool GetButtonDown(Axes a, int player){
+	public static bool GetButtonDown(Axes a, int player) {
 		switch (player){
 			case 1:
 				return Input.GetButtonDown(P1_Map[a]);
@@ -163,7 +163,7 @@ public static class InputManager{
 		}
 	}
 
-	public static bool GetButton(Axes a, int player){
+	public static bool GetButton(Axes a, int player) {
 		switch (player){
 			case 1:
 				return Input.GetButton(P1_Map[a]);

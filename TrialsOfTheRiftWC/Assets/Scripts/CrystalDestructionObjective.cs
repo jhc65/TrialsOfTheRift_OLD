@@ -4,26 +4,28 @@ using UnityEngine;
 
 public class CrystalDestructionObjective : Objective {
 
-	public GameObject go_redCrystal, go_blueCrystal;
-	private GameObject go_activeCrystal;
+	public GameObject go_redCrystal, go_blueCrystal;	// referenced crystal objects
+	private GameObject go_activeCrystal;	// active object specific to this objective instance
 
-	override public void Instantiate(){
-		if(e_color == Constants.Color.RED){
-			go_activeCrystal = Instantiate(go_blueCrystal, Constants.C_BlueCrystalSpawn, new Quaternion(0, 0, 0, 0));
+	override public void Instantiate() {
+		// instantiate prefab based on color
+		if (e_color == Constants.Color.RED) {
+			go_activeCrystal = Instantiate(go_blueCrystal, Constants.C_RedObjectiveSpawn, new Quaternion(0, 0, 0, 0));
 		}
 		else{
-			go_activeCrystal = Instantiate(go_redCrystal, Constants.C_RedCrystalSpawn, new Quaternion(0, 0, 0, 0));
+			go_activeCrystal = Instantiate(go_redCrystal, Constants.C_BlueObjectiveSpawn, new Quaternion(0, 0, 0, 0));
 		}
 	}
 
-	override public void Complete(){
-		base.Complete();
+	override public void Complete() {
+		// destroy prefab
+		b_complete = true;
+		GameController.GetInstance().CrystalHealth(go_activeCrystal.GetComponent<CrystalController>().e_color, go_activeCrystal.GetComponent<CrystalController>().i_maxHealth);
 		Destroy(go_activeCrystal);
 	}
 
-	private void Update()
-	{
-        if (go_activeCrystal.GetComponent<CrystalController>().f_health <= 0.0f) {
+	void Update() {
+        if (go_activeCrystal.GetComponent<CrystalController>().i_health <= 0) {
             Complete();
         }
 	}

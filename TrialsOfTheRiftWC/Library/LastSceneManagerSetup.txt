@@ -1,4 +1,4 @@
 sceneSetups:
-- path: Assets/Scenes/Crystal Objective.unity
+- path: Assets/Scenes/BuildSetUp.unity
   isLoaded: 1
   isActive: 1

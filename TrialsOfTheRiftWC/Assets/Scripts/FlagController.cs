@@ -5,20 +5,19 @@ using UnityEngine;
 public class FlagController : MonoBehaviour {
 
 	public Constants.Color e_color; // identifies owning team
-	public bool b_scored;			// identifies when the flag has been used to score
-	private Vector3 v3_home;         // location of flag in players' base
+	public bool b_scored = false;	// identifies when the flag has been used to score
+	private Vector3 v3_home;        // location of flag in players' base
 
-	private void Start(){
+	void Start() {
 		v3_home = transform.position;
-		b_scored = false;
 	}
 
-	private void OnTriggerEnter(Collider other){
-		if (other.tag == "InteractCollider"){   // player trying to pick up flag
+	void OnTriggerEnter(Collider other) {
+		if (other.tag == "InteractCollider") {   // player trying to pick up flag
 			other.GetComponentInParent<PlayerController>().Pickup(gameObject);
 		}
-		if (other.tag == "Goal"){   // player scoring with flag
-			if (other.GetComponent<GoalController>().GetColor() != e_color){
+		if (other.tag == "Goal") {   // player scoring with flag
+			if (other.GetComponent<GoalController>().GetColor() != e_color) {
 				b_scored = true;
 				transform.root.GetComponent<PlayerController>().Drop();
 				transform.position = v3_home;

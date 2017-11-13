@@ -4,20 +4,20 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
-public class RegisterPlayers : MonoBehaviour
-{
-	public GameObject go_connectMessage;
-	public Text txt_p1Message, txt_p2Message, txt_p3Message, txt_p4Message;
-	public GameObject go_r1, go_r2, go_b1, go_b2;
-	private bool b_connected = false;
-	private bool b_p1Ready = false, b_p2Ready = false, b_p3Ready = false, b_p4Ready = false;
+public class RegisterPlayers : MonoBehaviour {
+
+	public GameObject go_connectMessage;	// "Connect 4 controllers"
+	public Text txt_p1Message, txt_p2Message, txt_p3Message, txt_p4Message;	// identifies button to confirm based on connected controller type
+	public GameObject go_r1, go_r2, go_b1, go_b2;		// background images displayed when players are "ready"
+	private bool b_connected = false;	// set when 4 controllers are detected
+	private bool b_p1Ready = false, b_p2Ready = false, b_p3Ready = false, b_p4Ready = false;	// set as each player confirms
 
 
 	//TODO: something with player color, then have the Main Scene's GameController read the set colors (and character models?)
 		// from here to instantiate player prefabs correctly.
 
 
-	void MapControllers(){
+	void MapControllers() {
 		b_connected = true;
 		go_connectMessage.SetActive(false);
 
@@ -67,49 +67,44 @@ public class RegisterPlayers : MonoBehaviour
 		}
 	}
 
-
-	void Start() {
-		b_connected = false;
-	}
-
 	void Update() {
 		if (!b_connected){
-			if (Input.GetJoystickNames().Length == 1){
+			if (Input.GetJoystickNames().Length == 1) {
 				txt_p1Message.text = "CONNECTED";
 			}
-			if (Input.GetJoystickNames().Length == 2){
+			if (Input.GetJoystickNames().Length == 2) {
 				txt_p2Message.text = "CONNECTED";
 			}
-			if (Input.GetJoystickNames().Length == 3){
+			if (Input.GetJoystickNames().Length == 3) {
 				txt_p3Message.text = "CONNECTED";
 			}
-			if (Input.GetJoystickNames().Length == 4){     // when 4 controllers are detected, commence mapping
+			if (Input.GetJoystickNames().Length == 4) {     // when 4 controllers are detected, commence mapping
 				txt_p4Message.text = "CONNECTED";
 				MapControllers();
 			}
 		}
 		else{
-			if (InputManager.GetButtonDown(InputManager.Axes.SUBMIT, 1)){
+			if (InputManager.GetButtonDown(InputManager.Axes.SUBMIT, 1)) {
 				b_p1Ready = true;
 				txt_p1Message.text = "READY";
 				go_r1.SetActive(true);
 			}
-			if (InputManager.GetButtonDown(InputManager.Axes.SUBMIT, 2)){
+			if (InputManager.GetButtonDown(InputManager.Axes.SUBMIT, 2)) {
 				b_p2Ready = true;
 				txt_p2Message.text = "READY";
 				go_r2.SetActive(true);
 			}
-			if (InputManager.GetButtonDown(InputManager.Axes.SUBMIT, 3)){
+			if (InputManager.GetButtonDown(InputManager.Axes.SUBMIT, 3)) {
 				b_p3Ready = true;
 				txt_p3Message.text = "READY";
 				go_b1.SetActive(true);
 			}
-			if (InputManager.GetButtonDown(InputManager.Axes.SUBMIT, 4)){
+			if (InputManager.GetButtonDown(InputManager.Axes.SUBMIT, 4)) {
 				b_p4Ready = true;
 				txt_p4Message.text = "READY";
 				go_b2.SetActive(true);
 			}
-			if (b_p1Ready && b_p2Ready && b_p3Ready && b_p4Ready){
+			if (b_p1Ready && b_p2Ready && b_p3Ready && b_p4Ready) {
 				SceneManager.LoadScene("BuildSetUp");
 			}
 		}

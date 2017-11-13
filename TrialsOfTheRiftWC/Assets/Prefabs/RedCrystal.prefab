@@ -106,6 +106,5 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   e_color: 0
-  f_health: 500
-  f_spellDamagePercent: 0.05
-  f_basicDamagePercent: 0.01
+  i_maxHealth: 500
+  i_health: 500
