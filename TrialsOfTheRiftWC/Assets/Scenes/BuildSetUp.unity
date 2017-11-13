@@ -1387,6 +1387,12 @@ Prefab:
       propertyPath: m_Color.b
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 114097130305044006, guid: a1cba17d217c1ed4d8f4a0bdd7dc2c6b,
+        type: 2}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 6b40edc7542f7794a970ac3b7ec2f6f5,
+        type: 3}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: a1cba17d217c1ed4d8f4a0bdd7dc2c6b, type: 2}
   m_IsPrefabParent: 0
@@ -2484,6 +2490,12 @@ Prefab:
       propertyPath: m_Color.b
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 114097130305044006, guid: a1cba17d217c1ed4d8f4a0bdd7dc2c6b,
+        type: 2}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 6b40edc7542f7794a970ac3b7ec2f6f5,
+        type: 3}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: a1cba17d217c1ed4d8f4a0bdd7dc2c6b, type: 2}
   m_IsPrefabParent: 0
@@ -2992,6 +3004,12 @@ Prefab:
       propertyPath: m_Name
       value: HUD (P1)
       objectReference: {fileID: 0}
+    - target: {fileID: 114097130305044006, guid: a1cba17d217c1ed4d8f4a0bdd7dc2c6b,
+        type: 2}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 6b40edc7542f7794a970ac3b7ec2f6f5,
+        type: 3}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: a1cba17d217c1ed4d8f4a0bdd7dc2c6b, type: 2}
   m_IsPrefabParent: 0
@@ -5177,6 +5195,12 @@ Prefab:
       propertyPath: m_Text
       value: P2
       objectReference: {fileID: 0}
+    - target: {fileID: 114097130305044006, guid: a1cba17d217c1ed4d8f4a0bdd7dc2c6b,
+        type: 2}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 6b40edc7542f7794a970ac3b7ec2f6f5,
+        type: 3}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: a1cba17d217c1ed4d8f4a0bdd7dc2c6b, type: 2}
   m_IsPrefabParent: 0
