@@ -41,7 +41,7 @@ public class RegisterPlayers : MonoBehaviour
 		else {
 			InputManager.P2_Map = InputManager.P2_XBOX;
 			Debug.Log("P2 XBOX");
-			txt_p1Message.text = "Press A";
+			txt_p2Message.text = "Press A";
 		}
 
 		if (Input.GetJoystickNames()[2] == "Wireless Controller") {
@@ -73,44 +73,44 @@ public class RegisterPlayers : MonoBehaviour
 	}
 
 	void Update() {
-		if (Input.GetJoystickNames().Length == 1){
-			txt_p1Message.text = "CONNECTED";
-		}
-		if (Input.GetJoystickNames().Length == 2){
-			txt_p2Message.text = "CONNECTED";
-		}
-		if (Input.GetJoystickNames().Length == 3){
-			txt_p3Message.text = "CONNECTED";
-		}
-		if (Input.GetJoystickNames().Length == 4) {     // when 4 controllers are detected, commence mapping
-			txt_p4Message.text = "CONNECTED";
-			if (!b_connected) {
+		if (!b_connected){
+			if (Input.GetJoystickNames().Length == 1){
+				txt_p1Message.text = "CONNECTED";
+			}
+			if (Input.GetJoystickNames().Length == 2){
+				txt_p2Message.text = "CONNECTED";
+			}
+			if (Input.GetJoystickNames().Length == 3){
+				txt_p3Message.text = "CONNECTED";
+			}
+			if (Input.GetJoystickNames().Length == 4){     // when 4 controllers are detected, commence mapping
+				txt_p4Message.text = "CONNECTED";
 				MapControllers();
 			}
-			else {
-				if (InputManager.GetButtonDown(InputManager.Axes.SUBMIT, 1)) {
-					b_p1Ready = true;
-					txt_p1Message.text = "READY";
-					go_r1.SetActive(true);
-				}
-				if (InputManager.GetButtonDown(InputManager.Axes.SUBMIT, 2)) {
-					b_p2Ready = true;
-					txt_p2Message.text = "READY";
-					go_r2.SetActive(true);
-				}
-				if (InputManager.GetButtonDown(InputManager.Axes.SUBMIT, 3)) {
-					b_p3Ready = true;
-					txt_p3Message.text = "READY";
-					go_b1.SetActive(true);
-				}
-				if (InputManager.GetButtonDown(InputManager.Axes.SUBMIT, 4)) {
-					b_p4Ready = true;
-					txt_p4Message.text = "READY";
-					go_b2.SetActive(true);
-				}
-				if (b_p1Ready && b_p2Ready && b_p3Ready && b_p4Ready) {
-					SceneManager.LoadScene("BuildSetUp");
-				}
+		}
+		else{
+			if (InputManager.GetButtonDown(InputManager.Axes.SUBMIT, 1)){
+				b_p1Ready = true;
+				txt_p1Message.text = "READY";
+				go_r1.SetActive(true);
+			}
+			if (InputManager.GetButtonDown(InputManager.Axes.SUBMIT, 2)){
+				b_p2Ready = true;
+				txt_p2Message.text = "READY";
+				go_r2.SetActive(true);
+			}
+			if (InputManager.GetButtonDown(InputManager.Axes.SUBMIT, 3)){
+				b_p3Ready = true;
+				txt_p3Message.text = "READY";
+				go_b1.SetActive(true);
+			}
+			if (InputManager.GetButtonDown(InputManager.Axes.SUBMIT, 4)){
+				b_p4Ready = true;
+				txt_p4Message.text = "READY";
+				go_b2.SetActive(true);
+			}
+			if (b_p1Ready && b_p2Ready && b_p3Ready && b_p4Ready){
+				SceneManager.LoadScene("BuildSetUp");
 			}
 		}
 	}
