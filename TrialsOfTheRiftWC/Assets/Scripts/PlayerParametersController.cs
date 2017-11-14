@@ -22,7 +22,16 @@ public class PlayerParametersController : MonoBehaviour {
     public Text txt_windCooldown;
     public Text txt_iceCooldown;
 
-    private void Start() {
+	public void ChangePlayerSpeed(float i_playerSpeedIn)
+	{
+		txt_playerMoveSpeed.text = slider_playerMoveSpeed.value.ToString();
+		foreach (PlayerController playerController in l_playerControllers){
+			playerController.i_moveSpeed = (int)i_playerSpeedIn;
+		}
+	}
+
+
+	private void Start() {
         // Player Speed
         txt_playerMoveSpeed.text = Constants.PlayerStats.C_MovementSpeed.ToString();
         slider_playerMoveSpeed.value = Constants.PlayerStats.C_MovementSpeed;
@@ -51,8 +60,8 @@ public class PlayerParametersController : MonoBehaviour {
         }*/
 
         // Player Speed
-        ChangePlayerSpeed(slider_playerMoveSpeed.value);
-        txt_playerMoveSpeed.text = slider_playerMoveSpeed.value.ToString();
+   //     ChangePlayerSpeed(slider_playerMoveSpeed.value);
+        //txt_playerMoveSpeed.text = slider_playerMoveSpeed.value.ToString();
 
         // Wind Spell Speed
         ChangeWindSpeed(slider_windSpeed.value);
@@ -81,13 +90,7 @@ public class PlayerParametersController : MonoBehaviour {
     }
 
     // Private Helper Methods
-    private void ChangePlayerSpeed(float i_playerSpeedIn) {
-        foreach (PlayerController playerController in l_playerControllers) {
-            playerController.i_moveSpeed = (int)i_playerSpeedIn;
-        }
-    }
-
-    private void ChangeWindSpeed(float f_windSpeedIn) {
+     private void ChangeWindSpeed(float f_windSpeedIn) {
         foreach (PlayerController playerController in l_playerControllers) {
             playerController.f_windSpeed = f_windSpeedIn;
         }

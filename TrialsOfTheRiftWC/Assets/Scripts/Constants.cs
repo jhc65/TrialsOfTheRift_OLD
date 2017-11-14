@@ -6,7 +6,7 @@ public static class Constants {
     // Player Constants
     public static class PlayerStats {
         public static int C_MovementSpeed = 20;
-        public static int C_WispMovementSpeed = 10;
+        public static int C_WispMovementSpeed = 2;
         public static float C_RespawnTimer = 5.0f;
         public static float C_MaxHealth = 300.0f;
     }

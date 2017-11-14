@@ -18,6 +18,8 @@ public class PlayerController : MonoBehaviour{
 	public GameObject go_windShot;			// wind spell object
 	public GameObject go_iceShot;           // ice spell object
 
+	public bool isWisp = false;
+
 	// read from Constants.cs
 	public int i_moveSpeed;                 // basic movement speed
 	public float f_magicMissileSpeed;		// basic attack movement speed
@@ -43,8 +45,13 @@ public class PlayerController : MonoBehaviour{
 		}
 
         if (b_canMove) { // lock player in place proper
-            GetComponent<Rigidbody>().velocity = (v3_moveDir * i_moveSpeed);
-        }
+			if (isWisp) {
+				GetComponent<Rigidbody>().velocity = (v3_moveDir * Constants.PlayerStats.C_WispMovementSpeed);
+			}
+			else {
+				GetComponent<Rigidbody>().velocity = (v3_moveDir * i_moveSpeed);
+			}
+		}
 		else {
             GetComponent<Rigidbody>().velocity = Vector3.zero;
         }
@@ -83,29 +90,31 @@ public class PlayerController : MonoBehaviour{
 	}
 
     private void PlayerDeath() {
+		isWisp = true;
 		c_playerCapsule.SetActive(false);
 		c_playerWisp.SetActive(true);
 		Drop();
-		i_moveSpeed = Constants.PlayerStats.C_WispMovementSpeed;
+		//i_moveSpeed = Constants.PlayerStats.C_WispMovementSpeed;
 		f_nextWind = Time.time + (Constants.PlayerStats.C_RespawnTimer + 3.0f);
         f_nextIce = Time.time + (Constants.PlayerStats.C_RespawnTimer + 3.0f);
         Invoke("PlayerRespawn", Constants.PlayerStats.C_RespawnTimer);
     }
 
     private void PlayerRespawn() {
+		isWisp = false;
         c_playerCapsule.SetActive(true);
         c_playerWisp.SetActive(false);
         f_playerHealth = Constants.PlayerStats.C_MaxHealth;
-        i_moveSpeed = Constants.PlayerStats.C_MovementSpeed;
+        //i_moveSpeed = Constants.PlayerStats.C_MovementSpeed;
         f_nextWind = Time.time;
         f_nextIce = Time.time;
     }
 
 	public void TakeDamage(float damage) {
-		if (!(f_playerHealth <= 0.0f)){
+		if (!isWisp) {
 			print("ow");
 			f_playerHealth -= damage;
-			if (f_playerHealth <= 0.0f){
+			if (f_playerHealth <= 0.0f) {
 				PlayerDeath();
 			}
 		}
@@ -154,7 +163,7 @@ public class PlayerController : MonoBehaviour{
             f_nextIce += Time.deltaTime;
 
 			// spells
-			if (!go_flagObj && !c_playerWisp.activeSelf) {
+			if (!go_flagObj && !isWisp) {
 				if (InputManager.GetButton(InputManager.Axes.MAGICMISSILE, i_playerNumber) && f_nextMagicMissile > f_magicMissileRecharge) {   // checks for fire button and if time delay has passed
 					f_nextMagicMissile = 0;
 					GameObject go_spell = Instantiate(go_magicMissileShot, t_spellSpawn.position, t_spellSpawn.rotation);
@@ -180,7 +189,7 @@ public class PlayerController : MonoBehaviour{
 	}
 
 	void Update() {
-		if (InputManager.GetButtonDown(InputManager.Axes.INTERACT, i_playerNumber)) {
+		if (InputManager.GetButtonDown(InputManager.Axes.INTERACT, i_playerNumber) && !isWisp) {
 			if (go_flagObj) {
 				Drop();
 			}
@@ -196,10 +205,9 @@ public class PlayerController : MonoBehaviour{
 			e_Side = Constants.Side.LEFT;
 	}
 
-	void OnTriggerEnter(Collider other){
+	void OnTriggerEnter(Collider other) {
 		if (other.tag == "Rift") {
-			f_playerHealth = 0.0f;
-			PlayerDeath();
+			TakeDamage(f_playerHealth);
 		}
 	}
 }
