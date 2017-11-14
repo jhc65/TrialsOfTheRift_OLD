@@ -25,6 +25,7 @@ public class MeleeController : EnemyController {
 		
 		
 		if(go_closestTarget){
+			nma_agent.isStopped = false;
 			nma_agent.SetDestination(go_closestTarget.transform.position);
 			if(Vector3.Distance(transform.position,go_closestTarget.transform.position) < f_attackDistance)
 				EnterStateAttack();
