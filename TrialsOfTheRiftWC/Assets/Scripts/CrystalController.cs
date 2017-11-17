@@ -5,7 +5,7 @@ using UnityEngine;
 public class CrystalController : MonoBehaviour {
 
     public Constants.Color e_color;		// identifies owning team
-	public int i_maxHealth = 500;	// crystal starting health
+	public int i_maxHealth = Constants.EnviroStats.C_CrystalMaxHealth;	// crystal starting health
     public int i_health;				// indicates how much health the crystal has
     //public float f_spellDamagePercent;     // set the percentage of health the spell takes away
     //public float f_basicDamagePercent;     // set percentage for basic attack damage

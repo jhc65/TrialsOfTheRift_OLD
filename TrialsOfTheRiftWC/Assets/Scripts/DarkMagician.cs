@@ -1,12 +1,13 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.AI;
 
 public class DarkMagician : MonoBehaviour {
 
 	public GameObject[] go_objectivesList;
 	public GameObject go_enemy;
-	public float f_enemySpawnTime = 10f;
+	public float f_enemySpawnTime = Constants.EnviroStats.C_EnemySpawnTime;             // [Param Fix]
 
 	private Vector3[] v3_rightEnemySpawnPositions = new Vector3[] {
 		new Vector3(18f, 0.5f, 0f),
@@ -25,7 +26,8 @@ public class DarkMagician : MonoBehaviour {
 	};
 
 	//private GameObject go_redObjective, blueObjective;
-	private Objective objv_redObjective, objv_blueObjective;
+	//private Objective objv_redObjective, objv_blueObjective;        [Original]
+    public Objective objv_redObjective, objv_blueObjective; 
 
 	private Objective GetNextObjective(Objective o) {
 		int newObjectiveNumber = o.i_numberInList;
@@ -51,8 +53,12 @@ public class DarkMagician : MonoBehaviour {
 		int randRight = Random.Range(0, v3_rightEnemySpawnPositions.Length);
 		GameObject g1 = Instantiate(go_enemy, v3_leftEnemySpawnPositions[randLeft], new Quaternion(0, 0, 0, 0));
 		g1.GetComponent<EnemyController>().e_Side = Constants.Side.LEFT;
+        g1.GetComponent<NavMeshAgent>().speed = Constants.EnviroStats.C_EnemySpeed;             // [Param Fix]
+        g1.GetComponent<MeleeController>().SetHealth(Constants.EnviroStats.C_EnemyHealth);      // [Param Fix]
 		GameObject g2 = Instantiate(go_enemy, v3_rightEnemySpawnPositions[randRight], new Quaternion(0, 0, 0, 0));
 		g2.GetComponent<EnemyController>().e_Side = Constants.Side.RIGHT;
+        g2.GetComponent<NavMeshAgent>().speed = Constants.EnviroStats.C_EnemySpeed;             // [Param Fix]
+        g2.GetComponent<MeleeController>().SetHealth(Constants.EnviroStats.C_EnemyHealth);      // [Param Fix]
 	}
 
 	void Start() {
@@ -80,4 +86,11 @@ public class DarkMagician : MonoBehaviour {
 			objv_blueObjective = GetNextObjective(objv_blueObjective);
 		}
 	}
+
+    // [Param Fix]
+    public void ResetEnemySpawnRate() {
+        Debug.Log("Is this a problem?");
+        CancelInvoke();
+        InvokeRepeating("SpawnEnemies", 3.0f, f_enemySpawnTime);
+    }
 }

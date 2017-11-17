@@ -117,4 +117,12 @@ public abstract class EnemyController : MonoBehaviour {
 		nma_agent.isStopped = false;
 		EnterStateChase();
 	}
+
+    public int GetHealth() {
+        return i_health;
+    }
+
+    public void SetHealth(int healthIn) {
+        i_health = healthIn;
+    }
 }

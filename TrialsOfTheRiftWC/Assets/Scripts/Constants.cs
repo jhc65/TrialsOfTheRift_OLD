@@ -23,6 +23,8 @@ public static class Constants {
 		public static float C_MagicMissileCooldown = 0.5f;
 		public static float C_IceCooldown = 5.0f;
 		public static float C_WindCooldown = 3.0f;
+        public static float C_WindForce = 6000f;                // [Param Fix]
+        public static float C_IceFreezeTime = 2f;               // [Param Fix]
 
 		// Spell Buffs when crossing Rift
 		public static float C_IceSpeedMultiplier = 1.5f;
@@ -30,6 +32,16 @@ public static class Constants {
         public static float C_IceDamageMultiplier = 1.25f;
         public static float C_WindDamageMultiplier = 1.25f;
         public static float C_SpellScaleMultiplier = 1.15f;
+    }
+       
+    // [Param Fix] - This entire class and its values are parameter fixes.
+    // The values were pulled from the files they came from, so no real worries there.
+    public static class EnviroStats {
+        public static float C_EnemySpawnTime = 10f;             
+        public static float C_EnemySpeed = 3.5f;
+        public static int C_EnemyHealth = 75;
+        public static int C_CrystalMaxHealth = 500;
+        public static int C_CTFMaxScore = 3;
     }
 
     // Team Constants

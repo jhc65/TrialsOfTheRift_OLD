@@ -16,4 +16,5 @@ public abstract class Objective : MonoBehaviour {
 
 	public abstract void Instantiate();
 	public abstract void Complete();
+    public abstract void ParamReset(float param_in);
 }

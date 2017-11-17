@@ -28,6 +28,7 @@ public class PlayerController : MonoBehaviour{
 	public float f_magicMissileRecharge;	// delay between basic attacks
 	public float f_windRecharge;			// delay between wind spells
 	public float f_iceRecharge;             // delay between ice spells
+    public float f_iceFreeze;               // Time that ice spell freezes for.
 
     private float f_nextWind;				// time next wind spell can be cast
 	private float f_nextIce;                // time next ice spell can be cast
@@ -60,7 +61,7 @@ public class PlayerController : MonoBehaviour{
 	public void Freeze() {
 		b_canMove = false;
 		Drop();
-		Invoke("Unfreeze", 2f);
+		Invoke("Unfreeze", f_iceFreeze);
 	}
 
 	private void Unfreeze() {
@@ -132,6 +133,10 @@ public class PlayerController : MonoBehaviour{
         return f_playerHealth;
     }
 
+    public void SetCurrentHealth(float f_healthIn) {
+        f_playerHealth = f_healthIn;
+    }
+
 	void Start() {
         f_playerHealth = Constants.PlayerStats.C_MaxHealth;
 		b_canMove = true;
@@ -144,6 +149,7 @@ public class PlayerController : MonoBehaviour{
 		f_magicMissileRecharge = Constants.SpellStats.C_MagicMissileCooldown;
 		f_windRecharge = Constants.SpellStats.C_WindCooldown;
 		f_iceRecharge = Constants.SpellStats.C_IceCooldown;
+        f_iceFreeze = Constants.SpellStats.C_IceFreezeTime; 
 
 		f_nextMagicMissile = 0;
 		f_nextWind = 0;

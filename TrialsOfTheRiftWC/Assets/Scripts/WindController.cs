@@ -7,7 +7,12 @@ public class WindController : SpellController {
 	public float f_windForce;
 	private float f_windDamage = Constants.SpellStats.C_WindDamage;
 
-	protected override void ApplyEffect(GameObject go_target) {
+    // [Param Fix] - Remove if unecessary.
+    private void Start() {
+        f_windForce = Constants.SpellStats.C_WindForce;
+    }
+
+    protected override void ApplyEffect(GameObject go_target) {
         if (go_target.tag == "Player") {
 			Vector3 v3_direction = transform.forward.normalized;
 			go_target.GetComponent<Rigidbody>().AddForce(v3_direction * f_windForce);
