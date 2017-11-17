@@ -29,7 +29,18 @@ public abstract class SpellController : MonoBehaviour {
 			}
 		}
 
-		if (collision.gameObject.tag != "Portal") { // If we hit something not a player, rift, or portal (walls), just destroy the shot without an effect.
+        if (collision.gameObject.tag == "Spell") {
+            Constants.Color spellColor = collision.gameObject.GetComponent<SpellController>().e_color;
+            if (spellColor != e_color)
+            {
+                Destroy(gameObject);
+            }
+            else {
+                //ignores any collision detection between the two spells
+                Physics.IgnoreCollision(GetComponent<Collider>(), collision.gameObject.GetComponent<Collider>());
+            }
+        }
+		else if (collision.gameObject.tag != "Portal") { // If we hit something not a player, rift, or portal (walls), just destroy the shot without an effect.
 			Destroy(gameObject);
         }
 	}

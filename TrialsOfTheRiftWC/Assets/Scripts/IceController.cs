@@ -18,22 +18,27 @@ public class IceController : SpellController {
 	*/
 
 	protected override void ApplyEffect(GameObject go_target) {
-        if (go_target.tag == "Player") {
+        if (go_target.tag == "Player")
+        {
             go_target.GetComponent<PlayerController>().Freeze();
         }
-		else if (go_target.tag == "Enemy") {
+        else if (go_target.tag == "Enemy")
+        {
             go_target.GetComponent<EnemyController>().TakeDamage(f_iceDamage);
-			go_target.GetComponent<EnemyController>().Freeze();
-		}
-		else if (go_target.tag == "Crystal") {
-			Constants.Color crystalColor = go_target.GetComponent<CrystalController>().e_color;
-			if (crystalColor != e_color) {
-				go_target.GetComponent<CrystalController>().ChangeHealth(-0.1f);
-			}
-			else if (crystalColor == e_color) {
-				go_target.GetComponent<CrystalController>().ChangeHealth(0.05f);
-			}
-		}
+            go_target.GetComponent<EnemyController>().Freeze();
+        }
+        else if (go_target.tag == "Crystal")
+        {
+            Constants.Color crystalColor = go_target.GetComponent<CrystalController>().e_color;
+            if (crystalColor != e_color)
+            {
+                go_target.GetComponent<CrystalController>().ChangeHealth(-0.1f);
+            }
+            else if (crystalColor == e_color)
+            {
+                go_target.GetComponent<CrystalController>().ChangeHealth(0.05f);
+            }
+        }
     }
 
     protected override void BuffSpell() {

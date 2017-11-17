@@ -24,6 +24,7 @@ public class PlayerParametersController : MonoBehaviour {
     public Slider slider_enemySpawn;
     public Slider slider_enemySpeed;
     public Slider slider_enemyHealth;
+    public Slider slider_enemyDamage;
     public Slider slider_respawnTime;
     public Slider slider_playerHealth;
     public Slider slider_crystalHealth;
@@ -43,6 +44,7 @@ public class PlayerParametersController : MonoBehaviour {
     public Text txt_enemySpawn;
     public Text txt_enemySpeed;
     public Text txt_enemyHealth;
+    public Text txt_enemyDamage;
     public Text txt_respawnTime;
     public Text txt_playerHealth;
     public Text txt_crystalHealth;
@@ -104,6 +106,10 @@ public class PlayerParametersController : MonoBehaviour {
         // Enemy Health
         txt_enemyHealth.text = Constants.EnviroStats.C_EnemyHealth.ToString();
         slider_enemyHealth.value = Constants.EnviroStats.C_EnemyHealth;
+
+        // Enemy Damage
+        txt_enemyHealth.text = Constants.EnviroStats.C_EnemyDamage.ToString();
+        slider_enemyHealth.value = Constants.EnviroStats.C_EnemyDamage;
 
         // Respawn Rate
         txt_respawnTime.text = Constants.PlayerStats.C_RespawnTimer.ToString();
@@ -221,6 +227,12 @@ public class PlayerParametersController : MonoBehaviour {
         Constants.EnviroStats.C_EnemyHealth = (int)f_enemyHealthIn;
     }
 
+    public void ChangeEnemyDamage(float f_enemyDamageIn)
+    {
+        txt_enemyDamage.text = slider_enemyDamage.value.ToString();
+        Constants.EnviroStats.C_EnemyHealth = (int)f_enemyDamageIn;
+    }
+
     public void ChangePlayerHealth(float f_playerHealthIn) {
         txt_playerHealth.text = slider_playerHealth.value.ToString();
         Constants.PlayerStats.C_MaxHealth = f_playerHealthIn;
@@ -236,11 +248,11 @@ public class PlayerParametersController : MonoBehaviour {
 
     public void ChangeCrystalHealth(float f_crystalHealthIn) {
     //    txt_crystalHealth.text = slider_crystalHealth.value.ToString();
-      //  DM.go_objectivesList[1].GetComponent<Objective>().ParamReset(f_crystalHealthIn);
+    //    DM.go_objectivesList[1].GetComponent<Objective>().ParamReset(f_crystalHealthIn);
     }
 
     public void ChangeCTFMaxScore(float f_CTFScoreIn) {
-        //txt_CTFScore.text = slider_CTFScore.value.ToString();
-        //DM.objv_blueObjective.GetComponent<Objective>().ParamReset(f_CTFScoreIn);
+    //     txt_CTFScore.text = slider_CTFScore.value.ToString();
+    //    DM.objv_blueObjective.GetComponent<Objective>().ParamReset(f_CTFScoreIn);
     }
 }

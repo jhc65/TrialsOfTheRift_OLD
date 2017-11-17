@@ -13,15 +13,15 @@ public class PlayerController : MonoBehaviour{
 	public GameObject go_flagObj;			// flag game object; if not null, player is carrying flag
 	public GameObject go_interactCollider;  // activated with button-press to pickup flag
 	public Transform t_spellSpawn;			// location spells are instantiated
-	public bool b_canMove;                  // identifies if the player is frozen
+	public int i_canMove;               // identifies if the player is frozen
 	public GameObject go_magicMissileShot;  // wind spell object
 	public GameObject go_windShot;			// wind spell object
 	public GameObject go_iceShot;           // ice spell object
 
 	public bool isWisp = false;
 
-	// read from Constants.cs
-	public int i_moveSpeed;                 // basic movement speed
+    // read from Constants.cs
+    public int i_moveSpeed;                 // basic movement speed
 	public float f_magicMissileSpeed;		// basic attack movement speed
     public float f_windSpeed;               // wind spell movement speed
     public float f_iceSpeed;                // ice spell movement speed
@@ -45,28 +45,30 @@ public class PlayerController : MonoBehaviour{
 			transform.rotation = Quaternion.LookRotation(v3_moveDir);
 		}
 
-        if (b_canMove) { // lock player in place proper
-			if (isWisp) {
-				GetComponent<Rigidbody>().velocity = (v3_moveDir * Constants.PlayerStats.C_WispMovementSpeed);
-			}
-			else {
-				GetComponent<Rigidbody>().velocity = (v3_moveDir * i_moveSpeed);
-			}
+        if (isWisp) {
+			GetComponent<Rigidbody>().velocity = (v3_moveDir * Constants.PlayerStats.C_WispMovementSpeed) * i_canMove;
 		}
 		else {
+			GetComponent<Rigidbody>().velocity = (v3_moveDir * i_moveSpeed) * i_canMove;
+		}
+
+    /*}
+		else {
             GetComponent<Rigidbody>().velocity = Vector3.zero;
+            GetComponent<Rigidbody>().angularVelocity = Vector3.zero;
         }
+        */
 	}
 
 	public void Freeze() {
-		b_canMove = false;
+		i_canMove = 0;
 		Drop();
 		Invoke("Unfreeze", f_iceFreeze);
 	}
 
 	private void Unfreeze() {
-		b_canMove = true;
-	}
+		i_canMove = 1;
+    }
 
 	private void TurnOffInteractCollider() {
 		go_interactCollider.SetActive(false);
@@ -80,7 +82,10 @@ public class PlayerController : MonoBehaviour{
 
 	public void Drop() {
 		if(go_flagObj) {
-			go_flagObj.transform.localPosition = new Vector3(0, -1.5f, 0);	// this is relative to t_flagPos
+            //this value right here is where the flag is being dropped from the bug
+            //tried to change it to the transform of the player, didn't really work, maybe
+            //try getting player transform, but setting y to 0
+			go_flagObj.transform.localPosition = new Vector3(0.0f, -1.5f, 0.0f);	// this is relative to t_flagPos
 			go_flagObj.transform.SetParent(null);
 			go_flagObj = null;
 		}
@@ -139,7 +144,7 @@ public class PlayerController : MonoBehaviour{
 
 	void Start() {
         f_playerHealth = Constants.PlayerStats.C_MaxHealth;
-		b_canMove = true;
+		i_canMove = 1;
 
 		i_moveSpeed = Constants.PlayerStats.C_MovementSpeed;
 		f_magicMissileSpeed = Constants.SpellStats.C_MagicMissileSpeed;
@@ -162,7 +167,6 @@ public class PlayerController : MonoBehaviour{
 	}
 
 	void FixedUpdate() {
-		if (b_canMove) {
 			Move();
 			f_nextMagicMissile += Time.deltaTime;
 			f_nextWind += Time.deltaTime;
@@ -191,7 +195,6 @@ public class PlayerController : MonoBehaviour{
 					go_spell.GetComponent<Rigidbody>().velocity = transform.forward * f_iceSpeed;
 				}
 			}
-		}
 	}
 
 	void Update() {
@@ -216,4 +219,12 @@ public class PlayerController : MonoBehaviour{
 			TakeDamage(f_playerHealth);
 		}
 	}
+
+    private void OnCollisionEnter(Collision collision)
+    {
+        if (collision.gameObject.tag == "Player") {
+            //ignores any collision detection between any Player
+            Physics.IgnoreCollision(GetComponent<Collider>(), collision.gameObject.GetComponent<Collider>());
+        }
+    }
 }

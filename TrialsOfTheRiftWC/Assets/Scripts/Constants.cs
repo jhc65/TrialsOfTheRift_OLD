@@ -5,7 +5,7 @@ using UnityEngine;
 public static class Constants {
     // Player Constants
     public static class PlayerStats {
-        public static int C_MovementSpeed = 20;
+        public static int C_MovementSpeed = 13;
         public static int C_WispMovementSpeed = 2;
         public static float C_RespawnTimer = 5.0f;
         public static float C_MaxHealth = 300.0f;
@@ -20,9 +20,9 @@ public static class Constants {
         public static float C_MagicMissileDamage = 25.0f;       // Officially, this is -25 HP
         public static float C_IceDamage = 75.0f;                // Officially, this is -75 HP
         public static float C_WindDamage = 50.0f;               // Officially, this is -50 HP
-		public static float C_MagicMissileCooldown = 0.5f;
+		public static float C_MagicMissileCooldown = 0.25f;
 		public static float C_IceCooldown = 5.0f;
-		public static float C_WindCooldown = 3.0f;
+		public static float C_WindCooldown = 2.0f;
         public static float C_WindForce = 6000f;                // [Param Fix]
         public static float C_IceFreezeTime = 2f;               // [Param Fix]
 
@@ -40,6 +40,7 @@ public static class Constants {
         public static float C_EnemySpawnTime = 10f;             
         public static float C_EnemySpeed = 3.5f;
         public static int C_EnemyHealth = 75;
+        public static float C_EnemyDamage = 25.0f;
         public static int C_CrystalMaxHealth = 500;
         public static int C_CTFMaxScore = 3;
     }
