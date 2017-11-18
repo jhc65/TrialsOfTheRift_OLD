@@ -26,6 +26,7 @@ public class PlayerParametersController : MonoBehaviour {
     public Slider slider_enemyHealth;
     public Slider slider_enemyDamage;
     public Slider slider_respawnTime;
+	public Slider slider_wispMoveSpeed;
     public Slider slider_playerHealth;
     public Slider slider_crystalHealth;
     public Slider slider_CTFScore;
@@ -46,6 +47,7 @@ public class PlayerParametersController : MonoBehaviour {
     public Text txt_enemyHealth;
     public Text txt_enemyDamage;
     public Text txt_respawnTime;
+	public Text txt_wispMoveSpeed;
     public Text txt_playerHealth;
     public Text txt_crystalHealth;
     public Text txt_CTFScore;
@@ -56,8 +58,12 @@ public class PlayerParametersController : MonoBehaviour {
         txt_playerMoveSpeed.text = Constants.PlayerStats.C_MovementSpeed.ToString();
         slider_playerMoveSpeed.value = Constants.PlayerStats.C_MovementSpeed;
 
-        // Wind Spell Speed
-        txt_windSpeed.text = Constants.SpellStats.C_WindSpeed.ToString();
+		// Player Wisp Speed
+		txt_wispMoveSpeed.text = Constants.PlayerStats.C_WispMovementSpeed.ToString();
+		slider_wispMoveSpeed.value = Constants.PlayerStats.C_WispMovementSpeed;
+
+		// Wind Spell Speed
+		txt_windSpeed.text = Constants.SpellStats.C_WindSpeed.ToString();
         slider_windSpeed.value = Constants.SpellStats.C_WindSpeed;
 
         // Ice Spell Speed
@@ -151,8 +157,15 @@ public class PlayerParametersController : MonoBehaviour {
 			playerController.i_moveSpeed = (int)i_playerSpeedIn;
 		}
 	}
-    
-     public void ChangeWindSpeed(float f_windSpeedIn) {
+
+	public void ChangePlayerWispSpeed(float i_playerWispSpeedIn){
+		txt_wispMoveSpeed.text = slider_wispMoveSpeed.value.ToString();
+		foreach (PlayerController playerController in l_playerControllers){
+			playerController.i_wispSpeed = (int)i_playerWispSpeedIn;
+		}
+	}
+
+	public void ChangeWindSpeed(float f_windSpeedIn) {
         txt_windSpeed.text = slider_windSpeed.value.ToString();
         foreach (PlayerController playerController in l_playerControllers) {
             playerController.f_windSpeed = f_windSpeedIn;
@@ -190,7 +203,7 @@ public class PlayerParametersController : MonoBehaviour {
     public void ChangeProjectileSize(float f_projSizeIn) {
         txt_projSpeed.text = slider_projSpeed.value.ToString();
         foreach (PlayerController playerController in l_playerControllers) {
-            //playerController.f_magicMissileSpeed = f_projSizeIn;
+            playerController.f_magicMissileSpeed = f_projSizeIn;
         }
     }
 
@@ -247,12 +260,24 @@ public class PlayerParametersController : MonoBehaviour {
     }
 
     public void ChangeCrystalHealth(float f_crystalHealthIn) {
-    //    txt_crystalHealth.text = slider_crystalHealth.value.ToString();
-    //    DM.go_objectivesList[1].GetComponent<Objective>().ParamReset(f_crystalHealthIn);
+        txt_crystalHealth.text = slider_crystalHealth.value.ToString();
+		Constants.EnviroStats.C_CrystalMaxHealth = (int)f_crystalHealthIn;
+		if (DM.objv_blueObjective.gameObject.GetComponent<CrystalDestructionObjective>()){
+			DM.objv_blueObjective.gameObject.GetComponent<CrystalDestructionObjective>().ParamReset(f_crystalHealthIn);
+		}
+		if (DM.objv_redObjective.gameObject.GetComponent<CrystalDestructionObjective>()) {
+			DM.objv_redObjective.gameObject.GetComponent<CrystalDestructionObjective>().ParamReset(f_crystalHealthIn);
+		}
     }
 
     public void ChangeCTFMaxScore(float f_CTFScoreIn) {
-    //     txt_CTFScore.text = slider_CTFScore.value.ToString();
-    //    DM.objv_blueObjective.GetComponent<Objective>().ParamReset(f_CTFScoreIn);
-    }
+        txt_CTFScore.text = slider_CTFScore.value.ToString();
+		Constants.EnviroStats.C_CTFMaxScore = (int)f_CTFScoreIn;
+		if (DM.objv_blueObjective.gameObject.GetComponent<CaptureTheFlagObjective>()) {
+			DM.objv_blueObjective.gameObject.GetComponent<CaptureTheFlagObjective>().ParamReset(f_CTFScoreIn);
+		}
+		if (DM.objv_redObjective.gameObject.GetComponent<CaptureTheFlagObjective>()){
+			DM.objv_redObjective.gameObject.GetComponent<CaptureTheFlagObjective>().ParamReset(f_CTFScoreIn);
+		}
+	}
 }

@@ -22,6 +22,7 @@ public class PlayerController : MonoBehaviour{
 
     // read from Constants.cs
     public int i_moveSpeed;                 // basic movement speed
+	public int i_wispSpeed;
 	public float f_magicMissileSpeed;		// basic attack movement speed
     public float f_windSpeed;               // wind spell movement speed
     public float f_iceSpeed;                // ice spell movement speed
@@ -29,6 +30,7 @@ public class PlayerController : MonoBehaviour{
 	public float f_windRecharge;			// delay between wind spells
 	public float f_iceRecharge;             // delay between ice spells
     public float f_iceFreeze;               // Time that ice spell freezes for.
+	//public float f_projectileSize = 1f;
 
     private float f_nextWind;				// time next wind spell can be cast
 	private float f_nextIce;                // time next ice spell can be cast
@@ -46,7 +48,7 @@ public class PlayerController : MonoBehaviour{
 		}
 
         if (isWisp) {
-			GetComponent<Rigidbody>().velocity = (v3_moveDir * Constants.PlayerStats.C_WispMovementSpeed) * i_canMove;
+			GetComponent<Rigidbody>().velocity = (v3_moveDir * i_wispSpeed) * i_canMove;
 		}
 		else {
 			GetComponent<Rigidbody>().velocity = (v3_moveDir * i_moveSpeed) * i_canMove;
@@ -178,6 +180,7 @@ public class PlayerController : MonoBehaviour{
 					f_nextMagicMissile = 0;
 					GameObject go_spell = Instantiate(go_magicMissileShot, t_spellSpawn.position, t_spellSpawn.rotation);
 					go_spell.GetComponent<SpellController>().e_color = e_Color;
+					//go_spell.transform.localScale = new Vector3(f_projectileSize, f_projectileSize, f_projectileSize);
 					Debug.Log(transform.forward.normalized);
 					go_spell.GetComponent<Rigidbody>().velocity = transform.forward * f_magicMissileSpeed;
 				}
@@ -185,12 +188,14 @@ public class PlayerController : MonoBehaviour{
 					f_nextWind = 0;
 					GameObject go_spell = Instantiate(go_windShot, t_spellSpawn.position, t_spellSpawn.rotation);
 					go_spell.GetComponent<SpellController>().e_color = e_Color;
+					//go_spell.transform.localScale = new Vector3(f_projectileSize, f_projectileSize, f_projectileSize);
 					Debug.Log(transform.forward.normalized);
 					go_spell.GetComponent<Rigidbody>().velocity = transform.forward * f_windSpeed;
 				}
 				if (InputManager.GetButton(InputManager.Axes.ICESPELL, i_playerNumber) && f_nextIce > f_iceRecharge) {   // checks for fire button and if time delay has passed
 					f_nextIce = 0;
 					GameObject go_spell = Instantiate(go_iceShot, t_spellSpawn.position, t_spellSpawn.rotation);
+					//go_spell.transform.localScale = new Vector3(f_projectileSize, f_projectileSize, f_projectileSize);
 					go_spell.GetComponent<SpellController>().e_color = e_Color;
 					go_spell.GetComponent<Rigidbody>().velocity = transform.forward * f_iceSpeed;
 				}
@@ -216,6 +221,7 @@ public class PlayerController : MonoBehaviour{
 
 	void OnTriggerEnter(Collider other) {
 		if (other.tag == "Rift") {
+			transform.position = transform.position + (int)e_Side * new Vector3(1, 0, 0);
 			TakeDamage(f_playerHealth);
 		}
 	}

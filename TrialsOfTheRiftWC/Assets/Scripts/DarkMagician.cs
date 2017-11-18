@@ -61,12 +61,13 @@ public class DarkMagician : MonoBehaviour {
         g2.GetComponent<MeleeController>().SetHealth(Constants.EnviroStats.C_EnemyHealth);      // [Param Fix]
 	}
 
-	void Start() {
+	void Awake() {	// parameter screen dictates that we do this before its Start() is called
 		objv_redObjective = Instantiate(go_objectivesList[0]).GetComponent<Objective>();
 		objv_blueObjective = Instantiate(go_objectivesList[0]).GetComponent<Objective>();
 		objv_redObjective.Set(Constants.Color.RED, 1);
 		objv_blueObjective.Set(Constants.Color.BLUE, 1);
 
+		Debug.Log("I am here");
 		// enemies, TODO: this not here
 		//for(int i=0; i< v3_leftEnemySpawnPositions.Length; i++) {
 		//	GameObject g1 = Instantiate(go_enemy, v3_leftEnemySpawnPositions[i], new Quaternion(0, 0, 0, 0));

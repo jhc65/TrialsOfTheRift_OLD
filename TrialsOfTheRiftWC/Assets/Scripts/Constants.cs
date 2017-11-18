@@ -48,9 +48,9 @@ public static class Constants {
     // Team Constants
 	public enum Color { RED, BLUE };
 	public enum Side { LEFT = -1, RIGHT = 1 };
-	public static Vector3 C_RedObjectiveSpawn = new Vector3(16.2f, 0.5f, 2f);	//i.e. the Blue Flag Red Players are trying to retrieve
-	public static Vector3 C_BlueObjectiveSpawn = new Vector3(-16.2f, 0.5f, 2f);
-    public static Vector3 C_RedObjectiveGoal = new Vector3(-5f, .01f, 2f);	//i.e. Red's base the Blue's Flag must be returned to
-	public static Vector3 C_BlueObjectiveGoal = new Vector3(5f, .01f, 2f);
+	public static Vector3 C_RedObjectiveSpawn = new Vector3(20f, 0.5f, 0f);	//i.e. the Blue Flag Red Players are trying to retrieve
+	public static Vector3 C_BlueObjectiveSpawn = new Vector3(-20f, 0.5f, 0f);
+    public static Vector3 C_RedObjectiveGoal = new Vector3(-3f, .01f, 0f);	//i.e. Red's base the Blue's Flag must be returned to
+	public static Vector3 C_BlueObjectiveGoal = new Vector3(3f, .01f, 0f);
 	public static GameObject[] C_Players = GameObject.FindGameObjectsWithTag("Player");
 }

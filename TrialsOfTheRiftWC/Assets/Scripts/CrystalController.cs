@@ -12,7 +12,7 @@ public class CrystalController : MonoBehaviour
     {
         i_health += percentage * i_maxHealth;
         if(i_health > i_maxHealth) {
-            i_health = 500.0f;
+            i_health = i_maxHealth;
         }
         GameController.GetInstance().CrystalHealth(e_color, (int) i_health);
     }

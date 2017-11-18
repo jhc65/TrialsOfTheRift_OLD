@@ -116,7 +116,7 @@ MonoBehaviour:
   - Player
   - Enemy
   - Crystal
-  f_windForce: 6000
+  f_windForce: 3000
 --- !u!135 &135882178223678438
 SphereCollider:
   m_ObjectHideFlags: 1
