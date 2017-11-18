@@ -114,8 +114,8 @@ public class PlayerParametersController : MonoBehaviour {
         slider_enemyHealth.value = Constants.EnviroStats.C_EnemyHealth;
 
         // Enemy Damage
-        txt_enemyHealth.text = Constants.EnviroStats.C_EnemyDamage.ToString();
-        slider_enemyHealth.value = Constants.EnviroStats.C_EnemyDamage;
+        txt_enemyDamage.text = Constants.EnviroStats.C_EnemyDamage.ToString();
+        slider_enemyDamage.value = Constants.EnviroStats.C_EnemyDamage;
 
         // Respawn Rate
         txt_respawnTime.text = Constants.PlayerStats.C_RespawnTimer.ToString();
