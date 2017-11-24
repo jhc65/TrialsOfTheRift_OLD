@@ -696,7 +696,7 @@ GameObject:
   - component: {fileID: 57085437}
   - component: {fileID: 57085436}
   m_Layer: 5
-  m_Name: ProjectileSpeedValue
+  m_Name: MagicMissileSpeedValue
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -5333,8 +5333,7 @@ MonoBehaviour:
   slider_iceSpeed: {fileID: 2080931356}
   slider_windCooldown: {fileID: 1326548843}
   slider_iceCooldown: {fileID: 2118990994}
-  slider_projSpeed: {fileID: 1579338830}
-  slider_projSize: {fileID: 1852257295}
+  slider_magicMissileSpeed: {fileID: 0}
   slider_projLife: {fileID: 541584829}
   slider_windForce: {fileID: 1776852448}
   slider_iceFreeze: {fileID: 1772054629}
@@ -5352,8 +5351,7 @@ MonoBehaviour:
   txt_iceSpeed: {fileID: 1280094396}
   txt_windCooldown: {fileID: 1292760381}
   txt_iceCooldown: {fileID: 1807234416}
-  txt_projSpeed: {fileID: 57085436}
-  txt_projSize: {fileID: 2113382802}
+  txt_magicMissileSpeed: {fileID: 0}
   txt_projLife: {fileID: 1790614815}
   txt_windForce: {fileID: 311053182}
   txt_iceFreeze: {fileID: 348338438}
@@ -8495,7 +8493,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1208053682}
   m_Layer: 5
-  m_Name: ProjectileSpeedSlider
+  m_Name: MagicMissileSpeedSlider
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -11201,7 +11199,7 @@ GameObject:
   - component: {fileID: 1579338829}
   - component: {fileID: 1579338830}
   m_Layer: 5
-  m_Name: ProjectileSpeedSlider
+  m_Name: MagicMissileSpeedSlider
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -11275,7 +11273,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 658498691}
-        m_MethodName: ChangeProjectileSpeed
+        m_MethodName: ChangeMagicMissileSpeed
         m_Mode: 0
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -14646,7 +14644,7 @@ MonoBehaviour:
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
   m_FontData:
     m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
-    m_FontSize: 25
+    m_FontSize: 21
     m_FontStyle: 0
     m_BestFit: 0
     m_MinSize: 2
@@ -14657,7 +14655,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 1
     m_VerticalOverflow: 1
     m_LineSpacing: 1
-  m_Text: Fireball Speed
+  m_Text: Magic Missile Speed
 --- !u!222 &1923446093
 CanvasRenderer:
   m_ObjectHideFlags: 0

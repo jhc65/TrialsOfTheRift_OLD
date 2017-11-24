@@ -11,8 +11,8 @@ public class PlayerHUDController : MonoBehaviour {
     [SerializeField] Image img_icebar;
 	
 	void Update () {
-		img_windbar.fillAmount = playc_trackedPlayer.GetNextWind() / playc_trackedPlayer.f_windRecharge;
-        img_icebar.fillAmount = playc_trackedPlayer.GetNextIce() / playc_trackedPlayer.f_iceRecharge;
+		img_windbar.fillAmount = playc_trackedPlayer.GetNextWind() / Constants.SpellStats.C_WindCooldown;
+        img_icebar.fillAmount = playc_trackedPlayer.GetNextIce() / Constants.SpellStats.C_IceCooldown;
         img_healthbar.fillAmount = playc_trackedPlayer.GetCurrentHealth() / Constants.PlayerStats.C_MaxHealth;
 	}
 }

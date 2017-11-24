@@ -4,23 +4,23 @@ using UnityEngine;
 
 public class WindController : SpellController {
 
-	public float f_windForce;
+	//public float f_windForce;
 	private float f_windDamage = Constants.SpellStats.C_WindDamage;
 
     // [Param Fix] - Remove if unecessary.
     private void Start() {
-        f_windForce = Constants.SpellStats.C_WindForce;
+        //f_windForce = Constants.SpellStats.C_WindForce;
     }
 
     protected override void ApplyEffect(GameObject go_target) {
         if (go_target.tag == "Player") {
 			Vector3 v3_direction = transform.forward.normalized;
-			go_target.GetComponent<Rigidbody>().AddForce(v3_direction * f_windForce);
+			go_target.GetComponent<Rigidbody>().AddForce(v3_direction * Constants.SpellStats.C_WindForce);
 			go_target.GetComponent<PlayerController>().Drop();
 		}
 		else if (go_target.tag == "Enemy") {
 			Vector3 v3_direction = transform.forward.normalized;
-			go_target.GetComponent<Rigidbody>().AddForce(v3_direction * f_windForce);
+			go_target.GetComponent<Rigidbody>().AddForce(v3_direction * Constants.SpellStats.C_WindForce);
 			go_target.GetComponent<EnemyController>().TakeDamage(f_windDamage);
 		}
 		else if (go_target.tag == "Crystal"){

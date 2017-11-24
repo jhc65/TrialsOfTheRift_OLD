@@ -20,7 +20,7 @@ public class CrystalDestructionObjective : Objective {
 	override public void Complete() {
 		// destroy prefab
 		b_complete = true;
-		GameController.GetInstance().CrystalHealth(go_activeCrystal.GetComponent<CrystalController>().e_color, go_activeCrystal.GetComponent<CrystalController>().i_maxHealth);
+		GameController.GetInstance().CrystalHealth(go_activeCrystal.GetComponent<CrystalController>().e_color, Constants.EnviroStats.C_CrystalMaxHealth);
 		Destroy(go_activeCrystal);
 	}
 
@@ -33,7 +33,7 @@ public class CrystalDestructionObjective : Objective {
     // [Param Fix]
     public override void ParamReset(float param_in) {
         go_activeCrystal.GetComponent<CrystalController>().i_health = (int)param_in;
-        go_activeCrystal.GetComponent<CrystalController>().i_maxHealth = (int)param_in;
+        //go_activeCrystal.GetComponent<CrystalController>().i_maxHealth = (int)param_in;
         GameController.GetInstance().CrystalHealth(go_activeCrystal.GetComponent<CrystalController>().e_color, (int)param_in);
     }
 }

@@ -2,9 +2,10 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class CaptureTheFlagObjective : Objective {
+public class CaptureTheFlagObjective : Objective
+{
 
-	public int i_maxScore = Constants.EnviroStats.C_CTFMaxScore;					// score needed to complete objective [Param Fix]
+	//public int i_maxScore = Constants.EnviroStats.C_CTFMaxScore;					// score needed to complete objective [Param Fix]
 	public GameObject go_redFlag, go_blueFlag;	// referenced flag objects
 	public GameObject go_redGoal, go_blueGoal;	// referenced goal objects
 
@@ -37,14 +38,14 @@ public class CaptureTheFlagObjective : Objective {
 			i_score += 1;
 			GameController.GetInstance().Score(e_color, i_score);
 		}
-		if(i_score >= i_maxScore) {
+		if(i_score >= Constants.EnviroStats.C_CTFMaxScore) {
 			Complete();
 		}
 	}
 
     // [Param Fix]
     public override void ParamReset(float param_in) {
-        i_maxScore = (int)param_in;
-        i_score = 0;
+    //    //i_maxScore = (int)param_in;
+    //    i_score = 0;
     }
 }

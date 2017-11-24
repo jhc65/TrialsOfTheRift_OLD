@@ -67,7 +67,6 @@ public class DarkMagician : MonoBehaviour {
 		objv_redObjective.Set(Constants.Color.RED, 1);
 		objv_blueObjective.Set(Constants.Color.BLUE, 1);
 
-		Debug.Log("I am here");
 		// enemies, TODO: this not here
 		//for(int i=0; i< v3_leftEnemySpawnPositions.Length; i++) {
 		//	GameObject g1 = Instantiate(go_enemy, v3_leftEnemySpawnPositions[i], new Quaternion(0, 0, 0, 0));

@@ -13,7 +13,7 @@ public class FlagController : MonoBehaviour {
 	}
 
 	void OnTriggerEnter(Collider other) {
-		if (other.tag == "InteractCollider") {   // player trying to pick up flag
+		if (other.tag == "InteractCollider" && transform.parent == null) {   // player trying to pick up flag
 			other.GetComponentInParent<PlayerController>().Pickup(gameObject);
 		}
 		if (other.tag == "Goal") {   // player scoring with flag

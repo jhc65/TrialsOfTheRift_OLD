@@ -99,7 +99,7 @@ public abstract class EnemyController : MonoBehaviour {
 	protected void EnterStateFrozen() {
 		e_State = State.FROZEN;
 		nma_agent.isStopped = true;
-		Invoke("Unfreeze", 2f);
+		Invoke("Unfreeze", Constants.SpellStats.C_IceFreezeTime);
 		ChildEnterStateFrozen();
     }
 	protected abstract void ChildEnterStateFrozen();

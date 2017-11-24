@@ -7,7 +7,7 @@ public abstract class SpellController : MonoBehaviour {
 	
 	public Constants.Color e_color;
 	public float f_damage;			// damage done to enemies
-	public float f_liveTime;
+	//public float f_liveTime;
 	public string[] s_spellTargetTags; // these are the tags of the objects spells should do damage/effect against
 
 	protected abstract void BuffSpell();
@@ -15,8 +15,8 @@ public abstract class SpellController : MonoBehaviour {
 
 
 	void Start() {
-		f_liveTime = Constants.SpellStats.C_SpellLiveTime;
-		Destroy(gameObject, f_liveTime);
+		//f_liveTime = Constants.SpellStats.C_SpellLiveTime;
+		Destroy(gameObject, Constants.SpellStats.C_SpellLiveTime);
 	}
 
 	void OnCollisionEnter(Collision collision) {

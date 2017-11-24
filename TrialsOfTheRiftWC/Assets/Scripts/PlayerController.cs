@@ -21,15 +21,15 @@ public class PlayerController : MonoBehaviour{
 	public bool isWisp = false;
 
     // read from Constants.cs
-    public int i_moveSpeed;                 // basic movement speed
-	public int i_wispSpeed;
-	public float f_magicMissileSpeed;		// basic attack movement speed
-    public float f_windSpeed;               // wind spell movement speed
-    public float f_iceSpeed;                // ice spell movement speed
-	public float f_magicMissileRecharge;	// delay between basic attacks
-	public float f_windRecharge;			// delay between wind spells
-	public float f_iceRecharge;             // delay between ice spells
-    public float f_iceFreeze;               // Time that ice spell freezes for.
+    //public int i_moveSpeed;                 // basic movement speed
+	//public int i_wispSpeed;
+	//public float f_magicMissileSpeed;		// basic attack movement speed
+    //public float f_windSpeed;               // wind spell movement speed
+    //public float f_iceSpeed;                // ice spell movement speed
+	//public float f_magicMissileRecharge;	// delay between basic attacks
+	//public float f_windRecharge;			// delay between wind spells
+	//public float f_iceRecharge;             // delay between ice spells
+    //public float f_iceFreeze;               // Time that ice spell freezes for.
 	//public float f_projectileSize = 1f;
 
     private float f_nextWind;				// time next wind spell can be cast
@@ -48,10 +48,10 @@ public class PlayerController : MonoBehaviour{
 		}
 
         if (isWisp) {
-			GetComponent<Rigidbody>().velocity = (v3_moveDir * i_wispSpeed) * i_canMove;
+			GetComponent<Rigidbody>().velocity = (v3_moveDir * Constants.PlayerStats.C_WispMovementSpeed) * i_canMove;
 		}
 		else {
-			GetComponent<Rigidbody>().velocity = (v3_moveDir * i_moveSpeed) * i_canMove;
+			GetComponent<Rigidbody>().velocity = (v3_moveDir * Constants.PlayerStats.C_MovementSpeed) * i_canMove;
 		}
 
     /*}
@@ -65,7 +65,7 @@ public class PlayerController : MonoBehaviour{
 	public void Freeze() {
 		i_canMove = 0;
 		Drop();
-		Invoke("Unfreeze", f_iceFreeze);
+		Invoke("Unfreeze", Constants.SpellStats.C_IceFreezeTime);
 	}
 
 	private void Unfreeze() {
@@ -87,8 +87,9 @@ public class PlayerController : MonoBehaviour{
             //this value right here is where the flag is being dropped from the bug
             //tried to change it to the transform of the player, didn't really work, maybe
             //try getting player transform, but setting y to 0
-			go_flagObj.transform.localPosition = new Vector3(0.0f, -1.5f, 0.0f);	// this is relative to t_flagPos
+			//go_flagObj.transform.localPosition = new Vector3(0.0f, -1.5f, 0.0f);	// this is relative to t_flagPos
 			go_flagObj.transform.SetParent(null);
+			go_flagObj.transform.localPosition = new Vector3(go_flagObj.transform.localPosition.x, 0.5f, go_flagObj.transform.localPosition.z);
 			go_flagObj = null;
 		}
 	}
@@ -102,7 +103,6 @@ public class PlayerController : MonoBehaviour{
 		c_playerCapsule.SetActive(false);
 		c_playerWisp.SetActive(true);
 		Drop();
-		//i_moveSpeed = Constants.PlayerStats.C_WispMovementSpeed;
 		f_nextWind = Time.time + (Constants.PlayerStats.C_RespawnTimer + 3.0f);
         f_nextIce = Time.time + (Constants.PlayerStats.C_RespawnTimer + 3.0f);
         Invoke("PlayerRespawn", Constants.PlayerStats.C_RespawnTimer);
@@ -113,7 +113,6 @@ public class PlayerController : MonoBehaviour{
         c_playerCapsule.SetActive(true);
         c_playerWisp.SetActive(false);
         f_playerHealth = Constants.PlayerStats.C_MaxHealth;
-        //i_moveSpeed = Constants.PlayerStats.C_MovementSpeed;
         f_nextWind = Time.time;
         f_nextIce = Time.time;
     }
@@ -128,6 +127,7 @@ public class PlayerController : MonoBehaviour{
 		}
 	}
 
+	// used by UI
     public float GetNextWind() {
         return f_nextWind;
     }
@@ -140,23 +140,23 @@ public class PlayerController : MonoBehaviour{
         return f_playerHealth;
     }
 
-    public void SetCurrentHealth(float f_healthIn) {
-        f_playerHealth = f_healthIn;
-    }
+    //public void SetCurrentHealth(float f_healthIn) {
+    //    f_playerHealth = f_healthIn;
+    //}
 
 	void Start() {
         f_playerHealth = Constants.PlayerStats.C_MaxHealth;
 		i_canMove = 1;
 
-		i_moveSpeed = Constants.PlayerStats.C_MovementSpeed;
-		f_magicMissileSpeed = Constants.SpellStats.C_MagicMissileSpeed;
-		f_windSpeed = Constants.SpellStats.C_WindSpeed;
-		f_iceSpeed = Constants.SpellStats.C_IceSpeed;
+		//i_moveSpeed = Constants.PlayerStats.C_MovementSpeed;
+		//f_magicMissileSpeed = Constants.SpellStats.C_MagicMissileSpeed;
+		//f_windSpeed = Constants.SpellStats.C_WindSpeed;
+		//f_iceSpeed = Constants.SpellStats.C_IceSpeed;
 
-		f_magicMissileRecharge = Constants.SpellStats.C_MagicMissileCooldown;
-		f_windRecharge = Constants.SpellStats.C_WindCooldown;
-		f_iceRecharge = Constants.SpellStats.C_IceCooldown;
-        f_iceFreeze = Constants.SpellStats.C_IceFreezeTime; 
+		//f_magicMissileRecharge = Constants.SpellStats.C_MagicMissileCooldown;
+		//f_windRecharge = Constants.SpellStats.C_WindCooldown;
+		//f_iceRecharge = Constants.SpellStats.C_IceCooldown;
+        //f_iceFreeze = Constants.SpellStats.C_IceFreezeTime; 
 
 		f_nextMagicMissile = 0;
 		f_nextWind = 0;
@@ -176,28 +176,31 @@ public class PlayerController : MonoBehaviour{
 
 			// spells
 			if (!go_flagObj && !isWisp) {
-				if (InputManager.GetButton(InputManager.Axes.MAGICMISSILE, i_playerNumber) && f_nextMagicMissile > f_magicMissileRecharge) {   // checks for fire button and if time delay has passed
+				// Magic Missile
+				if (InputManager.GetButton(InputManager.Axes.MAGICMISSILE, i_playerNumber) && f_nextMagicMissile > Constants.SpellStats.C_MagicMissileCooldown) {   // checks for fire button and if time delay has passed
 					f_nextMagicMissile = 0;
 					GameObject go_spell = Instantiate(go_magicMissileShot, t_spellSpawn.position, t_spellSpawn.rotation);
 					go_spell.GetComponent<SpellController>().e_color = e_Color;
 					//go_spell.transform.localScale = new Vector3(f_projectileSize, f_projectileSize, f_projectileSize);
 					Debug.Log(transform.forward.normalized);
-					go_spell.GetComponent<Rigidbody>().velocity = transform.forward * f_magicMissileSpeed;
+					go_spell.GetComponent<Rigidbody>().velocity = transform.forward * Constants.SpellStats.C_MagicMissileSpeed;
 				}
-				if (InputManager.GetButton(InputManager.Axes.WINDSPELL, i_playerNumber) && f_nextWind > f_windRecharge) {   // checks for fire button and if time delay has passed
+				// Wind Spell
+				if (InputManager.GetButton(InputManager.Axes.WINDSPELL, i_playerNumber) && f_nextWind > Constants.SpellStats.C_WindCooldown) {   // checks for fire button and if time delay has passed
 					f_nextWind = 0;
 					GameObject go_spell = Instantiate(go_windShot, t_spellSpawn.position, t_spellSpawn.rotation);
 					go_spell.GetComponent<SpellController>().e_color = e_Color;
 					//go_spell.transform.localScale = new Vector3(f_projectileSize, f_projectileSize, f_projectileSize);
 					Debug.Log(transform.forward.normalized);
-					go_spell.GetComponent<Rigidbody>().velocity = transform.forward * f_windSpeed;
+					go_spell.GetComponent<Rigidbody>().velocity = transform.forward * Constants.SpellStats.C_WindSpeed;
 				}
-				if (InputManager.GetButton(InputManager.Axes.ICESPELL, i_playerNumber) && f_nextIce > f_iceRecharge) {   // checks for fire button and if time delay has passed
+				// Ice Spell
+				if (InputManager.GetButton(InputManager.Axes.ICESPELL, i_playerNumber) && f_nextIce > Constants.SpellStats.C_IceCooldown) {   // checks for fire button and if time delay has passed
 					f_nextIce = 0;
 					GameObject go_spell = Instantiate(go_iceShot, t_spellSpawn.position, t_spellSpawn.rotation);
 					//go_spell.transform.localScale = new Vector3(f_projectileSize, f_projectileSize, f_projectileSize);
 					go_spell.GetComponent<SpellController>().e_color = e_Color;
-					go_spell.GetComponent<Rigidbody>().velocity = transform.forward * f_iceSpeed;
+					go_spell.GetComponent<Rigidbody>().velocity = transform.forward * Constants.SpellStats.C_IceSpeed;
 				}
 			}
 	}
