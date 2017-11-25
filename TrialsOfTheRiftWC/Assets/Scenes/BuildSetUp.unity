@@ -5333,7 +5333,7 @@ MonoBehaviour:
   slider_iceSpeed: {fileID: 2080931356}
   slider_windCooldown: {fileID: 1326548843}
   slider_iceCooldown: {fileID: 2118990994}
-  slider_magicMissileSpeed: {fileID: 0}
+  slider_magicMissileSpeed: {fileID: 1579338830}
   slider_projLife: {fileID: 541584829}
   slider_windForce: {fileID: 1776852448}
   slider_iceFreeze: {fileID: 1772054629}
@@ -5351,7 +5351,7 @@ MonoBehaviour:
   txt_iceSpeed: {fileID: 1280094396}
   txt_windCooldown: {fileID: 1292760381}
   txt_iceCooldown: {fileID: 1807234416}
-  txt_magicMissileSpeed: {fileID: 0}
+  txt_magicMissileSpeed: {fileID: 57085436}
   txt_projLife: {fileID: 1790614815}
   txt_windForce: {fileID: 311053182}
   txt_iceFreeze: {fileID: 348338438}
