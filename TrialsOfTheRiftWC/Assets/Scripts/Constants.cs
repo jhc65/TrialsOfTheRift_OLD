@@ -29,8 +29,8 @@ public static class Constants {
 		// Spell Buffs when crossing Rift
 		public static float C_IceSpeedMultiplier = 1.5f;
         public static float C_WindSpeedMultiplier = 1.5f;
-        public static float C_IceDamageMultiplier = 1.25f;
-        public static float C_WindDamageMultiplier = 1.25f;
+        public static int C_IceDamageMultiplier = 2;
+        public static int C_WindDamageMultiplier = 2;
         public static float C_SpellScaleMultiplier = 1.15f;
     }
        

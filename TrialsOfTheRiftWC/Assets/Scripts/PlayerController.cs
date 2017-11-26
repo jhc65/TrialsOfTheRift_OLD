@@ -41,10 +41,14 @@ public class PlayerController : MonoBehaviour{
 	private void Move() {
 		float f_inputX = InputManager.GetAxis(InputManager.Axes.HORIZONTAL, i_playerNumber);
 		float f_inputZ = InputManager.GetAxis(InputManager.Axes.VERTICAL, i_playerNumber);
+		float f_aimInputX = InputManager.GetAxis(InputManager.Axes.AIMHORIZONTAL, i_playerNumber);
+		float f_aimInputZ = InputManager.GetAxis(InputManager.Axes.AIMVERTICAL, i_playerNumber);
 
 		Vector3 v3_moveDir = new Vector3(f_inputX, 0, f_inputZ).normalized;
-		if (v3_moveDir.magnitude > 0) {
-			transform.rotation = Quaternion.LookRotation(v3_moveDir);
+		Vector3 v3_aimDir = new Vector3(f_aimInputX, 0, f_aimInputZ).normalized;
+
+		if (v3_aimDir.magnitude > 0) {
+			transform.rotation = Quaternion.LookRotation(v3_aimDir);
 		}
 
         if (isWisp) {
@@ -224,7 +228,7 @@ public class PlayerController : MonoBehaviour{
 
 	void OnTriggerEnter(Collider other) {
 		if (other.tag == "Rift") {
-			transform.position = transform.position + (int)e_Side * new Vector3(1, 0, 0);
+			transform.position = transform.position + (int)e_Side * new Vector3(-2, 0, 0);
 			TakeDamage(f_playerHealth);
 		}
 	}
