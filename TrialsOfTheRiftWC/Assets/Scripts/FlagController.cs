@@ -24,4 +24,8 @@ public class FlagController : MonoBehaviour {
 			}
 		}
 	}
+
+    public void ResetHome() {
+        transform.position = v3_home;
+    }
 }

@@ -48,5 +48,6 @@ public class CaptureTheFlagObjective : Objective
         Debug.Log("Yes, hello.");
         i_score = 0;
         GameController.GetInstance().Score(e_color, i_score);
+        go_currentFlag.GetComponent<FlagController>().ResetHome();
     }
 }

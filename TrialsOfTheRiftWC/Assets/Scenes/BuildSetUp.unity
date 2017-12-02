@@ -5682,8 +5682,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   go_objectivesList:
-  - {fileID: 1105177977694010, guid: 2638f8d7de90284469b59ca93aee9969, type: 2}
   - {fileID: 1452077301921158, guid: b049ff75103b5e04eabc3053628da878, type: 2}
+  - {fileID: 1105177977694010, guid: 2638f8d7de90284469b59ca93aee9969, type: 2}
   go_enemy: {fileID: 1361453887809848, guid: dcf428e369c5eca45aca3fd48073e9db, type: 2}
   f_enemySpawnTime: 10
   objv_redObjective: {fileID: 0}

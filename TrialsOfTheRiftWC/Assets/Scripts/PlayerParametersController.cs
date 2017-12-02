@@ -200,6 +200,11 @@ public class PlayerParametersController : MonoBehaviour {
 	}
 
     public void ObjectiveReset() {
+        //Drop the flag before resetting (for CTF)
+        foreach (PlayerController playerController in l_playerControllers) {
+		    playerController.Drop();
+		}
+        //Then reset.
 		DM.objv_redObjective.ParamReset(Constants.EnviroStats.C_CrystalMaxHealth);
         DM.objv_blueObjective.ParamReset(Constants.EnviroStats.C_CrystalMaxHealth);
     }
