@@ -19,6 +19,10 @@ public abstract class EnemyController : MonoBehaviour {
 	protected void Start() {
 		r_rigidbody = GetComponent<Rigidbody>();
 		nma_agent = GetComponent<UnityEngine.AI.NavMeshAgent>();
+		i_health = Constants.EnviroStats.C_EnemyHealth;
+		f_damage = Constants.EnviroStats.C_EnemyDamage;
+		nma_agent.speed = Constants.EnviroStats.C_EnemySpeed;
+		nma_agent.acceleration = nma_agent.acceleration* (Constants.EnviroStats.C_EnemySpeed / 3.5f);
 		EnterStateChase ();
 	}
 	
@@ -27,6 +31,11 @@ public abstract class EnemyController : MonoBehaviour {
 		if(i_health <= 0f){
 			Debug.Log("death");
 			EnterStateDie();
+		}
+		
+		if (nma_agent.speed != Constants.EnviroStats.C_EnemySpeed) {
+			nma_agent.speed = Constants.EnviroStats.C_EnemySpeed;
+			nma_agent.acceleration = nma_agent.acceleration* (Constants.EnviroStats.C_EnemySpeed / 3.5f);
 		}
 		switch (e_State) {
 		case State.CHASE:

@@ -17,7 +17,7 @@ public class MeleeController : EnemyController {
 		float f_currentDistance;
 		for(int i = 0; i < Constants.C_Players.Length; i++){	
 			f_currentDistance = Vector3.Distance(Constants.C_Players[i].transform.position,transform.position);
-			if(Constants.C_Players[i].GetComponent<PlayerController>().e_Side == e_Side && f_currentDistance < f_minDistance){
+			if(Constants.C_Players[i].GetComponent<PlayerController>().e_Side == e_Side && f_currentDistance < f_minDistance && Constants.C_Players[i].GetComponent<PlayerController>().isWisp == false){
 				go_closestTarget = Constants.C_Players[i];
 				f_minDistance = f_currentDistance;
 			}
@@ -45,7 +45,7 @@ public class MeleeController : EnemyController {
     }
 
     protected override void ChildDoAttack() {
-		go_closestTarget.GetComponent<PlayerController>().TakeDamage(f_damage);
+		go_closestTarget.GetComponent<PlayerController>().TakeDamage(Constants.EnviroStats.C_EnemyDamage);
     }
 
     protected override void ChildEnterStateDie() {
