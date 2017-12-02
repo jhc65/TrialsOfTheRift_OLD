@@ -235,8 +235,8 @@ public class PlayerController : MonoBehaviour{
 
 	void OnTriggerEnter(Collider other) {
 		if (other.tag == "Rift") {
-			transform.position = transform.position + (int)e_Side * new Vector3(-2, 0, 0);
 			TakeDamage(f_playerHealth);
+			transform.position = transform.position + (int)e_Side * new Vector3(-2, 0, 0);
 		}
 	}
 

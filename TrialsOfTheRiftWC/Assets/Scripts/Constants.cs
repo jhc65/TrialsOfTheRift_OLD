@@ -48,6 +48,7 @@ public static class Constants {
     public static class EnviroStats {
         public static float C_EnemySpawnTime = 10.0f;             
         public static float C_EnemySpeed = 3.5f;
+		public static float C_EnemyAttackRange = 1.5f;
         public static int C_EnemyHealth = 75;
         public static int C_EnemyDamage = 25;
         public static int C_CrystalMaxHealth = 500;
