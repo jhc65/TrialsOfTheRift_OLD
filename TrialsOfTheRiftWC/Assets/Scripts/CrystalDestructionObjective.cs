@@ -33,7 +33,6 @@ public class CrystalDestructionObjective : Objective {
     // [Param Fix]
     public override void ParamReset(float param_in) {
         go_activeCrystal.GetComponent<CrystalController>().i_health = (int)param_in;
-        //go_activeCrystal.GetComponent<CrystalController>().i_maxHealth = (int)param_in;
         GameController.GetInstance().CrystalHealth(go_activeCrystal.GetComponent<CrystalController>().e_color, (int)param_in);
     }
 }

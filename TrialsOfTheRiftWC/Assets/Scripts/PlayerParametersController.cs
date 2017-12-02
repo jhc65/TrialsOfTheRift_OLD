@@ -17,7 +17,7 @@ public class PlayerParametersController : MonoBehaviour {
     public Slider slider_windCooldown;
     public Slider slider_iceCooldown;
     public Slider slider_magicMissileSpeed;
-    //public Slider slider_projSize;
+    public Slider slider_projSize;
     public Slider slider_projLife;
     public Slider slider_windForce;
     public Slider slider_iceFreeze;
@@ -38,7 +38,7 @@ public class PlayerParametersController : MonoBehaviour {
     public Text txt_windCooldown;
     public Text txt_iceCooldown;
     public Text txt_magicMissileSpeed;
-    //public Text txt_projSize;
+    public Text txt_projSize;
     public Text txt_projLife;
     public Text txt_windForce;
     public Text txt_iceFreeze;
@@ -121,12 +121,14 @@ public class PlayerParametersController : MonoBehaviour {
 		//}
 	}
 
-    //public void ChangeProjectileSize(float f_projSizeIn) {
-    //    txt_magicMissileSpeed.text = slider_magicMissileSpeed.value.ToString();
+    public void ChangeProjectileSize(float f_projSizeIn) {
+        float roundedVal = Mathf.Round(slider_projSize.value * 100f) / 100f;
+        txt_projSize.text = roundedVal.ToString();
+        Constants.SpellStats.C_PlayerProjectileSize = roundedVal;
     //    foreach (PlayerController playerController in l_playerControllers) {
     //        playerController.f_magicMissileSpeed = f_projSizeIn;
     //    }
-    //}
+    }
 
     public void ChangeSpellLifetime(float f_projLifeIn) {
         txt_projLife.text = slider_projLife.value.ToString();
@@ -195,13 +197,12 @@ public class PlayerParametersController : MonoBehaviour {
     public void ChangeCTFMaxScore(float f_CTFScoreIn) {
         txt_CTFScore.text = slider_CTFScore.value.ToString();
 		Constants.EnviroStats.C_CTFMaxScore = (int)f_CTFScoreIn;
-		//if (DM.objv_blueObjective.gameObject.GetComponent<CaptureTheFlagObjective>()) {
-		//	DM.objv_blueObjective.gameObject.GetComponent<CaptureTheFlagObjective>().ParamReset(f_CTFScoreIn);
-		//}
-		//if (DM.objv_redObjective.gameObject.GetComponent<CaptureTheFlagObjective>()) {
-		//	DM.objv_redObjective.gameObject.GetComponent<CaptureTheFlagObjective>().ParamReset(f_CTFScoreIn);
-		//}
 	}
+
+    public void ObjectiveReset() {
+		DM.objv_redObjective.ParamReset(Constants.EnviroStats.C_CrystalMaxHealth);
+        DM.objv_blueObjective.ParamReset(Constants.EnviroStats.C_CrystalMaxHealth);
+    }
 
 	// Get initial values from Constants, or from editor if they're not in Constants.
 	void Start() {
@@ -234,9 +235,9 @@ public class PlayerParametersController : MonoBehaviour {
 		txt_magicMissileSpeed.text = Constants.SpellStats.C_MagicMissileSpeed.ToString();
 		slider_magicMissileSpeed.value = Constants.SpellStats.C_MagicMissileSpeed;
 
-		// Projectile Size (Incomplete)
-		//txt_projSize.text = "1";
-		//slider_projSize.value = 1;
+		// Projectile Size 
+        txt_projSize.text = Constants.SpellStats.C_PlayerProjectileSize.ToString();
+		slider_projSize.value = Constants.SpellStats.C_PlayerProjectileSize;
 
 		// Projectile Live Time
 		txt_projLife.text = Constants.SpellStats.C_SpellLiveTime.ToString();

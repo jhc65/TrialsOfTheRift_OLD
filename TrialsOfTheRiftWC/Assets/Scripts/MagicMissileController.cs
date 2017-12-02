@@ -14,10 +14,10 @@ public class MagicMissileController : SpellController {
 		else if (go_target.tag == "Crystal"){
 			Constants.Color crystalColor = go_target.GetComponent<CrystalController>().e_color;
 			if (crystalColor != e_color){
-				go_target.GetComponent<CrystalController>().ChangeHealth(-0.01f);
+				go_target.GetComponent<CrystalController>().ChangeHealth(Constants.SpellStats.C_MMCrystalDamagePercent);
 			}
 			else if (crystalColor == e_color) {
-				go_target.GetComponent<CrystalController>().ChangeHealth(0.005f);
+				go_target.GetComponent<CrystalController>().ChangeHealth(Constants.SpellStats.C_MMCrystalHealPercent);
 			}
 		}
     }

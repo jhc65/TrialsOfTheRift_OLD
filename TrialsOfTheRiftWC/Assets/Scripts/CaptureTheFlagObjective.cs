@@ -45,7 +45,8 @@ public class CaptureTheFlagObjective : Objective
 
     // [Param Fix]
     public override void ParamReset(float param_in) {
-    //    //i_maxScore = (int)param_in;
-    //    i_score = 0;
+        Debug.Log("Yes, hello.");
+        i_score = 0;
+        GameController.GetInstance().Score(e_color, i_score);
     }
 }

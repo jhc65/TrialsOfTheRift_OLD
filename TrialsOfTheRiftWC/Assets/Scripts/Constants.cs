@@ -9,6 +9,7 @@ public static class Constants {
         public static float C_WispMovementSpeed = 2.0f;
         public static float C_RespawnTimer = 5.0f;
         public static int C_MaxHealth = 300;
+
     }
 
     // Spell Constants
@@ -25,6 +26,8 @@ public static class Constants {
 		public static float C_WindCooldown = 2.0f;
         public static float C_WindForce = 6000.0f;                // [Param Fix]
         public static float C_IceFreezeTime = 2.0f;               // [Param Fix]
+        public static float C_NextSpellDelay = 0.5f;
+        public static float C_PlayerProjectileSize = 0.75f;
 
 		// Spell Buffs when crossing Rift
 		public static float C_IceSpeedMultiplier = 1.5f;
@@ -32,6 +35,12 @@ public static class Constants {
         public static int C_IceDamageMultiplier = 2;
         public static int C_WindDamageMultiplier = 2;
         public static float C_SpellScaleMultiplier = 1.15f;
+
+        //Crystal based percentages
+        public static float C_SpellCrystalDamagePercent = -0.1f;
+        public static float C_SpellCrystalHealPercent = 0.05f;
+        public static float C_MMCrystalDamagePercent = -0.01f;
+        public static float C_MMCrystalHealPercent = 0.005f;
     }
        
     // [Param Fix] - This entire class and its values are parameter fixes.

@@ -35,7 +35,9 @@ public class PlayerController : MonoBehaviour{
     private float f_nextWind;				// time next wind spell can be cast
 	private float f_nextIce;                // time next ice spell can be cast
 	private float f_nextMagicMissile;       // time next basic attack can be cast
+    private float f_nextCast;               // time next spell in general can be cast. (not including MagicMissile)
 	private float f_playerHealth;           // player's current health value
+    public float f_projectileSize;          // size of player projectiles.
 
 
 	private void Move() {
@@ -165,6 +167,7 @@ public class PlayerController : MonoBehaviour{
 		f_nextMagicMissile = 0;
 		f_nextWind = 0;
 		f_nextIce = 0;
+        f_nextCast = 0;
 
 		if (transform.position.x > 0)
 			e_Side = Constants.Side.RIGHT;
@@ -177,6 +180,8 @@ public class PlayerController : MonoBehaviour{
 			f_nextMagicMissile += Time.deltaTime;
 			f_nextWind += Time.deltaTime;
             f_nextIce += Time.deltaTime;
+            f_nextCast += Time.deltaTime;
+            f_projectileSize = Constants.SpellStats.C_PlayerProjectileSize;
 
 			// spells
 			if (!go_flagObj && !isWisp) {
@@ -185,24 +190,26 @@ public class PlayerController : MonoBehaviour{
 					f_nextMagicMissile = 0;
 					GameObject go_spell = Instantiate(go_magicMissileShot, t_spellSpawn.position, t_spellSpawn.rotation);
 					go_spell.GetComponent<SpellController>().e_color = e_Color;
-					//go_spell.transform.localScale = new Vector3(f_projectileSize, f_projectileSize, f_projectileSize);
+					go_spell.transform.localScale = new Vector3(f_projectileSize, f_projectileSize, f_projectileSize);
 					Debug.Log(transform.forward.normalized);
 					go_spell.GetComponent<Rigidbody>().velocity = transform.forward * Constants.SpellStats.C_MagicMissileSpeed;
 				}
 				// Wind Spell
-				if (InputManager.GetButton(InputManager.Axes.WINDSPELL, i_playerNumber) && f_nextWind > Constants.SpellStats.C_WindCooldown) {   // checks for fire button and if time delay has passed
+				if (InputManager.GetButton(InputManager.Axes.WINDSPELL, i_playerNumber) && f_nextWind > Constants.SpellStats.C_WindCooldown && f_nextCast > Constants.SpellStats.C_NextSpellDelay) {   // checks for fire button and if time delay has passed
 					f_nextWind = 0;
+                    f_nextCast = 0;
 					GameObject go_spell = Instantiate(go_windShot, t_spellSpawn.position, t_spellSpawn.rotation);
 					go_spell.GetComponent<SpellController>().e_color = e_Color;
-					//go_spell.transform.localScale = new Vector3(f_projectileSize, f_projectileSize, f_projectileSize);
+					go_spell.transform.localScale = new Vector3(f_projectileSize, f_projectileSize, f_projectileSize);
 					Debug.Log(transform.forward.normalized);
 					go_spell.GetComponent<Rigidbody>().velocity = transform.forward * Constants.SpellStats.C_WindSpeed;
 				}
 				// Ice Spell
-				if (InputManager.GetButton(InputManager.Axes.ICESPELL, i_playerNumber) && f_nextIce > Constants.SpellStats.C_IceCooldown) {   // checks for fire button and if time delay has passed
+				if (InputManager.GetButton(InputManager.Axes.ICESPELL, i_playerNumber) && f_nextIce > Constants.SpellStats.C_IceCooldown && f_nextCast > Constants.SpellStats.C_NextSpellDelay) {   // checks for fire button and if time delay has passed
 					f_nextIce = 0;
+                    f_nextCast = 0;
 					GameObject go_spell = Instantiate(go_iceShot, t_spellSpawn.position, t_spellSpawn.rotation);
-					//go_spell.transform.localScale = new Vector3(f_projectileSize, f_projectileSize, f_projectileSize);
+					go_spell.transform.localScale = new Vector3(f_projectileSize, f_projectileSize, f_projectileSize);
 					go_spell.GetComponent<SpellController>().e_color = e_Color;
 					go_spell.GetComponent<Rigidbody>().velocity = transform.forward * Constants.SpellStats.C_IceSpeed;
 				}
