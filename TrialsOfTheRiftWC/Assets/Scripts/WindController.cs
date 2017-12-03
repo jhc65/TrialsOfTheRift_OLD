@@ -23,7 +23,7 @@ public class WindController : SpellController {
 			go_target.GetComponent<Rigidbody>().AddForce(v3_direction * Constants.SpellStats.C_WindForce);
 			go_target.GetComponent<EnemyController>().TakeDamage(f_windDamage);
 		}
-		else if (go_target.tag == "Crystal"){
+		else if (go_target.tag == "Crystal") {
 			Constants.Color crystalColor = go_target.GetComponent<CrystalController>().e_color;
 			if (crystalColor != e_color){
 				go_target.GetComponent<CrystalController>().ChangeHealth(Constants.SpellStats.C_SpellCrystalDamagePercent);

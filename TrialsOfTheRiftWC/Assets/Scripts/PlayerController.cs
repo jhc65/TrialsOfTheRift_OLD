@@ -13,7 +13,7 @@ public class PlayerController : MonoBehaviour{
 	public GameObject go_flagObj;			// flag game object; if not null, player is carrying flag
 	public GameObject go_interactCollider;  // activated with button-press to pickup flag
 	public Transform t_spellSpawn;			// location spells are instantiated
-	public int i_canMove;               // identifies if the player is frozen
+	public float f_canMove;					// identifies if the player is frozen
 	public GameObject go_magicMissileShot;  // wind spell object
 	public GameObject go_windShot;			// wind spell object
 	public GameObject go_iceShot;           // ice spell object
@@ -54,10 +54,10 @@ public class PlayerController : MonoBehaviour{
 		}
 
         if (isWisp) {
-			GetComponent<Rigidbody>().velocity = (v3_moveDir * Constants.PlayerStats.C_WispMovementSpeed) * i_canMove;
+			GetComponent<Rigidbody>().velocity = (v3_moveDir * Constants.PlayerStats.C_WispMovementSpeed) * f_canMove;
 		}
 		else {
-			GetComponent<Rigidbody>().velocity = (v3_moveDir * Constants.PlayerStats.C_MovementSpeed) * i_canMove;
+			GetComponent<Rigidbody>().velocity = (v3_moveDir * Constants.PlayerStats.C_MovementSpeed) * f_canMove;
 		}
 
     /*}
@@ -69,13 +69,13 @@ public class PlayerController : MonoBehaviour{
 	}
 
 	public void Freeze() {
-		i_canMove = 0;
+		f_canMove = 0;
 		Drop();
 		Invoke("Unfreeze", Constants.SpellStats.C_IceFreezeTime);
 	}
 
 	private void Unfreeze() {
-		i_canMove = 1;
+		f_canMove = 1;
     }
 
 	private void TurnOffInteractCollider() {
@@ -152,7 +152,7 @@ public class PlayerController : MonoBehaviour{
 
 	void Start() {
         f_playerHealth = Constants.PlayerStats.C_MaxHealth;
-		i_canMove = 1;
+		f_canMove = 1;
 
 		//i_moveSpeed = Constants.PlayerStats.C_MovementSpeed;
 		//f_magicMissileSpeed = Constants.SpellStats.C_MagicMissileSpeed;
@@ -233,12 +233,12 @@ public class PlayerController : MonoBehaviour{
 			e_Side = Constants.Side.LEFT;
 	}
 
-	void OnTriggerEnter(Collider other) {
-		if (other.tag == "Rift") {
-			TakeDamage(f_playerHealth);
-			transform.position = transform.position + (int)e_Side * new Vector3(-2, 0, 0);
-		}
-	}
+	//void OnTriggerEnter(Collider other) {
+	//	if (other.tag == "Rift") {
+	//		TakeDamage(f_playerHealth);
+	//		transform.position = transform.position + (int)e_Side * new Vector3(-2, 0, 0);
+	//	}
+	//}
 
     private void OnCollisionEnter(Collision collision)
     {
