@@ -9,7 +9,13 @@ public class ElectricAOEController : MonoBehaviour {
 	public float f_electricDamage;	// TODO: set this immediately after instantiation
 
 	void Start () {
-		Destroy(gameObject, Constants.SpellStats.C_ElectricAOELiveTime);
+		//Destroy(gameObject, Constants.SpellStats.C_ElectricAOELiveTime);
+		Invoke("Die", Constants.SpellStats.C_ElectricAOELiveTime);
+	}
+	
+	private void Die(){
+		transform.position = new Vector3(transform.position.x,-500f,transform.position.z);
+		Destroy(gameObject, 0.1f);
 	}
 	
 	void OnTriggerEnter(Collider other) {
@@ -37,7 +43,7 @@ public class ElectricAOEController : MonoBehaviour {
 		}
 		else if (go_target.tag == "Enemy") {
 			StartCoroutine("ApplyEnemyDamage", go_target);
-			// TODO: change enemy speed *.5
+			go_target.GetComponent<EnemyController>().Slow(.5f);
 		}
 		else if (go_target.tag == "Crystal") {
 			StartCoroutine("ApplyCrystalDamage", go_target);
@@ -50,7 +56,8 @@ public class ElectricAOEController : MonoBehaviour {
 			go_target.GetComponent<PlayerController>().f_canMove = 1;
 		}
 		else if (go_target.tag == "Enemy") {
-			StopCoroutine("ApplyCrystalDamage");
+			StopCoroutine("ApplyEnemyDamage");
+			go_target.GetComponent<EnemyController>().Unslow();
 		}
 		else if (go_target.tag == "Crystal") { 
 			StopCoroutine("ApplyCrystalDamage");	// shouldn't be practically necessary
@@ -72,9 +79,11 @@ public class ElectricAOEController : MonoBehaviour {
 
 	// applies AOE damage to enemy every .5s until dissipation or triggerexit
 	IEnumerator ApplyEnemyDamage(GameObject go_target) {
-		go_target.GetComponent<EnemyController>().TakeDamage(f_electricDamage);
-		yield return new WaitForSeconds(0.5f);
-		StartCoroutine("ApplyEnemyDamage", go_target);
+		if(go_target){  //Make sure it's not already dead.
+			go_target.GetComponent<EnemyController>().TakeDamage(f_electricDamage);
+			yield return new WaitForSeconds(0.5f);
+			StartCoroutine("ApplyEnemyDamage", go_target);
+		}
 	}
 
 }
