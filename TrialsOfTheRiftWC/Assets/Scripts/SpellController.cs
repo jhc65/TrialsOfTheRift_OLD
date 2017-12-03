@@ -6,20 +6,18 @@ using UnityEngine;
 public abstract class SpellController : MonoBehaviour {
 	
 	public Constants.Color e_color;
-	public float f_damage;			// damage done to enemies
-	//public float f_liveTime;
+	public float f_damage;			// currently unused, as each individual spell reads its damage value from Constants.cs in Start()
 	public string[] s_spellTargetTags; // these are the tags of the objects spells should do damage/effect against
 
 	protected abstract void BuffSpell();
 	protected abstract void ApplyEffect(GameObject go_target);
 
 
-	void Start() {
-		//f_liveTime = Constants.SpellStats.C_SpellLiveTime;
+	protected virtual void Start() {
 		Destroy(gameObject, Constants.SpellStats.C_SpellLiveTime);
 	}
 
-	void OnCollisionEnter(Collision collision) {
+	protected virtual void OnCollisionEnter(Collision collision) {
 		//Debug.Log("Impact:" + coll.gameObject.tag);
 		foreach (string tag in s_spellTargetTags) {
 			if (collision.gameObject.tag == tag) {

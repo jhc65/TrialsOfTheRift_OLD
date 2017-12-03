@@ -4,13 +4,7 @@ using UnityEngine;
 
 public class WindController : SpellController {
 
-	//public float f_windForce;
 	private float f_windDamage = Constants.SpellStats.C_WindDamage;
-
-    // [Param Fix] - Remove if unecessary.
-    private void Start() {
-        //f_windForce = Constants.SpellStats.C_WindForce;
-    }
 
     protected override void ApplyEffect(GameObject go_target) {
         if (go_target.tag == "Player") {

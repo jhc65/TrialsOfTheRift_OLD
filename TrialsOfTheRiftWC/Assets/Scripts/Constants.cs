@@ -21,7 +21,7 @@ public static class Constants {
 		public static int C_MagicMissileDamage = 50;       // Currently want all spells, including MM, to kill enemies in 2 hits
         public static int C_IceDamage = 50;
         public static int C_WindDamage = 50;
-		public static int C_ElectricDamage = 50;
+		public static int C_ElectricDamage = 10;		// less because this value is repeatedly applied while enemies are in the AOE
 		public static float C_MagicMissileCooldown = 0.25f;
 		public static float C_IceCooldown = 5.0f;
 		public static float C_WindCooldown = 2.0f;
@@ -33,9 +33,9 @@ public static class Constants {
         public static float C_PlayerProjectileSize = 0.75f;
 
 		// Spell Buffs when crossing Rift
-		public static float C_IceSpeedMultiplier = 1.5f;
-        public static float C_WindSpeedMultiplier = 1.5f;
-		public static float C_ElectricSpeedMultiplier = 1.5f;
+		//public static float C_IceSpeedMultiplier = 1.5f;
+        //public static float C_WindSpeedMultiplier = 1.5f;
+		//public static float C_ElectricSpeedMultiplier = 1.5f;
 		public static int C_IceDamageMultiplier = 2;
         public static int C_WindDamageMultiplier = 2;
 		public static int C_ElectricDamageMultiplier = 2;
