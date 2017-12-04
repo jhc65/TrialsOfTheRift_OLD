@@ -14,7 +14,8 @@ public abstract class SpellController : MonoBehaviour {
 
 
 	protected virtual void Start() {
-		Destroy(gameObject, Constants.SpellStats.C_SpellLiveTime);
+		//Destroy(gameObject, Constants.SpellStats.C_SpellLiveTime);
+		Invoke("InvokeDestroy", Constants.SpellStats.C_SpellLiveTime);
 	}
 
 	protected virtual void OnCollisionEnter(Collision collision) {
@@ -45,7 +46,13 @@ public abstract class SpellController : MonoBehaviour {
 
 	void OnTriggerEnter(Collider other) {	// rift reacts to spells by trigger rather than collision
 		if (other.tag == "Rift"){
+			CancelInvoke(); //If it's the rift cancel the first invoke
 			BuffSpell();
+			Invoke("InvokeDestroy", 1.07f); //Call another invoke but with enough time to travel 2/3's of the other side, (1.07 is a derived time)
 		}
+	}
+
+	void InvokeDestroy() {
+		Destroy(gameObject);
 	}
 }
