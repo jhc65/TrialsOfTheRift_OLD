@@ -5,15 +5,10 @@ using UnityEngine;
 
 public class WindController : SpellController {
 
-	//public float f_windForce;
 	private float f_windDamage = Constants.SpellStats.C_WindDamage;
 
-    // [Param Fix] - Remove if unecessary.
-    private void Start() {
-        //f_windForce = Constants.SpellStats.C_WindForce;
-    }
-
     protected override void ApplyEffect(GameObject go_target) {
+<<<<<<< HEAD
         if (go_target.tag == "Player")
         {
             Vector3 v3_direction = transform.forward.normalized;
@@ -43,6 +38,27 @@ public class WindController : SpellController {
             Vector3 v3_direction = transform.forward.normalized;
             go_target.GetComponent<Rigidbody>().AddForce(v3_direction * Constants.SpellStats.C_WindForce);
         }
+=======
+        if (go_target.tag == "Player") {
+			Vector3 v3_direction = transform.forward.normalized;
+			go_target.GetComponent<Rigidbody>().AddForce(v3_direction * Constants.SpellStats.C_WindForce);
+			go_target.GetComponent<PlayerController>().Drop();
+		}
+		else if (go_target.tag == "Enemy") {
+			Vector3 v3_direction = transform.forward.normalized;
+			go_target.GetComponent<Rigidbody>().AddForce(v3_direction * Constants.SpellStats.C_WindForce);
+			go_target.GetComponent<EnemyController>().TakeDamage(f_windDamage);
+		}
+		else if (go_target.tag == "Crystal") {
+			Constants.Color crystalColor = go_target.GetComponent<CrystalController>().e_color;
+			if (crystalColor != e_color){
+				go_target.GetComponent<CrystalController>().ChangeHealth(Constants.SpellStats.C_SpellCrystalDamagePercent);
+			}
+			else if (crystalColor == e_color) {
+				go_target.GetComponent<CrystalController>().ChangeHealth(Constants.SpellStats.C_SpellCrystalHealPercent);
+			}
+		}
+>>>>>>> dbfc1bc37479329967deb1fd32d7e3f163043d44
     }
 
     protected override void BuffSpell(){

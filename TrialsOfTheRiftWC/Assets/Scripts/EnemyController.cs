@@ -1,11 +1,13 @@
 using UnityEngine;
+using System.Linq;
+using System;
 using System.Collections;
 [RequireComponent(typeof(Rigidbody))]
 [RequireComponent(typeof(UnityEngine.AI.NavMeshAgent))]
 
 public abstract class EnemyController : MonoBehaviour {
 
-    protected enum State {CHASE, ATTACK, FROZEN, DIE};
+    protected enum State {CHASE, ATTACK, FROZEN, SLOWED, DIE};
 	[SerializeField]
 	public Constants.Side e_Side;
 	[SerializeField]
@@ -13,8 +15,11 @@ public abstract class EnemyController : MonoBehaviour {
 	[SerializeField]
 	protected float f_damage;
 	protected State e_State;
+	protected State e_previousState; //Used for returning to the state previous to entering the AttackState.
+	protected State[] e_statusPriorityList = new State[] {State.FROZEN,State.SLOWED};
 	protected Rigidbody r_rigidbody;
 	protected UnityEngine.AI.NavMeshAgent nma_agent;
+	public float f_canMove = 1f;
 	
 	protected void Start() {
 		r_rigidbody = GetComponent<Rigidbody>();
@@ -33,10 +38,10 @@ public abstract class EnemyController : MonoBehaviour {
 			EnterStateDie();
 		}
 		
-		if (nma_agent.speed != Constants.EnviroStats.C_EnemySpeed) {
-			nma_agent.speed = Constants.EnviroStats.C_EnemySpeed;
-			nma_agent.acceleration = nma_agent.acceleration* (Constants.EnviroStats.C_EnemySpeed / 3.5f);
-		}
+		// if (nma_agent.speed != Constants.EnviroStats.C_EnemySpeed) {
+			// nma_agent.speed = Constants.EnviroStats.C_EnemySpeed;
+			// nma_agent.acceleration = nma_agent.acceleration* (Constants.EnviroStats.C_EnemySpeed / 3.5f);
+		// }
 		switch (e_State) {
 		case State.CHASE:
 			UpdateChase ();
@@ -46,6 +51,9 @@ public abstract class EnemyController : MonoBehaviour {
 			break;
 		case State.FROZEN:
 			UpdateFrozen();
+			break;
+		case State.SLOWED:
+			UpdateSlowed();
 			break;
 		case State.DIE:
 			UpdateDie ();
@@ -65,6 +73,8 @@ public abstract class EnemyController : MonoBehaviour {
 	protected abstract void ChildUpdateChase();
 
     protected void EnterStateAttack() {
+		if(e_State != State.ATTACK)
+			e_previousState = e_State;
         e_State = State.ATTACK;
 		ChildEnterStateAttack();
     }
@@ -81,7 +91,14 @@ public abstract class EnemyController : MonoBehaviour {
 	protected abstract void ChildDoAttack();
 
     protected void AttackOver() {
-		EnterStateChase();
+		switch (e_previousState) {
+		case State.SLOWED:
+			UpdateSlowed();
+			break;
+		default:
+			EnterStateChase ();
+			break;
+		}
     }
 
     protected void EnterStateDie() {
@@ -105,9 +122,11 @@ public abstract class EnemyController : MonoBehaviour {
 		//}
 	}
 	
-	protected void EnterStateFrozen() {
+	protected void EnterStateFrozen(float f) {
 		e_State = State.FROZEN;
-		nma_agent.isStopped = true;
+		f_canMove = f;
+		UpdateSpeed();
+		//nma_agent.isStopped = true;
 		Invoke("Unfreeze", Constants.SpellStats.C_IceFreezeTime);
 		ChildEnterStateFrozen();
     }
@@ -118,12 +137,38 @@ public abstract class EnemyController : MonoBehaviour {
     }
 	protected abstract void ChildUpdateFrozen();
 	
-	public void Freeze(){
-		EnterStateFrozen();
+	public void Freeze(float f){
+		EnterStateFrozen(f);
 	}
 
 	private void Unfreeze(){
-		nma_agent.isStopped = false;
+		f_canMove = 1f;
+		UpdateSpeed();
+		EnterStateChase();
+	}
+	
+	protected void EnterStateSlowed(float f) {
+		if(e_statusPriorityList.Contains(e_State) && Array.IndexOf(e_statusPriorityList,State.SLOWED) > Array.IndexOf(e_statusPriorityList,e_State))
+			return;
+		e_State = State.SLOWED;
+		f_canMove = f;
+		UpdateSpeed();
+		ChildEnterStateSlowed();
+    }
+	protected abstract void ChildEnterStateSlowed();
+
+    protected void UpdateSlowed() {
+		ChildUpdateSlowed();
+    }
+	protected abstract void ChildUpdateSlowed();
+	
+	public void Slow(float f){
+		EnterStateSlowed(f);
+	}
+
+	public void Unslow(){
+		f_canMove = 1f;
+		UpdateSpeed();
 		EnterStateChase();
 	}
 
@@ -134,4 +179,9 @@ public abstract class EnemyController : MonoBehaviour {
     public void SetHealth(int healthIn) {
         i_health = healthIn;
     }
+	
+	private void UpdateSpeed(){
+		nma_agent.speed = Constants.EnviroStats.C_EnemySpeed * f_canMove;
+		//nma_agent.acceleration = nma_agent.acceleration* (Constants.EnviroStats.C_EnemySpeed / 3.5f) * f_canMove;
+	}
 }

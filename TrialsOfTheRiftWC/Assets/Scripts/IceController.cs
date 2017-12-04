@@ -25,7 +25,7 @@ public class IceController : SpellController {
         else if (go_target.tag == "Enemy")
         {
             go_target.GetComponent<EnemyController>().TakeDamage(f_iceDamage);
-            go_target.GetComponent<EnemyController>().Freeze();
+            go_target.GetComponent<EnemyController>().Freeze(0f);
         }
         else if (go_target.tag == "Crystal")
         {

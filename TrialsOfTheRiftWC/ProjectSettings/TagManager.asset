@@ -11,7 +11,10 @@ TagManager:
   - Spell
   - Crystal
   - Enemy
+<<<<<<< HEAD
   - Potato
+=======
+>>>>>>> dbfc1bc37479329967deb1fd32d7e3f163043d44
   layers:
   - Default
   - TransparentFX
@@ -23,7 +26,7 @@ TagManager:
   - 
   - Rift
   - Shot
-  - 
+  - Interact
   - 
   - 
   - 

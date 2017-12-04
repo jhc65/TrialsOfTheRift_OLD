@@ -57,4 +57,12 @@ public class MeleeController : EnemyController {
 	
 	protected override void ChildUpdateFrozen(){
 	}
+	
+	protected override void ChildEnterStateSlowed(){
+	}
+	
+	protected override void ChildUpdateSlowed(){
+		if(Vector3.Distance(transform.position,go_closestTarget.transform.position) < Constants.EnviroStats.C_EnemyAttackRange)
+				EnterStateAttack();
+	}
 }

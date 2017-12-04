@@ -14,14 +14,17 @@ public class PlayerParametersController : MonoBehaviour {
     public Slider slider_playerMoveSpeed;
     public Slider slider_windSpeed;
     public Slider slider_iceSpeed;
-    public Slider slider_windCooldown;
+	public Slider slider_electricSpeed;
+	public Slider slider_windCooldown;
     public Slider slider_iceCooldown;
-    public Slider slider_magicMissileSpeed;
+	public Slider slider_electricCooldown;
+	public Slider slider_magicMissileSpeed;
     public Slider slider_projSize;
     public Slider slider_projLife;
     public Slider slider_windForce;
     public Slider slider_iceFreeze;
-    public Slider slider_enemySpawn;
+	public Slider slider_electricLiveTime;
+	public Slider slider_enemySpawn;
     public Slider slider_enemySpeed;
     public Slider slider_enemyHealth;
     public Slider slider_enemyDamage;
@@ -37,14 +40,17 @@ public class PlayerParametersController : MonoBehaviour {
     public Text txt_playerMoveSpeed;
     public Text txt_windSpeed;
     public Text txt_iceSpeed;
-    public Text txt_windCooldown;
+	public Text txt_electricSpeed;
+	public Text txt_windCooldown;
     public Text txt_iceCooldown;
-    public Text txt_magicMissileSpeed;
+	public Text txt_electricCooldown;
+	public Text txt_magicMissileSpeed;
     public Text txt_projSize;
     public Text txt_projLife;
     public Text txt_windForce;
     public Text txt_iceFreeze;
-    public Text txt_enemySpawn;
+	public Text txt_electricLiveTime;
+	public Text txt_enemySpawn;
     public Text txt_enemySpeed;
     public Text txt_enemyHealth;
     public Text txt_enemyDamage;
@@ -109,6 +115,11 @@ public class PlayerParametersController : MonoBehaviour {
         //}
     }
 
+	public void ChangeElectricSpeed(float f_electricSpeedIn) {
+		txt_electricSpeed.text = slider_electricSpeed.value.ToString();
+		Constants.SpellStats.C_ElectricSpeed = f_electricSpeedIn;
+    }
+
     public void ChangeWindCooldown(float f_windCooldownIn) {
         txt_windCooldown.text = slider_windCooldown.value.ToString();
 		Constants.SpellStats.C_WindCooldown = f_windCooldownIn;
@@ -125,7 +136,12 @@ public class PlayerParametersController : MonoBehaviour {
 		//}
 	}
 
-    public void ChangeProjectileSize(float f_projSizeIn) {
+	public void ChangeElectricCooldown(float f_electricCooldownIn){
+		txt_electricCooldown.text = slider_electricCooldown.value.ToString();
+		Constants.SpellStats.C_ElectricCooldown = f_electricCooldownIn;
+	}
+
+	public void ChangeProjectileSize(float f_projSizeIn) {
         float roundedVal = Mathf.Round(slider_projSize.value * 100f) / 100f;
         txt_projSize.text = roundedVal.ToString();
         Constants.SpellStats.C_PlayerProjectileSize = roundedVal;
@@ -152,7 +168,12 @@ public class PlayerParametersController : MonoBehaviour {
 		//}
 	}
 
-    public void ChangeSpawnRate(float f_enemySpawnIn) {
+	public void ChangeElectricLiveTime(float f_electricLiveTimeIn) {
+		txt_electricLiveTime.text = slider_electricLiveTime.value.ToString();
+		Constants.SpellStats.C_ElectricAOELiveTime = f_electricLiveTimeIn;
+	}
+
+	public void ChangeSpawnRate(float f_enemySpawnIn) {
         txt_enemySpawn.text = slider_enemySpawn.value.ToString();
         DM.f_enemySpawnTime = f_enemySpawnIn;
         DM.ResetEnemySpawnRate();
@@ -168,8 +189,7 @@ public class PlayerParametersController : MonoBehaviour {
         Constants.EnviroStats.C_EnemyHealth = (int)f_enemyHealthIn;
     }
 
-    public void ChangeEnemyDamage(float f_enemyDamageIn)
-    {
+    public void ChangeEnemyDamage(float f_enemyDamageIn) {
         txt_enemyDamage.text = slider_enemyDamage.value.ToString();
         Constants.EnviroStats.C_EnemyDamage = (int)f_enemyDamageIn;
     }
@@ -243,6 +263,10 @@ public class PlayerParametersController : MonoBehaviour {
 		txt_iceSpeed.text = Constants.SpellStats.C_IceSpeed.ToString();
 		slider_iceSpeed.value = Constants.SpellStats.C_IceSpeed;
 
+		// Electric Spell Speed
+		txt_electricSpeed.text = Constants.SpellStats.C_ElectricSpeed.ToString();
+		slider_electricSpeed.value = Constants.SpellStats.C_ElectricSpeed;
+
 		// Wind Spell Cooldown
 		txt_windCooldown.text = Constants.SpellStats.C_WindCooldown.ToString();
 		slider_windCooldown.value = Constants.SpellStats.C_WindCooldown;
@@ -250,6 +274,10 @@ public class PlayerParametersController : MonoBehaviour {
 		// Ice Spell Cooldown
 		txt_iceCooldown.text = Constants.SpellStats.C_IceCooldown.ToString();
 		slider_iceCooldown.value = Constants.SpellStats.C_IceCooldown;
+
+		// Electric Spell Cooldown
+		txt_electricCooldown.text = Constants.SpellStats.C_ElectricCooldown.ToString();
+		slider_electricCooldown.value = Constants.SpellStats.C_ElectricCooldown;
 
 		//----------------------------
 		// Magic Missile Speed
@@ -271,6 +299,10 @@ public class PlayerParametersController : MonoBehaviour {
 		// Ice Freeze Duration
 		txt_iceFreeze.text = Constants.SpellStats.C_IceFreezeTime.ToString();
 		slider_iceFreeze.value = Constants.SpellStats.C_IceFreezeTime;
+
+		// Electric AOE live-time Freeze Duration
+		txt_electricLiveTime.text = Constants.SpellStats.C_ElectricAOELiveTime.ToString();
+		slider_electricLiveTime.value = Constants.SpellStats.C_ElectricAOELiveTime;
 
 		//----------------------------
 

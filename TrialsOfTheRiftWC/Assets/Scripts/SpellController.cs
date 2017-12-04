@@ -6,8 +6,7 @@ using UnityEngine;
 public abstract class SpellController : MonoBehaviour {
 	
 	public Constants.Color e_color;
-	public float f_damage;			// damage done to enemies
-	//public float f_liveTime;
+	public float f_damage;			// currently unused, as each individual spell reads its damage value from Constants.cs in Start()
 	public string[] s_spellTargetTags; // these are the tags of the objects spells should do damage/effect against
 
 	protected abstract void BuffSpell();
@@ -15,12 +14,12 @@ public abstract class SpellController : MonoBehaviour {
 
     private Collision coll;  //used to turn the potato objective kinematic back on
 
-	void Start() {
-		//f_liveTime = Constants.SpellStats.C_SpellLiveTime;
-		Destroy(gameObject, Constants.SpellStats.C_SpellLiveTime);
+	protected virtual void Start() {
+		//Destroy(gameObject, Constants.SpellStats.C_SpellLiveTime);
+		Invoke("InvokeDestroy", Constants.SpellStats.C_SpellLiveTime);
 	}
 
-	void OnCollisionEnter(Collision collision) {
+	protected virtual void OnCollisionEnter(Collision collision) {
 		//Debug.Log("Impact:" + coll.gameObject.tag);
 		foreach (string tag in s_spellTargetTags) {
 			if (collision.gameObject.tag == tag) {
@@ -68,7 +67,13 @@ public abstract class SpellController : MonoBehaviour {
 
 	void OnTriggerEnter(Collider other) {	// rift reacts to spells by trigger rather than collision
 		if (other.tag == "Rift"){
+			CancelInvoke(); //If it's the rift cancel the first invoke
 			BuffSpell();
+			Invoke("InvokeDestroy", 1.07f); //Call another invoke but with enough time to travel 2/3's of the other side, (1.07 is a derived time)
 		}
+	}
+
+	void InvokeDestroy() {
+		Destroy(gameObject);
 	}
 }
