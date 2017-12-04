@@ -220,7 +220,6 @@ public class PlayerController : MonoBehaviour{
 			e_Side = Constants.Side.LEFT;
 	}
 
-<<<<<<< HEAD
     private void TurnOff()
     {
         go_interactCollider.transform.localPosition = new Vector3(go_interactCollider.transform.localPosition.x, -1000.0f, go_interactCollider.transform.localPosition.z);
@@ -239,14 +238,6 @@ public class PlayerController : MonoBehaviour{
 			transform.position = transform.position + (int)e_Side * new Vector3(-2, 0, 0);
 		}
 	}
-=======
-	//void OnTriggerEnter(Collider other) {
-	//	if (other.tag == "Rift") {
-	//		TakeDamage(f_playerHealth);
-	//		transform.position = transform.position + (int)e_Side * new Vector3(-2, 0, 0);
-	//	}
-	//}
->>>>>>> dbfc1bc37479329967deb1fd32d7e3f163043d44
 
     private void OnCollisionEnter(Collision collision)
     {
