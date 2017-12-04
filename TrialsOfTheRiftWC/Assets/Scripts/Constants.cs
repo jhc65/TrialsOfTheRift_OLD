@@ -53,6 +53,8 @@ public static class Constants {
         public static int C_EnemyDamage = 25;
         public static int C_CrystalMaxHealth = 500;
         public static int C_CTFMaxScore = 3;
+        public static int C_CompletionTimer = 30;       //tracks progress of objective being in enemy territory
+        public static int C_SelfDestructThreshold = 10; //threshold for objective to disappear and spawn enemies
     }
 
     // Team Constants
@@ -60,6 +62,8 @@ public static class Constants {
 	public enum Side { LEFT = -1, RIGHT = 1 };
 	public static Vector3 C_RedObjectiveSpawn = new Vector3(20.0f, 0.5f, 0f);	//i.e. the Blue Flag Red Players are trying to retrieve
 	public static Vector3 C_BlueObjectiveSpawn = new Vector3(-20.0f, 0.5f, 0f);
+    public static Vector3 C_RedHotCrystalSpawn = new Vector3(-3.0f, 0.5f, 0f);
+    public static Vector3 C_BlueHotCrystalSpawn = new Vector3(3.0f, 0.5f, 0f);
     public static Vector3 C_RedObjectiveGoal = new Vector3(-3.0f, .01f, 0f);	//i.e. Red's base the Blue's Flag must be returned to
 	public static Vector3 C_BlueObjectiveGoal = new Vector3(3.0f, .01f, 0f);
 	public static GameObject[] C_Players = GameObject.FindGameObjectsWithTag("Player");

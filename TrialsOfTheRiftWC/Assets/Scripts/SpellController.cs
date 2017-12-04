@@ -13,6 +13,7 @@ public abstract class SpellController : MonoBehaviour {
 	protected abstract void BuffSpell();
 	protected abstract void ApplyEffect(GameObject go_target);
 
+    private Collision coll;  //used to turn the potato objective kinematic back on
 
 	void Start() {
 		//f_liveTime = Constants.SpellStats.C_SpellLiveTime;
@@ -24,7 +25,21 @@ public abstract class SpellController : MonoBehaviour {
 		foreach (string tag in s_spellTargetTags) {
 			if (collision.gameObject.tag == tag) {
 				ApplyEffect(collision.gameObject);
-				Destroy(gameObject);
+
+                //makes the potato stop moving after the spell has applied its affect
+                //it moves the spell like this to hide it from view so it doesn't affect anyone on the field
+                //I really hate this, but its the only good way for now
+                if (collision.gameObject.tag == "Potato")
+                {
+                    coll = collision;
+                    this.transform.localPosition = new Vector3(this.transform.localPosition.x, -1000.0f, this.transform.localPosition.z);
+                    Invoke("TurnKinematicOn", 0.05f);
+                }
+                else
+                {
+                    Destroy(gameObject);
+                }
+
 				return;
 			}
 		}
@@ -44,6 +59,12 @@ public abstract class SpellController : MonoBehaviour {
 			Destroy(gameObject);
         }
 	}
+
+    //makes the potato objective kinematic again
+    private void TurnKinematicOn() {
+        coll.gameObject.GetComponent<Rigidbody>().isKinematic = true;
+        Destroy(gameObject);
+    }
 
 	void OnTriggerEnter(Collider other) {	// rift reacts to spells by trigger rather than collision
 		if (other.tag == "Rift"){

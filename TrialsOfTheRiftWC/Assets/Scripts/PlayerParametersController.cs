@@ -30,6 +30,8 @@ public class PlayerParametersController : MonoBehaviour {
     public Slider slider_playerHealth;
     public Slider slider_crystalHealth;
     public Slider slider_CTFScore;
+    public Slider slider_completionTimer;
+    public Slider slider_selfDestructTimer;
 
     // UI txt (Set in editor)
     public Text txt_playerMoveSpeed;
@@ -51,10 +53,12 @@ public class PlayerParametersController : MonoBehaviour {
     public Text txt_playerHealth;
     public Text txt_crystalHealth;
     public Text txt_CTFScore;
+    public Text txt_completionTimer;
+    public Text txt_selfDestructTimer;
 
 
     // Public Helper Methods
-	// currently unused - GC set in inspector
+    // currently unused - GC set in inspector
     public void SetGameController(GameController GC_controllerIn) {
         GC = GC_controllerIn;
     }
@@ -199,6 +203,18 @@ public class PlayerParametersController : MonoBehaviour {
 		Constants.EnviroStats.C_CTFMaxScore = (int)f_CTFScoreIn;
 	}
 
+    public void ChangeCompletionTimer(float timer)
+    {
+        txt_completionTimer.text = slider_completionTimer.value.ToString();
+        Constants.EnviroStats.C_CompletionTimer = (int)timer;
+    }
+
+    public void ChangeSelfDestructTimer(float timer)
+    {
+        txt_selfDestructTimer.text = slider_selfDestructTimer.value.ToString();
+        Constants.EnviroStats.C_SelfDestructThreshold = (int)timer;
+    }
+
     public void ObjectiveReset() {
         //Drop the flag before resetting (for CTF)
         foreach (PlayerController playerController in l_playerControllers) {
@@ -290,5 +306,13 @@ public class PlayerParametersController : MonoBehaviour {
 		// CTF Score
 		txt_CTFScore.text = Constants.EnviroStats.C_CTFMaxScore.ToString();
 		slider_CTFScore.value = Constants.EnviroStats.C_CTFMaxScore;
-	}
+
+        //Completion Timer for Hot Potato
+        txt_completionTimer.text = Constants.EnviroStats.C_CompletionTimer.ToString();
+        slider_completionTimer.value = Constants.EnviroStats.C_CompletionTimer;
+
+        //Self Destruct Timer for Hot Potato
+        txt_selfDestructTimer.text = Constants.EnviroStats.C_SelfDestructThreshold.ToString();
+        slider_selfDestructTimer.value = Constants.EnviroStats.C_SelfDestructThreshold;
+    }
 }

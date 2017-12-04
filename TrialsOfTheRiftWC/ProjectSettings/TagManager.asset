@@ -10,6 +10,8 @@ TagManager:
   - Portal
   - Spell
   - Crystal
+  - Enemy
+  - Potato
   layers:
   - Default
   - TransparentFX

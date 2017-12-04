@@ -8,6 +8,8 @@ public class GameController : MonoBehaviour {
     // Public vars
     public Text txt_redScoreText, txt_blueScoreText;
     public Text txt_redScoreText2, txt_blueScoreText2;
+    public Text txt_redCompletionTimer, txt_blueCompletionTimer;
+    public Text txt_redSelfDestructTimer, txt_blueSelfDestructTimer;
     public GameObject go_canvas;
 
     //Singleton
@@ -33,6 +35,29 @@ public class GameController : MonoBehaviour {
         }
         else if (colorIn == Constants.Color.BLUE) {
             txt_blueScoreText2.text = health.ToString();
+        }
+    }
+
+    public void CompletionProgress(Constants.Color colorIn, int time) {
+        if (colorIn == Constants.Color.RED)
+        {
+            txt_redCompletionTimer.text = time.ToString();
+        }
+        else if (colorIn == Constants.Color.BLUE)
+        {
+            txt_blueCompletionTimer.text = time.ToString();
+        }
+    }
+
+    public void SelfDestructProgress(Constants.Color colorIn, int time)
+    {
+        if (colorIn == Constants.Color.RED)
+        {
+            txt_redSelfDestructTimer.text = time.ToString();
+        }
+        else if (colorIn == Constants.Color.BLUE)
+        {
+            txt_blueSelfDestructTimer.text = time.ToString();
         }
     }
 

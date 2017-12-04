@@ -9,7 +9,15 @@ public class DarkMagician : MonoBehaviour {
 	public GameObject go_enemy;
 	public float f_enemySpawnTime = Constants.EnviroStats.C_EnemySpawnTime;             // [Param Fix]
 
-	private Vector3[] v3_rightEnemySpawnPositions = new Vector3[] {
+    //Singleton
+    static DarkMagician instance;
+
+    public static DarkMagician GetInstance()
+    {
+        return instance;
+    }
+
+    private Vector3[] v3_rightEnemySpawnPositions = new Vector3[] {
 		new Vector3(18f, 0.5f, 0f),
 		new Vector3(18f, 0.5f, -16.5f),
 		new Vector3(18f, 0.5f, 14f),
@@ -61,8 +69,30 @@ public class DarkMagician : MonoBehaviour {
         g2.GetComponent<MeleeController>().SetHealth(Constants.EnviroStats.C_EnemyHealth);      // [Param Fix]
 	}
 
-	void Awake() {	// parameter screen dictates that we do this before its Start() is called
-		objv_redObjective = Instantiate(go_objectivesList[0]).GetComponent<Objective>();
+    //instanties an enemy at a location on a particular side
+    public void SpawnEnemies(Constants.Side side, Vector3 position) {
+        GameObject g1 = Instantiate(go_enemy, position, new Quaternion(0, 0, 0, 0));
+        g1.GetComponent<EnemyController>().e_Side = side;
+        g1.GetComponent<NavMeshAgent>().speed = Constants.EnviroStats.C_EnemySpeed;             // [Param Fix]
+        g1.GetComponent<MeleeController>().SetHealth(Constants.EnviroStats.C_EnemyHealth);      // [Param Fix]
+    }
+
+	void Awake() {  // parameter screen dictates that we do this before its Start() is called
+
+        if (instance == null)
+        {
+            instance = this;
+        }
+
+        if (instance != null && instance != this)
+        {
+            Debug.Log("Destroying DM.");
+            Destroy(this);
+        }
+
+        Time.timeScale = 0;
+
+        objv_redObjective = Instantiate(go_objectivesList[0]).GetComponent<Objective>();
 		objv_blueObjective = Instantiate(go_objectivesList[0]).GetComponent<Objective>();
 		objv_redObjective.Set(Constants.Color.RED, 1);
 		objv_blueObjective.Set(Constants.Color.BLUE, 1);

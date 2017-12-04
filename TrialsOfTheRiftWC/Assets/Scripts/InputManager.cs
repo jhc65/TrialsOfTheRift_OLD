@@ -180,7 +180,24 @@ public static class InputManager{
 		}
 	}
 
-	public static bool GetButton(Axes a, int player) {
+    public static bool GetButtonUp(Axes a, int player)
+    {
+        switch (player)
+        {
+            case 1:
+                return Input.GetButtonUp(P1_Map[a]);
+            case 2:
+                return Input.GetButtonUp(P2_Map[a]);
+            case 3:
+                return Input.GetButtonUp(P3_Map[a]);
+            case 4:
+                return Input.GetButtonUp(P4_Map[a]);
+            default:
+                return false;   // unreachable
+        }
+    }
+
+    public static bool GetButton(Axes a, int player) {
 		switch (player){
 			case 1:
 				return Input.GetButton(P1_Map[a]);

@@ -78,10 +78,6 @@ public class PlayerController : MonoBehaviour{
 		i_canMove = 1;
     }
 
-	private void TurnOffInteractCollider() {
-		go_interactCollider.SetActive(false);
-	}
-
 	public void Pickup(GameObject flag) {
 		flag.transform.SetParent(t_flagPos);
 		flag.transform.localPosition = new Vector3(0, 0, 0);
@@ -222,16 +218,32 @@ public class PlayerController : MonoBehaviour{
 				Drop();
 			}
 			else {
-				go_interactCollider.SetActive(true);
-				Invoke("TurnOffInteractCollider", .5f);
-			}
+                go_interactCollider.SetActive(true);
+            }
 		}
-		
-		if (transform.position.x > 0)
+
+        if (InputManager.GetButtonUp(InputManager.Axes.INTERACT, i_playerNumber) && !isWisp)
+        {
+            TurnOff();
+        }
+
+       if (transform.position.x > 0)
 			e_Side = Constants.Side.RIGHT;
 		else
 			e_Side = Constants.Side.LEFT;
 	}
+
+    private void TurnOff()
+    {
+        go_interactCollider.transform.localPosition = new Vector3(go_interactCollider.transform.localPosition.x, -1000.0f, go_interactCollider.transform.localPosition.z);
+        Invoke("MoveBack", 0.05f);
+    }
+
+    private void MoveBack() {
+        go_interactCollider.SetActive(false);
+        go_interactCollider.transform.localPosition = new Vector3(go_interactCollider.transform.localPosition.x, transform.position.y, go_interactCollider.transform.localPosition.z);
+        
+    }
 
 	void OnTriggerEnter(Collider other) {
 		if (other.tag == "Rift") {
