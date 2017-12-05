@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour{
 
-	public GameObject c_playerCapsule;      // player main body
+    public GameObject c_playerCapsule;      // player main body
 	public GameObject c_playerWisp;         // player wisp body
 	public int i_playerNumber;				// designates player's number for controller mappings
 	public Constants.Color e_Color;			// identifies player's team
@@ -84,6 +84,8 @@ public class PlayerController : MonoBehaviour{
 	}
 
     private void PlayerDeath() {
+        Debug.Log("Increase Volatility by 2.5%");
+        RiftController.GetInstance().IncreaseVolatility(Constants.RiftStats.C_VolatilityIncraese_PlayerDeath);
 		isWisp = true;
 		c_playerCapsule.SetActive(false);
 		c_playerWisp.SetActive(true);

@@ -62,6 +62,24 @@ public static class Constants {
         public static int C_SelfDestructThreshold = 10; //threshold for objective to disappear and spawn enemies
     }
 
+    public static class RiftStats {
+        public static float C_Volatility_ResetTime = 5.0f;
+        public static float C_Volatility_CameraFlipTime = 5.0f;
+        public static float C_Volatility_EnemySpawnTimer = 7.0f;
+        public static float C_Volatility_SpellDamage = 50.0f;
+
+        public static float C_VolatilityIncrease_RoomAdvance = 5.0f;
+        public static float C_VolatilityIncrease_SpellCross = 0.5f;
+        public static float C_VolatilityIncraese_PlayerDeath = 2.5f;
+
+        public static float C_VolatilityMultiplier_L1 = 0.0f;
+        public static float C_VolatilityMultiplier_L2 = 0.2f;
+        public static float C_VolatilityMultiplier_L3 = 0.5f;
+        public static float C_VolatilityMultiplier_L4 = 1.0f;
+
+        public enum Volatility { ZERO, FIVE, TWENTYFIVE, THIRTYFIVE, FIFTY, SIXTYFIVE, SEVENTYFIVE, ONEHUNDRED };
+    }
+
     // Team Constants
 	public enum Color { RED, BLUE };
 	public enum Side { LEFT = -1, RIGHT = 1 };

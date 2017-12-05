@@ -514,6 +514,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8efe22be8d945f64ca0bd2ca6d2ffe7b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  go_RiftMagicMissile: {fileID: 1169542914423560, guid: 00247cb350ec7a848b7c7ce622e7cb56,
+    type: 2}
+  go_PlayerReferences:
+  - {fileID: 831298294}
+  - {fileID: 1854477934}
+  - {fileID: 1117903695}
+  - {fileID: 151429909}
+  go_PocketRift: {fileID: 0}
+  v3_PocketRiftLocations: []
+  mainCamera: {fileID: 1373953340}
 --- !u!4 &21829176
 Transform:
   m_ObjectHideFlags: 0
@@ -1485,6 +1495,11 @@ MeshFilter:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 148334016}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!1 &151429909 stripped
+GameObject:
+  m_PrefabParentObject: {fileID: 1410783614686064, guid: 90e8ad0eb698c4544becbcc568222a15,
+    type: 2}
+  m_PrefabInternal: {fileID: 889619434}
 --- !u!1 &165314884
 GameObject:
   m_ObjectHideFlags: 0
@@ -3557,6 +3572,52 @@ CanvasRenderer:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 426706789}
+--- !u!1001 &432415205
+Prefab:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 4092876934784572, guid: 00247cb350ec7a848b7c7ce622e7cb56, type: 2}
+      propertyPath: m_LocalPosition.x
+      value: -3.86
+      objectReference: {fileID: 0}
+    - target: {fileID: 4092876934784572, guid: 00247cb350ec7a848b7c7ce622e7cb56, type: 2}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4092876934784572, guid: 00247cb350ec7a848b7c7ce622e7cb56, type: 2}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4092876934784572, guid: 00247cb350ec7a848b7c7ce622e7cb56, type: 2}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4092876934784572, guid: 00247cb350ec7a848b7c7ce622e7cb56, type: 2}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4092876934784572, guid: 00247cb350ec7a848b7c7ce622e7cb56, type: 2}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4092876934784572, guid: 00247cb350ec7a848b7c7ce622e7cb56, type: 2}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4092876934784572, guid: 00247cb350ec7a848b7c7ce622e7cb56, type: 2}
+      propertyPath: m_RootOrder
+      value: 14
+      objectReference: {fileID: 0}
+    - target: {fileID: 1169542914423560, guid: 00247cb350ec7a848b7c7ce622e7cb56, type: 2}
+      propertyPath: m_Name
+      value: RiftMagicMissile
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_ParentPrefab: {fileID: 100100000, guid: 00247cb350ec7a848b7c7ce622e7cb56, type: 2}
+  m_IsPrefabParent: 0
 --- !u!1 &449433417
 GameObject:
   m_ObjectHideFlags: 0
@@ -6397,6 +6458,10 @@ MonoBehaviour:
   txt_blueScoreText: {fileID: 894766292}
   txt_redScoreText2: {fileID: 507043081}
   txt_blueScoreText2: {fileID: 517801366}
+  txt_redCompletionTimer: {fileID: 0}
+  txt_blueCompletionTimer: {fileID: 0}
+  txt_redSelfDestructTimer: {fileID: 0}
+  txt_blueSelfDestructTimer: {fileID: 0}
   go_canvas: {fileID: 181209746}
 --- !u!4 &658498690
 Transform:
@@ -6451,6 +6516,8 @@ MonoBehaviour:
   slider_playerHealth: {fileID: 1864574731}
   slider_crystalHealth: {fileID: 635183078}
   slider_CTFScore: {fileID: 2095581298}
+  slider_completionTimer: {fileID: 0}
+  slider_selfDestructTimer: {fileID: 0}
   txt_playerMoveSpeed: {fileID: 1896081438}
   txt_windSpeed: {fileID: 6911925}
   txt_iceSpeed: {fileID: 1280094396}
@@ -6473,6 +6540,8 @@ MonoBehaviour:
   txt_playerHealth: {fileID: 497509732}
   txt_crystalHealth: {fileID: 1578407934}
   txt_CTFScore: {fileID: 1362234605}
+  txt_completionTimer: {fileID: 0}
+  txt_selfDestructTimer: {fileID: 0}
 --- !u!114 &658498692
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7775,6 +7844,11 @@ CanvasRenderer:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 829632995}
+--- !u!1 &831298294 stripped
+GameObject:
+  m_PrefabParentObject: {fileID: 1232212126664142, guid: ce28f14c4d7ac0144880eded20f3d8e4,
+    type: 2}
+  m_PrefabInternal: {fileID: 1806757830}
 --- !u!1001 &849238189
 Prefab:
   m_ObjectHideFlags: 0
@@ -7866,6 +7940,11 @@ Prefab:
       value: 
       objectReference: {fileID: 1399049070116990, guid: a6ec5ad0254870244b463e157e59b407,
         type: 2}
+    - target: {fileID: 114940325633865376, guid: 90e8ad0eb698c4544becbcc568222a15,
+        type: 2}
+      propertyPath: RC
+      value: 
+      objectReference: {fileID: 21829175}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 90e8ad0eb698c4544becbcc568222a15, type: 2}
   m_IsPrefabParent: 0
@@ -9704,6 +9783,11 @@ CanvasRenderer:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1103454838}
+--- !u!1 &1117903695 stripped
+GameObject:
+  m_PrefabParentObject: {fileID: 1863125033859916, guid: 98767151e13fd074882b689c3a25f075,
+    type: 2}
+  m_PrefabInternal: {fileID: 2118622281}
 --- !u!1001 &1123699094
 Prefab:
   m_ObjectHideFlags: 0
@@ -14784,6 +14868,11 @@ Prefab:
       value: 
       objectReference: {fileID: 1399049070116990, guid: a6ec5ad0254870244b463e157e59b407,
         type: 2}
+    - target: {fileID: 114467604127061754, guid: 9eba1a2d8d8bf794ba2c56098f25687c,
+        type: 2}
+      propertyPath: RC
+      value: 
+      objectReference: {fileID: 21829175}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 9eba1a2d8d8bf794ba2c56098f25687c, type: 2}
   m_IsPrefabParent: 0
@@ -15532,6 +15621,11 @@ Prefab:
       value: 
       objectReference: {fileID: 1399049070116990, guid: a6ec5ad0254870244b463e157e59b407,
         type: 2}
+    - target: {fileID: 114402147449209724, guid: ce28f14c4d7ac0144880eded20f3d8e4,
+        type: 2}
+      propertyPath: RC
+      value: 
+      objectReference: {fileID: 21829175}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: ce28f14c4d7ac0144880eded20f3d8e4, type: 2}
   m_IsPrefabParent: 0
@@ -16281,6 +16375,11 @@ MonoBehaviour:
         m_CallState: 2
     m_TypeName: UnityEngine.UI.Slider+SliderEvent, UnityEngine.UI, Version=1.0.0.0,
       Culture=neutral, PublicKeyToken=null
+--- !u!1 &1854477934 stripped
+GameObject:
+  m_PrefabParentObject: {fileID: 1297406090650178, guid: 9eba1a2d8d8bf794ba2c56098f25687c,
+    type: 2}
+  m_PrefabInternal: {fileID: 1763601063}
 --- !u!1 &1856795470
 GameObject:
   m_ObjectHideFlags: 0
@@ -18390,6 +18489,11 @@ Prefab:
       value: 
       objectReference: {fileID: 1399049070116990, guid: a6ec5ad0254870244b463e157e59b407,
         type: 2}
+    - target: {fileID: 114425632406730226, guid: 98767151e13fd074882b689c3a25f075,
+        type: 2}
+      propertyPath: RC
+      value: 
+      objectReference: {fileID: 21829175}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 98767151e13fd074882b689c3a25f075, type: 2}
   m_IsPrefabParent: 0

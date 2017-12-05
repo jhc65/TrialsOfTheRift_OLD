@@ -4,8 +4,8 @@ using UnityEngine;
 [RequireComponent(typeof(Rigidbody))]
 [RequireComponent(typeof(SphereCollider))]
 public abstract class SpellController : MonoBehaviour {
-	
-	public Constants.Color e_color;
+
+    public Constants.Color e_color;
 	public float f_damage;			// currently unused, as each individual spell reads its damage value from Constants.cs in Start()
 	public string[] s_spellTargetTags; // these are the tags of the objects spells should do damage/effect against
 
@@ -65,7 +65,7 @@ public abstract class SpellController : MonoBehaviour {
         Destroy(gameObject);
     }
 
-	void OnTriggerEnter(Collider other) {	// rift reacts to spells by trigger rather than collision
+	protected virtual void OnTriggerEnter(Collider other) {	// rift reacts to spells by trigger rather than collision
 		if (other.tag == "Rift"){
 			CancelInvoke(); //If it's the rift cancel the first invoke
 			BuffSpell();

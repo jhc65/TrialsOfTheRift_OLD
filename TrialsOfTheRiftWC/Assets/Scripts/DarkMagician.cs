@@ -5,7 +5,7 @@ using UnityEngine.AI;
 
 public class DarkMagician : MonoBehaviour {
 
-	public GameObject[] go_objectivesList;
+    public GameObject[] go_objectivesList;
 	public GameObject go_enemy;
 	public float f_enemySpawnTime = Constants.EnviroStats.C_EnemySpawnTime;             // [Param Fix]
 
@@ -33,11 +33,21 @@ public class DarkMagician : MonoBehaviour {
 		new Vector3(-5f, 0.5f, -16.5f)
 	};
 
+    public Vector3[] GetRightEnemySpawnPositions() {
+        return v3_rightEnemySpawnPositions;
+    }
+
+    public Vector3[] GetLeftEnemySpawnPositions() {
+        return v3_leftEnemySpawnPositions;
+    }
+
 	//private GameObject go_redObjective, blueObjective;
 	//private Objective objv_redObjective, objv_blueObjective;        [Original]
     public Objective objv_redObjective, objv_blueObjective; 
 
 	private Objective GetNextObjective(Objective o) {
+        Debug.Log("Volatility Increase by 5%");
+        RiftController.GetInstance().IncreaseVolatility(Constants.RiftStats.C_VolatilityIncrease_RoomAdvance);
 		int newObjectiveNumber = o.i_numberInList;
 		//if(newObjectiveNumber == 5)
 		//{ game over}

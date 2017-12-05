@@ -5,7 +5,7 @@ using UnityEngine;
 
 public class WindController : SpellController {
 
-	private float f_windDamage = Constants.SpellStats.C_WindDamage;
+    private float f_windDamage = Constants.SpellStats.C_WindDamage;
 
     protected override void ApplyEffect(GameObject go_target) {
         if (go_target.tag == "Player")
@@ -39,7 +39,9 @@ public class WindController : SpellController {
         }
     }
 
-    protected override void BuffSpell(){
+    protected override void BuffSpell() {
+        // Increase Volatility by 0.5%
+        RiftController.GetInstance().IncreaseVolatility(Constants.RiftStats.C_VolatilityIncrease_SpellCross);
         f_windDamage = f_windDamage * Constants.SpellStats.C_WindDamageMultiplier;
         transform.localScale += new Vector3(0.5f, 0.5f, 0.5f);
     }
