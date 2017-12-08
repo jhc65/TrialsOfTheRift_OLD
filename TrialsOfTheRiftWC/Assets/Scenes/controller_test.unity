@@ -202,14 +202,18 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   t: {fileID: 1977210517}
   playerNum: 4
-  horizontal: 24
-  vertical: 25
-  wind: 26
-  ice: 27
-  interact: 28
-  menu: 29
-  submit: 30
-  cancel: 31
+  horizontal: 0
+  vertical: 1
+  wind: 5
+  ice: 6
+  interact: 8
+  menu: 9
+  submit: 10
+  cancel: 11
+  electric: 7
+  mm: 4
+  aimh: 2
+  aimv: 3
 --- !u!4 &308257549
 Transform:
   m_ObjectHideFlags: 0
@@ -252,14 +256,18 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   t: {fileID: 1977210517}
   playerNum: 2
-  horizontal: 8
-  vertical: 9
-  wind: 10
-  ice: 11
-  interact: 12
-  menu: 13
-  submit: 14
-  cancel: 15
+  horizontal: 0
+  vertical: 1
+  wind: 5
+  ice: 6
+  interact: 8
+  menu: 9
+  submit: 10
+  cancel: 11
+  electric: 7
+  mm: 4
+  aimh: 2
+  aimv: 3
 --- !u!4 &440278902
 Transform:
   m_ObjectHideFlags: 0
@@ -302,14 +310,18 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   t: {fileID: 1977210517}
   playerNum: 3
-  horizontal: 16
-  vertical: 17
-  wind: 18
-  ice: 19
-  interact: 20
-  menu: 21
-  submit: 22
-  cancel: 23
+  horizontal: 0
+  vertical: 1
+  wind: 5
+  ice: 6
+  interact: 8
+  menu: 9
+  submit: 10
+  cancel: 11
+  electric: 7
+  mm: 4
+  aimh: 2
+  aimv: 3
 --- !u!4 &822703824
 Transform:
   m_ObjectHideFlags: 0
@@ -599,12 +611,16 @@ MonoBehaviour:
   playerNum: 1
   horizontal: 0
   vertical: 1
-  wind: 2
-  ice: 3
-  interact: 4
-  menu: 5
-  submit: 6
-  cancel: 7
+  wind: 5
+  ice: 6
+  interact: 8
+  menu: 9
+  submit: 10
+  cancel: 11
+  electric: 7
+  mm: 4
+  aimh: 2
+  aimv: 3
 --- !u!4 &1964421317
 Transform:
   m_ObjectHideFlags: 0
