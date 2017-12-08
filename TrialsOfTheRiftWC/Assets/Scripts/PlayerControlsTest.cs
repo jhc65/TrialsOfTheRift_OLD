@@ -30,8 +30,8 @@ public class PlayerControlsTest : MonoBehaviour {
     void Update()
     {
         float speed = 10.0F;
-        float h = speed * InputManager.GetAxis(aimh, playerNum);
-        float v = speed * InputManager.GetAxis(aimv, playerNum);
+        float h = speed * InputManager.GetAxis(aimh, 1);
+        float v = speed * InputManager.GetAxis(aimv, 1);
         t.transform.Translate(h, v, 0);
 
         if (InputManager.GetButtonDown(wind, playerNum))
