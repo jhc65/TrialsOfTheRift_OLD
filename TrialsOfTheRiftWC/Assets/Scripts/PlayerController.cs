@@ -163,7 +163,7 @@ public class PlayerController : MonoBehaviour{
 		// spells
 		if (!go_flagObj && !isWisp) {
 			// Magic Missile
-			if (InputManager.GetButton(InputManager.Axes.MAGICMISSILE, i_playerNumber) && f_nextMagicMissile > Constants.SpellStats.C_MagicMissileCooldown) {   // checks for fire button and if time delay has passed
+			if (InputManager.GetAxis(InputManager.Axes.MAGICMISSILE, i_playerNumber) > 0 && f_nextMagicMissile > Constants.SpellStats.C_MagicMissileCooldown) {   // checks for fire button and if time delay has passed
 				f_nextMagicMissile = 0;
 				GameObject go_spell = Instantiate(go_magicMissileShot, t_spellSpawn.position, t_spellSpawn.rotation);
 				go_spell.GetComponent<SpellController>().e_color = e_Color;
@@ -190,7 +190,7 @@ public class PlayerController : MonoBehaviour{
 				go_spell.GetComponent<Rigidbody>().velocity = transform.forward * Constants.SpellStats.C_IceSpeed;
 			}
 			// Electric Spell
-			if (InputManager.GetButton(InputManager.Axes.ELECTRICSPELL, i_playerNumber) && f_nextElectric > Constants.SpellStats.C_ElectricCooldown && f_nextCast > Constants.SpellStats.C_NextSpellDelay) {   // checks for fire button and if time delay has passed
+			if (InputManager.GetAxis(InputManager.Axes.ELECTRICSPELL, i_playerNumber) > 0 && f_nextElectric > Constants.SpellStats.C_ElectricCooldown && f_nextCast > Constants.SpellStats.C_NextSpellDelay) {   // checks for fire button and if time delay has passed
 				f_nextElectric = 0;
 				f_nextCast = 0;
 				GameObject go_spell = Instantiate(go_electricShot, t_spellSpawn.position, t_spellSpawn.rotation);
