@@ -506,7 +506,7 @@ InputManager:
     descriptiveName: P1 Magic Missile PS4
     descriptiveNegativeName: 
     negativeButton: 
-    positiveButton: joystick 1 button 7
+    positiveButton: 
     altNegativeButton: 
     altPositiveButton: 
     gravity: 1000
@@ -514,8 +514,8 @@ InputManager:
     sensitivity: 1000
     snap: 0
     invert: 0
-    type: 0
-    axis: 0
+    type: 2
+    axis: 4
     joyNum: 1
   - serializedVersion: 3
     m_Name: P1 Electricity Spell XBOX
@@ -538,7 +538,7 @@ InputManager:
     descriptiveName: P1 Electricity Spell PS4
     descriptiveNegativeName: 
     negativeButton: 
-    positiveButton: joystick 1 button 6
+    positiveButton: 
     altNegativeButton: 
     altPositiveButton: 
     gravity: 1000
@@ -546,8 +546,8 @@ InputManager:
     sensitivity: 1000
     snap: 0
     invert: 0
-    type: 0
-    axis: 0
+    type: 2
+    axis: 3
     joyNum: 1
   - serializedVersion: 3
     m_Name: P1 Wind Spell XBOX
@@ -954,7 +954,7 @@ InputManager:
     descriptiveName: P2 Magic Missile PS4
     descriptiveNegativeName: 
     negativeButton: 
-    positiveButton: joystick 2 button 7
+    positiveButton: 
     altNegativeButton: 
     altPositiveButton: 
     gravity: 1000
@@ -962,8 +962,8 @@ InputManager:
     sensitivity: 1000
     snap: 0
     invert: 0
-    type: 0
-    axis: 0
+    type: 2
+    axis: 4
     joyNum: 2
   - serializedVersion: 3
     m_Name: P2 Electricity Spell XBOX
@@ -986,7 +986,7 @@ InputManager:
     descriptiveName: P2 Electricity Spell PS4
     descriptiveNegativeName: 
     negativeButton: 
-    positiveButton: joystick 2 button 6
+    positiveButton: 
     altNegativeButton: 
     altPositiveButton: 
     gravity: 1000
@@ -994,8 +994,8 @@ InputManager:
     sensitivity: 1000
     snap: 0
     invert: 0
-    type: 0
-    axis: 0
+    type: 2
+    axis: 3
     joyNum: 2
   - serializedVersion: 3
     m_Name: P2 Wind Spell XBOX
@@ -1450,7 +1450,7 @@ InputManager:
     descriptiveName: P3 Magic Missile PS4
     descriptiveNegativeName: 
     negativeButton: 
-    positiveButton: joystick 3 button 7
+    positiveButton: 
     altNegativeButton: 
     altPositiveButton: 
     gravity: 1000
@@ -1458,8 +1458,8 @@ InputManager:
     sensitivity: 1000
     snap: 0
     invert: 0
-    type: 0
-    axis: 0
+    type: 2
+    axis: 4
     joyNum: 3
   - serializedVersion: 3
     m_Name: P3 Electricity Spell XBOX
@@ -1482,7 +1482,7 @@ InputManager:
     descriptiveName: P3 Electricity Spell PS4
     descriptiveNegativeName: 
     negativeButton: 
-    positiveButton: joystick 3 button 6
+    positiveButton: 
     altNegativeButton: 
     altPositiveButton: 
     gravity: 1000
@@ -1490,8 +1490,8 @@ InputManager:
     sensitivity: 1000
     snap: 0
     invert: 0
-    type: 0
-    axis: 0
+    type: 2
+    axis: 3
     joyNum: 3
   - serializedVersion: 3
     m_Name: P3 Wind Spell XBOX
@@ -2026,7 +2026,7 @@ InputManager:
     descriptiveName: P4 Magic Missile PS4
     descriptiveNegativeName: 
     negativeButton: 
-    positiveButton: joystick 4 button 7
+    positiveButton: 
     altNegativeButton: 
     altPositiveButton: 
     gravity: 1000
@@ -2034,8 +2034,8 @@ InputManager:
     sensitivity: 1000
     snap: 0
     invert: 0
-    type: 0
-    axis: 0
+    type: 2
+    axis: 4
     joyNum: 4
   - serializedVersion: 3
     m_Name: P4 Electricity Spell XBOX
@@ -2058,7 +2058,7 @@ InputManager:
     descriptiveName: P4 Electricity Spell PS4
     descriptiveNegativeName: 
     negativeButton: 
-    positiveButton: joystick 4 button 6
+    positiveButton: 
     altNegativeButton: 
     altPositiveButton: 
     gravity: 1000
@@ -2066,8 +2066,8 @@ InputManager:
     sensitivity: 1000
     snap: 0
     invert: 0
-    type: 0
-    axis: 0
+    type: 2
+    axis: 3
     joyNum: 4
   - serializedVersion: 3
     m_Name: P4 Wind Spell XBOX
