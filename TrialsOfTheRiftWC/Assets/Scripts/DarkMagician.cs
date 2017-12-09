@@ -115,7 +115,7 @@ public class DarkMagician : MonoBehaviour {
 		//	g2.GetComponent<EnemyController>().e_Side = Constants.Side.RIGHT;
 		//}
 
-		InvokeRepeating("SpawnEnemies", 7.0f, f_enemySpawnTime);
+		//InvokeRepeating("SpawnEnemies", 7.0f, f_enemySpawnTime);
 	}
 
 	void Update() {
@@ -130,8 +130,7 @@ public class DarkMagician : MonoBehaviour {
 
     // [Param Fix]
     public void ResetEnemySpawnRate() {
-        Debug.Log("Is this a problem?");
-        CancelInvoke();
-        InvokeRepeating("SpawnEnemies", 7.0f, f_enemySpawnTime);
+        //CancelInvoke();
+        //InvokeRepeating("SpawnEnemies", 7.0f, f_enemySpawnTime);
     }
 }

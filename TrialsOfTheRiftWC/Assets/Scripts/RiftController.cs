@@ -81,7 +81,6 @@ public class RiftController : MonoBehaviour {
         }
         else if (f_volatility >= 25.0f && V_currentVolatilityLevel != Constants.RiftStats.Volatility.TWENTYFIVE) {
             // Change Rift material to L2
-            ResetEnemies();
             V_currentVolatilityLevel = Constants.RiftStats.Volatility.TWENTYFIVE;
             f_volatilityMultiplier = Constants.RiftStats.C_VolatilityMultiplier_L2;
             //FireSpells();
@@ -94,6 +93,7 @@ public class RiftController : MonoBehaviour {
         }
         else if (f_volatility < 5.0f) {
             CancelInvoke("SpawnEnemies");
+            ResetEnemies();
             V_currentVolatilityLevel = Constants.RiftStats.Volatility.ZERO;
         }
     }
