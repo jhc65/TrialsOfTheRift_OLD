@@ -86,23 +86,25 @@ public class HotPotatoObjective : Objective
         int side = (int)e_Side;
         pos.x = side * Mathf.Abs(center.x + radius * Mathf.Sin(ang * Mathf.Deg2Rad));
         pos.y = center.y;
-        pos.z = center.z + radius * Mathf.Tan(ang * Mathf.Deg2Rad);
+        pos.z = center.z + radius * Mathf.Cos(ang * Mathf.Deg2Rad);
 
         //reposition the enemies if they spawn outside of the map
         if (pos.z >= 22) {
             float diff = pos.z - 22;
-            pos.z = pos.z - diff + 1;
+            pos.z = pos.z - diff - 1;
         }
         else if (pos.z <= -22)
         {
+            Debug.Log(pos.z);
             float diff = pos.z + 22;
             pos.z = pos.z - diff + 1;
+            Debug.Log(pos.z);
         }
 
         if (pos.x >= 40)
         {
             float diff = pos.x - 40;
-            pos.x = pos.x - diff + 1;
+            pos.x = pos.x - diff - 1;
         }
         else if (pos.x <= -40)
         {
