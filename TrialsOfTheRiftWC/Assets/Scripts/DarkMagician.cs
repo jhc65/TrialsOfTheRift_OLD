@@ -41,8 +41,6 @@ public class DarkMagician : MonoBehaviour {
         return v3_leftEnemySpawnPositions;
     }
 
-	//private GameObject go_redObjective, blueObjective;
-	//private Objective objv_redObjective, objv_blueObjective;        [Original]
     public Objective objv_redObjective, objv_blueObjective; 
 
 	private Objective GetNextObjective(Objective o) {
