@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour{
 
+    //Testing Rewired here.
+
     public GameObject go_playerCapsule;      // player main body
 	public GameObject go_playerWisp;         // player wisp body
 	public int i_playerNumber;				// designates player's number for controller mappings
